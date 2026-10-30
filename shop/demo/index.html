@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Panel Admin — StarDev Licence V4 (data contoh)</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  :root{
+    --bg:#0a0a0f;--surface:#12121a;--card:#1a1a26;--border:#2e2e4a;
+    --purple:#8a2be2;--purple2:#9d4dff;--purple3:#5a1a9a;
+    --green:#00ff88;--red:#ff4455;--yellow:#ffc107;--blue:#5865f2;
+    --text:#e0e0f0;--muted:#7070a0;
+  }
+  body{background:var(--bg);color:var(--text);min-height:100vh}
+
+  /* ── LOGIN ── */
+  #login-screen{
+    position:fixed;inset:0;display:flex;align-items:center;
+    justify-content:center;background:var(--bg);z-index:100;
+  }
+  .login-box{
+    width:300px;background:var(--card);border:2px solid var(--purple);
+    border-radius:14px;padding:28px 24px;text-align:center;
+    box-shadow:0 0 30px rgba(138,43,226,.3);
+  }
+  .login-box h1{font-size:24px;margin-bottom:4px;color:#fff}
+  .login-box p{color:var(--muted);font-size:13px;margin-bottom:24px}
+  .login-box input{
+    width:85%;padding:10px 12px;background:#0f0f18;border:1.5px solid var(--border);
+    border-radius:8px;color:#fff;font-size:14px;outline:none;margin-bottom:12px;
+    transition:.2s;display:block;margin-left:auto;margin-right:auto
+  }
+  .login-box input:focus{border-color:var(--purple)}
+  .login-error{color:var(--red);font-size:13px;margin-top:8px;min-height:18px}
+
+  /* ── LAYOUT ── */
+  #app{display:none;flex-direction:column;min-height:100vh}
+  header{
+    background:var(--surface);border-bottom:1px solid var(--border);
+    padding:0 28px;height:56px;display:flex;align-items:center;
+    justify-content:space-between;position:sticky;top:0;z-index:10;
+  }
+  .logo{font-size:18px;font-weight:700;color:#fff}
+  .logo span{color:var(--purple)}
+  .header-right{display:flex;align-items:center;gap:12px}
+  .badge{
+    padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;
+    background:var(--purple3);color:var(--purple2)
+  }
+  main{padding:28px;flex:1}
+
+  /* ── STATS ROW ── */
+  .stats-bar{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:10px 20px;margin-bottom:20px;font-size:14px;color:var(--muted);
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap
+  }
+  .stats-bar span{font-weight:700;color:var(--text)}
+  .sep{color:var(--border)}
+
+  /* ── TOOLBAR ── */
+  .toolbar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+  .search-wrap{flex:1;min-width:200px;position:relative}
+  .search-wrap input{
+    width:100%;padding:10px 14px 10px 38px;background:var(--card);
+    border:1px solid var(--border);border-radius:10px;color:#fff;
+    font-size:14px;outline:none;transition:.2s
+  }
+  .search-wrap input:focus{border-color:var(--purple)}
+  .search-wrap::before{
+    content:"";position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    font-size:14px;opacity:.5
+  }
+
+  /* ── BUTTONS ── */
+  .btn{
+    padding:10px 18px;border:none;border-radius:10px;font-size:14px;
+    font-weight:600;cursor:pointer;transition:.2s;display:inline-flex;
+    align-items:center;gap:6px
+  }
+  .btn-purple{background:var(--purple);color:#fff}
+  .btn-purple:hover{background:var(--purple2)}
+  .btn-red{background:rgba(255,68,85,.15);color:var(--red);border:1px solid rgba(255,68,85,.3)}
+  .btn-red:hover{background:rgba(255,68,85,.25)}
+  .btn-green{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.25)}
+  .btn-green:hover{background:rgba(0,255,136,.22)}
+  .btn-blue{background:rgba(88,101,242,.15);color:var(--blue);border:1px solid rgba(88,101,242,.3)}
+  .btn-blue:hover{background:rgba(88,101,242,.25)}
+  .btn-sm{padding:6px 12px;font-size:12px}
+
+  /* ── TABLE ── */
+  .table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px}
+  table{width:100%;border-collapse:collapse;min-width:700px}
+  thead tr{border-bottom:1px solid var(--border)}
+  th{
+    padding:12px 16px;text-align:left;font-size:12px;
+    font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px
+  }
+  tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:.15s}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:hover{background:rgba(138,43,226,.06)}
+  td{padding:12px 16px;font-size:14px;vertical-align:middle}
+  .key-val{
+    font-family:monospace;font-size:13px;background:#0f0f18;
+    padding:3px 8px;border-radius:6px;color:var(--purple2)
+  }
+  .status-badge{
+    padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.5px
+  }
+  .s-developer{background:rgba(255,193,7,.12);color:var(--yellow)}
+  .s-timDeveloper{background:rgba(88,101,242,.15);color:var(--blue)}
+  .s-user{background:rgba(138,43,226,.15);color:var(--purple2)}
+  .expire-ok{color:var(--green);font-size:13px}
+  .expire-warn{color:var(--yellow);font-size:13px}
+  .expire-perm{color:var(--muted);font-size:13px}
+  .hwid-count{color:var(--muted);font-size:13px}
+  .actions{display:flex;gap:6px}
+  .empty{text-align:center;padding:48px;color:var(--muted);font-size:14px}
+
+  /* ── MODAL ── */
+  .modal-bg{
+    position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;z-index:200;
+    opacity:0;pointer-events:none;transition:.2s
+  }
+  .modal-bg.show{opacity:1;pointer-events:all}
+  .modal{
+    width:420px;background:var(--card);border:1.5px solid var(--purple);
+    border-radius:18px;padding:28px;box-shadow:0 0 50px rgba(138,43,226,.3);
+    transform:scale(.95);transition:.2s
+  }
+  .modal-bg.show .modal{transform:scale(1)}
+  .modal h2{margin-bottom:20px;font-size:18px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600}
+  .field input,.field select{
+    width:100%;padding:10px 12px;background:#0f0f18;border:1.5px solid var(--border);
+    border-radius:8px;color:#fff;font-size:14px;outline:none;transition:.2s
+  }
+  .field input:focus,.field select:focus{border-color:var(--purple)}
+  .field select option{background:#1a1a26}
+  .field-hint{font-size:11px;color:var(--muted);margin-top:4px}
+  .modal-btns{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+  .modal-err{color:var(--red);font-size:12px;margin-top:8px;min-height:16px}
+
+  /* ── TOAST ── */
+  #toast{
+    position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:10px;
+    font-size:14px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;z-index:999
+  }
+  #toast.show{opacity:1}
+  #toast.ok{background:rgba(0,255,136,.15);color:var(--green);border:1px solid rgba(0,255,136,.3)}
+  #toast.err{background:rgba(255,68,85,.15);color:var(--red);border:1px solid rgba(255,68,85,.3)}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px){
+    main{padding:16px}
+    .stats{gap:10px}
+    .toolbar{gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<script>
+/* DEMO SHIM — no network. Sample data only. */
+(function(){
+  var now = Math.floor(Date.now()/1000);
+  var db = {
+    keys: [
+      {key:"LULU-DEMO-4F2A-9C10", name:"Demo Buyer A", status:"user",  expireAt: now + 86400*23, expireLabel:"23D", maxHwid:2, hwids:["a1b2c3d4e5f6","0f1e2d3c4b5a"], attemptCount:14},
+      {key:"LULU-DEMO-7B31-EE04", name:"Demo Buyer B", status:"user",  expireAt: now + 86400*3,  expireLabel:"3D",  maxHwid:1, hwids:["9988aabbccdd"], attemptCount:41, rejectedCount:6},
+      {key:"LULU-DEMO-LIFE-0007", name:"Lifetime customer", status:"developer", expireAt:0, maxHwid:3, hwids:["ca11ab1e0001","ca11ab1e0002"], attemptCount:3},
+      {key:"LULU-DEMO-OLD-1111", name:"Expired trial", status:"user", expireAt: now - 86400*4, maxHwid:1, hwids:[], attemptCount:2},
+      {key:"LULU-DEMO-RES-2222", name:"Reseller stock", status:"user", expireAt: now + 86400*30, expireLabel:"30D", maxHwid:1, hwids:[], attemptCount:0}
+    ],
+    blocked: [
+      {hwid:"ff00ff00ff00", permanent:true},
+      {hwid:"1234abcd5678", permanent:false}
+    ],
+    events: [
+      {serverTimestamp: now-3600, hwid:"1234abcd5678", eventId:"RATE_LIMIT", message:"Too many verify attempts (hourly limit)", key:"LULU-DEMO-7B31-EE04"},
+      {serverTimestamp: now-7200, hwid:"ffffffffffff", eventId:"HWID_MISMATCH", message:"Key already bound to 1/1 devices", key:"LULU-DEMO-OLD-1111"},
+      {serverTimestamp: now-86400, hwid:"ff00ff00ff00", eventId:"BLOCKED", message:"Permanent block after repeated failures", key:"<pre-login>"}
+    ]
+  };
+  function respond(data){
+    return Promise.resolve({ok:true, status:200, json:function(){return Promise.resolve(data)}, text:function(){return Promise.resolve(JSON.stringify(data))}});
+  }
+  var realFetch = window.fetch ? window.fetch.bind(window) : null;
+  window.fetch = function(url, opts){
+    var u = String(url), m = (opts && opts.method) || "GET";
+    if (u.indexOf("/api/admin") === 0) {
+      if (m === "GET") return respond(db.keys.map(function(k){return JSON.parse(JSON.stringify(k))}));
+      if (m === "POST") { db.keys.push(Object.assign({status:"user",maxHwid:1,hwids:[],attemptCount:0}, JSON.parse(opts.body||"{}"))); return respond({success:true}); }
+      if (m === "PUT") { var b=JSON.parse(opts.body||"{}"); db.keys.forEach(function(k){ if(k.key===b.key) Object.assign(k,b); }); return respond({success:true}); }
+      if (m === "DELETE") { var d=JSON.parse(opts.body||"{}"); db.keys=db.keys.filter(function(k){return k.key!==d.key}); return respond({success:true}); }
+      return respond({success:true});
+    }
+    if (u.indexOf("/api/hwid") === 0) {
+      if (m === "GET") return respond(db.blocked);
+      if (m === "DELETE") { var x=JSON.parse(opts.body||"{}"); db.blocked=db.blocked.filter(function(b){return b.hwid!==x.hwid}); return respond({success:true}); }
+      if (m === "POST") { db.blocked.push({hwid:(JSON.parse(opts.body||"{}").hwid)||"demo", permanent:true}); return respond({success:true}); }
+      return respond({success:true});
+    }
+    if (u.indexOf("/api/security") === 0) {
+      if (m === "DELETE") { db.events=[]; return respond({success:true}); }
+      return respond(db.events);
+    }
+    if (u.indexOf("/api/repair27") === 0) return respond({success:false});
+    if (realFetch) return realFetch(url, opts);
+    return respond({error:"offline_demo"});
+  };
+})();
+</script>
+
+
+<!-- ╔══ LOGIN ══╗ -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>KeySystemV4</h1>
+    <p style="font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:20px">Admin Panel</p>
+    <input type="password" id="secret-input" placeholder="..." onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-purple" style="width:85%;margin:0 auto;display:block" onclick="doLogin()">Login</button>
+    <div style="font-size:11px;color:var(--muted);margin-top:14px;line-height:1.5">Demo publik: masukkan kunci apa pun lalu tekan Login.</div>
+    <div class="login-error" id="login-err"></div>
+  </div>
+</div>
+
+<!-- ╔══ APP ══╗ -->
+<div id="app">
+  <header>
+    <div class="logo">G3X<span>KeySystemV4</span> <span style="font-size:13px;color:var(--muted);font-weight:400">Admin Panel</span></div>
+    <div class="header-right">
+      <span class="badge">Key System v2</span>
+      <button class="btn btn-red btn-sm" onclick="doLogout()">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Stats bar -->
+    <div class="stats-bar">
+      Total: <span id="st-total">0</span>
+      <span class="sep">|</span>
+      Active: <span id="st-active" style="color:var(--green)">0</span>
+      <span class="sep">|</span>
+      HWIDs: <span id="st-hwids" style="color:var(--blue)">0</span>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Search key, name, status..." oninput="renderTable()">
+      </div>
+      <button class="btn btn-purple" onclick="openAddModal()">Add Key</button>
+      <button class="btn btn-blue btn-sm" onclick="loadKeys()">Refresh</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th><th>Name</th><th>Status</th>
+            <th>Expiry</th><th>HWID</th><th>Attempts</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Blocked HWIDs -->
+    <div class="toolbar" style="margin-top:24px">
+      <div style="font-weight:600">Blocked HWIDs</div>
+      <button class="btn btn-purple btn-sm" onclick="openBlockModal()">+ Block HWID</button>
+      <button class="btn btn-blue btn-sm" onclick="loadBlocked()">Refresh</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>HWID</th><th>Type</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="blocked-tbl-body"></tbody>
+      </table>
+    </div>
+
+    <div class="toolbar" style="margin-top:24px">
+      <div style="font-weight:600">Security Events</div>
+      <button class="btn btn-blue btn-sm" onclick="clearSecurityEvents()">Clear</button>
+      <button class="btn btn-blue btn-sm" onclick="loadSecurityEvents()">Refresh</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Time</th><th>HWID</th><th>Event</th><th>Message</th><th>Key</th></tr>
+        </thead>
+        <tbody id="security-tbl-body"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- ╔══ DETAIL MODAL (per-key HWID list) ══╗ -->
+<div class="modal-bg" id="detail-modal-bg">
+  <div class="modal">
+    <h2>Key Detail</h2>
+    <div id="detail-body" style="font-size:14px;line-height:1.6"></div>
+    <div class="modal-btns">
+      <button class="btn btn-red" onclick="closeDetailModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══ BLOCK HWID MODAL ══╗ -->
+<div class="modal-bg" id="block-modal-bg">
+  <div class="modal">
+    <h2>Block HWID</h2>
+    <div class="field">
+      <label>HWID</label>
+      <input type="text" id="b-hwid" placeholder="paste HWID here">
+    </div>
+    <div class="modal-err" id="block-modal-err"></div>
+    <div class="modal-btns">
+      <button class="btn btn-red" onclick="closeBlockModal()">Cancel</button>
+      <button class="btn btn-purple" onclick="submitBlockHwid()">Block</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══ ADD/EDIT MODAL ══╗ -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2 id="modal-title">Add Key</h2>
+
+    <div class="field">
+      <label>Owner Name *</label>
+      <input type="text" id="m-name" placeholder="e.g. Lulu">
+    </div>
+    <div class="field">
+      <label>Status</label>
+      <select id="m-status" onchange="onStatusChange()">
+        <option value="user">User</option>
+        <option value="VMEM">VMEM</option>
+        <option value="Developer">Developer</option>
+        <option value="timDeveloper">Tim Developer</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Max HWID</label>
+      <input type="number" id="m-hwid" value="1" min="1" max="999">
+    </div>
+    <div class="field" id="expire-field">
+      <label>Expired In</label>
+      <input type="text" id="m-expire" placeholder="e.g. 7D · 1M · 12H · 0 = Permanent">
+      
+    </div>
+    <div class="field" id="reset-field" style="display:none">
+      <label><input type="checkbox" id="m-reset"> Reset HWID list</label>
+    </div>
+    <div class="modal-err" id="modal-err"></div>
+    <div class="modal-btns">
+      <button class="btn btn-red" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-purple" id="modal-save-btn" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══ TOAST ══╗ -->
+<div id="toast"></div>
+
+<script>
+// ── Config ────────────────────────────────────────────────────
+const API = ""; // empty = same origin
+let ADMIN_SECRET = "";
+let allKeys = [];
+let editingKey = null;
+
+function getApiUrl(path) {
+  if (API) return API + path;
+  if (window.location.protocol === "file:") return null;
+  return path;
+}
+
+async function fetchApiJson(url, opts) {
+  if (!url) throw new Error("FILE_PROTOCOL");
+  const r = await fetch(url, opts);
+  if (!r.ok) {
+    const text = await r.text().catch(() => "");
+    throw new Error(`HTTP ${r.status}: ${text}`);
+  }
+  return r.json();
+}
+
+// ── Auth ──────────────────────────────────────────────────────
+function doLogin() {
+  const val = document.getElementById("secret-input").value.trim();
+  const errEl = document.getElementById("login-err");
+  if (!val) { errEl.textContent = "Enter secret key."; return; }
+  errEl.style.color = "";
+  ADMIN_SECRET = val;
+  loadKeys().then(async ok => {
+    if (ok) {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("app").style.display = "flex";
+      loadBlocked();
+      loadSecurityEvents();
+      return;
+    }
+    if (window.location.protocol === "file:") {
+      errEl.style.color = "";
+      errEl.textContent = "Admin panel must be opened through the running web server, not directly from file://.";
+      return;
+    }
+    // Normal login failed — check if this is the special 27 repair key instead.
+    // That key only flips the bot's 27 July mode; it never grants dashboard access.
+    ADMIN_SECRET = "";
+    try {
+      const r = await fetch(getApiUrl("/api/repair27"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret: val }),
+      });
+      const data = await r.json();
+      if (data.success) {
+        errEl.style.color = "var(--green)";
+        errEl.textContent = data.message || "Bot has successfully repaired.";
+        return;
+      }
+    } catch {}
+    errEl.style.color = "";
+    errEl.textContent = "Wrong secret or server error.";
+  });
+}
+function doLogout() {
+  ADMIN_SECRET = "";
+  allKeys = [];
+  document.getElementById("login-screen").style.display = "flex";
+  document.getElementById("app").style.display = "none";
+  document.getElementById("secret-input").value = "";
+  const errEl = document.getElementById("login-err");
+  errEl.textContent = "";
+  errEl.style.color = "";
+}
+
+// ── API helpers ───────────────────────────────────────────────
+async function apiFetch(method, body) {
+  const url = getApiUrl("/api/admin");
+  const opts = {
+    method,
+    headers: { "Content-Type": "application/json", "x-admin-secret": ADMIN_SECRET }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  return fetchApiJson(url, opts);
+}
+
+async function apiHwidFetch(method, body) {
+  const url = getApiUrl("/api/hwid");
+  const opts = {
+    method,
+    headers: { "Content-Type": "application/json", "x-admin-secret": ADMIN_SECRET }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  return fetchApiJson(url, opts);
+}
+
+async function apiSecurityFetch(method, body) {
+  const url = getApiUrl("/api/security");
+  const opts = {
+    method,
+    headers: { "Content-Type": "application/json", "x-admin-secret": ADMIN_SECRET }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  return fetchApiJson(url, opts);
+}
+
+// ── Load ──────────────────────────────────────────────────────
+async function loadKeys() {
+  try {
+    const data = await apiFetch("GET");
+    if (data.error) return false;
+    allKeys = data;
+    renderTable();
+    updateStats();
+    return true;
+  } catch (err) {
+    if (err?.message === "FILE_PROTOCOL") {
+      toast("Admin panel cannot access /api from file://. Open via the app server.", "err");
+    }
+    return false;
+  }
+}
+
+// ── Stats ─────────────────────────────────────────────────────
+function updateStats() {
+  const now = Math.floor(Date.now() / 1000);
+  let active = 0, hwids = 0;
+  allKeys.forEach(k => {
+    if (!k.expireAt || k.expireAt === 0 || k.expireAt > now) active++;
+    hwids += (k.hwids || []).length;
+  });
+  document.getElementById("st-total").textContent = allKeys.length;
+  document.getElementById("st-active").textContent = active;
+  document.getElementById("st-hwids").textContent = hwids;
+}
+
+// ── Table render ──────────────────────────────────────────────
+function renderTable() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const tbody = document.getElementById("tbl-body");
+  const now = Math.floor(Date.now() / 1000);
+  const rows = allKeys.filter(k =>
+    !q ||
+    String(k.key || "").toLowerCase().includes(q) ||
+    String(k.name || "").toLowerCase().includes(q) ||
+    String(k.status || "").toLowerCase().includes(q)
+  );
+
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty">No keys found</div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(k => {
+    const isPerm = !k.expireAt || k.expireAt === 0;
+    const isExp  = !isPerm && k.expireAt < now;
+    const rem    = isPerm ? null : k.expireAt - now;
+
+    let expClass = "expire-perm", expLabel = "Permanent";
+    if (!isPerm) {
+      if (isExp) { expClass = "expire-warn"; expLabel = "Expired"; }
+      else if (rem < 86400) { expClass = "expire-warn"; expLabel = k.expireLabel || "< 1D"; }
+      else { expClass = "expire-ok"; expLabel = k.expireLabel || "Active"; }
+    }
+
+    const detailPayload = encodeURIComponent(JSON.stringify(k));
+    const editPayload = encodeURIComponent(JSON.stringify(k));
+    const safeKey = k.key.replace(/'/g, "\\'");
+    const safeName = String(k.name || "").replace(/'/g, "\\'");
+
+    return `<tr>
+      <td><span class="key-val">${k.key}</span></td>
+      <td>${k.name}</td>
+      <td><span class="status-badge">${k.status}</span></td>
+      <td><span class="${expClass}">${expLabel}</span></td>
+      <td><span class="hwid-count">${(k.hwids||[]).length} / ${k.maxHwid}</span></td>
+      <td><span class="hwid-count">${k.attemptCount || 0}${k.rejectedCount ? ` (${k.rejectedCount} rejected)` : ""}</span></td>
+      <td>
+        <div class="actions">
+          <button class="btn btn-blue btn-sm" onclick='openDetailModal(JSON.parse(decodeURIComponent("${detailPayload}")))'>View</button>
+          <button class="btn btn-green btn-sm" onclick="copyTableKey('${safeKey}')">Copy</button>
+          <button class="btn btn-blue btn-sm" onclick='openEditModal(JSON.parse(decodeURIComponent("${editPayload}")))'>Edit</button>
+          <button class="btn btn-red btn-sm" onclick="deleteKey('${safeKey}', '${safeName}')">Del</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join("");
+}
+
+// ── Blocked HWIDs ────────────────────────────────────────────
+let allBlocked = [];
+
+async function loadBlocked() {
+  try {
+    const data = await apiHwidFetch("GET");
+    if (data.error) return false;
+    allBlocked = data;
+    renderBlockedTable();
+    return true;
+  } catch (err) {
+    if (err?.message === "FILE_PROTOCOL") {
+      toast("Blocked HWID panel cannot access /api from file://. Open via the app server.", "err");
+    }
+    return false;
+  }
+}
+
+function renderBlockedTable() {
+  const tbody = document.getElementById("blocked-tbl-body");
+  if (!allBlocked.length) {
+    tbody.innerHTML = `<tr><td colspan="3"><div class="empty">No blocked HWIDs</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = allBlocked.map(b => `<tr>
+    <td><span class="key-val">${b.hwid}</span></td>
+    <td>${b.permanent ? "Manual (permanent)" : "Auto (temporary, 30min)"}</td>
+    <td>
+      <div class="actions">
+        <button class="btn btn-green btn-sm" onclick="unblockHwid('${b.hwid}')">Unblock</button>
+      </div>
+    </td>
+  </tr>`).join("");
+}
+
+let allSecurityEvents = [];
+
+async function loadSecurityEvents() {
+  try {
+    const data = await apiSecurityFetch("GET");
+    if (data.error) return false;
+    allSecurityEvents = Array.isArray(data) ? data : [];
+    renderSecurityEvents();
+    return true;
+  } catch (err) {
+    if (err?.message === "FILE_PROTOCOL") {
+      toast("Security events cannot be loaded from file://. Open via the app server.", "err");
+    }
+    return false;
+  }
+}
+
+async function clearSecurityEvents() {
+  if (!confirm("Clear all security event logs? This cannot be undone.")) return;
+  try {
+    const data = await apiSecurityFetch("DELETE");
+    if (data.error) { toast(data.error, "err"); return; }
+    toast("Security events cleared.");
+    loadSecurityEvents();
+  } catch (err) {
+    toast("Failed to clear security events.", "err");
+  }
+}
+
+function renderSecurityEvents() {
+  const tbody = document.getElementById("security-tbl-body");
+  if (!allSecurityEvents.length) {
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty">No security events yet</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = allSecurityEvents.map(ev => {
+    const ts = new Date((ev.serverTimestamp || ev.timestamp || 0) * 1000).toLocaleString();
+    const keyText = (ev.key || "<pre-login>").toString();
+    return `<tr>
+      <td>${ts}</td>
+      <td><span class="key-val">${ev.hwid || "-"}</span></td>
+      <td>${ev.eventId || "-"}</td>
+      <td>${(ev.message || "").toString().replace(/</g, "&lt;")}</td>
+      <td>${keyText}</td>
+    </tr>`;
+  }).join("");
+}
+
+function openBlockModal() {
+  document.getElementById("b-hwid").value = "";
+  document.getElementById("block-modal-err").textContent = "";
+  document.getElementById("block-modal-bg").classList.add("show");
+}
+function closeBlockModal() {
+  document.getElementById("block-modal-bg").classList.remove("show");
+}
+async function submitBlockHwid() {
+  const hwid = document.getElementById("b-hwid").value.trim();
+  const errEl = document.getElementById("block-modal-err");
+  if (!hwid) { errEl.textContent = "HWID is required."; return; }
+  const data = await apiHwidFetch("POST", { hwid });
+  if (data.error) { errEl.textContent = data.error; return; }
+  closeBlockModal();
+  toast("HWID blocked");
+  loadBlocked();
+}
+async function unblockHwid(hwid) {
+  await apiHwidFetch("DELETE", { hwid });
+  toast("HWID unblocked");
+  loadBlocked();
+  loadKeys(); // hwid slot status kemungkinan kepengaruh, refresh juga tabel key
+}
+
+// ── Detail modal (per-key HWID + block status) ──────────────
+async function openDetailModal(k) {
+  const body = document.getElementById("detail-body");
+  body.innerHTML = "Loading...";
+  document.getElementById("detail-modal-bg").classList.add("show");
+
+  const hwids = k.hwids || [];
+  const blockedSet = new Set((allBlocked || []).map(b => b.hwid));
+
+  let html = `<b>Key:</b> ${k.key}<br><b>Owner:</b> ${k.name}<br><b>Status:</b> ${k.status}<br>`;
+  html += `<b>HWID Slots:</b> ${hwids.length} / ${k.maxHwid}<br><br>`;
+
+  if (!hwids.length) {
+    html += "<i>No HWID bound yet.</i><br><br>";
+  } else {
+    html += "<b>Bound HWIDs:</b><br>";
+    hwids.forEach(h => {
+      const isBlocked = blockedSet.has(h);
+      html += `<div style="margin:8px 0;padding:8px;background:var(--surface);border-radius:6px">
+        <div class="key-val" style="word-break:break-all">${h}</div>
+        <div style="margin-top:6px">
+          ${isBlocked
+            ? `<span style="color:var(--red)">blocked</span>`
+            : `<button class="btn btn-red btn-sm" onclick="blockHwidFromDetail('${h}')">Block</button>`}
+        </div>
+      </div>`;
+    });
+    html += "<br>";
+  }
+
+  html += `<b>Total Attempts:</b> ${k.attemptCount || 0}<br>`;
+  html += `<b>Rejected (slot full):</b> ${k.rejectedCount || 0}`;
+
+  body.innerHTML = html;
+}
+function closeDetailModal() {
+  document.getElementById("detail-modal-bg").classList.remove("show");
+}
+async function blockHwidFromDetail(hwid) {
+  await apiHwidFetch("POST", { hwid });
+  toast("HWID blocked");
+  await loadBlocked();
+  closeDetailModal();
+}
+
+// ── Modal ─────────────────────────────────────────────────────
+function openAddModal() {
+  editingKey = null;
+  document.getElementById("modal-title").textContent = "Add Key";
+  document.getElementById("m-name").value = "";
+  document.getElementById("m-status").value = "user";
+  document.getElementById("m-hwid").value = "1";
+  document.getElementById("m-expire").value = "";
+  const resetField = document.getElementById("reset-field");
+  if (resetField) resetField.style.display = "none";
+  document.getElementById("modal-err").textContent = "";
+  onStatusChange();
+  document.getElementById("modal-bg").classList.add("show");
+}
+
+function openEditModal(k) {
+  editingKey = k.key;
+  document.getElementById("modal-title").textContent = "Edit Key";
+  document.getElementById("m-name").value = k.name;
+  document.getElementById("m-status").value = k.status;
+  document.getElementById("m-hwid").value = k.maxHwid;
+  document.getElementById("m-expire").value = "";
+  document.getElementById("reset-field").style.display = "block";
+  document.getElementById("m-reset").checked = false;
+  document.getElementById("modal-err").textContent = "";
+  onStatusChange();
+  document.getElementById("modal-bg").classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("modal-bg").classList.remove("show");
+}
+
+async function saveModal() {
+  const name    = document.getElementById("m-name").value.trim();
+  const key     = editingKey || "";
+  const status  = document.getElementById("m-status").value;
+  const maxHwid = parseInt(document.getElementById("m-hwid").value) || 1;
+  const expireIn= document.getElementById("m-expire").value.trim();
+  const errEl   = document.getElementById("modal-err");
+
+  if (!name) { errEl.textContent = "Name is required"; return; }
+
+  let data, ok;
+  if (!editingKey) {
+    // ADD - auto-generate key from name
+    const autoKey = generateKey(name);
+    data = await apiFetch("POST", { key: autoKey, name, status, maxHwid, expireIn });
+  } else {
+    // EDIT
+    const payload = { key, name, status, maxHwid };
+    if (expireIn) payload.expireIn = expireIn;
+    if (document.getElementById("m-reset").checked) payload.resetHwids = true;
+    data = await apiFetch("PUT", payload);
+  }
+
+  if (data.error) { errEl.textContent = data.error; return; }
+  toast(editingKey ? "Key updated." : "Key added.", "ok");
+  closeModal();
+  loadKeys();
+}
+
+async function deleteKey(key, name) {
+  if (!confirm(`Delete key for "${name}"?\n${key}\n\nThis cannot be undone.`)) return;
+  const data = await apiFetch("DELETE", { key });
+  if (data.error) { toast(data.error, "err"); return; }
+  toast("Key deleted.", "ok");
+  loadKeys();
+}
+
+// ── Toast ─────────────────────────────────────────────────────
+let toastTimer;
+function toast(msg, type = "ok") {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.className = `show ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = "", 3000);
+}
+
+// ── Copy key from table ───────────────────────────────────────
+function copyTableKey(key) {
+  navigator.clipboard.writeText(key).then(() => toast("Key copied.", "ok"));
+}
+
+// ── Show/hide expired field based on status ──────────────────
+function onStatusChange() {
+  const status = document.getElementById("m-status").value;
+  const expireField = document.getElementById("expire-field");
+  const isPermanent = status === "Developer" || status === "timDeveloper";
+  expireField.style.display = isPermanent ? "none" : "block";
+  if (isPermanent) document.getElementById("m-expire").value = "";
+}
+
+// ── Key generation ───────────────────────────────────────────
+function generateKey(name) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const rand = (n) => Array.from({length: n}, () =>
+    chars[Math.floor(Math.random() * chars.length)]).join('');
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const yy = String(now.getFullYear()).slice(-2);
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mi = String(now.getMinutes()).padStart(2,'0');
+  const mo = String(now.getMonth()+1).padStart(2,'0');
+  // Admin: G3X-NAME-XXXX-HHMM-MMDDYY
+  const namePart = name
+    ? name.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,8)
+    : rand(4);
+  return `G3X-${namePart}-${rand(4)}-${hh}${mi}-${mo}${dd}${yy}`;
+}
+
+function genKey() {
+  const name = document.getElementById('m-name').value.trim();
+  document.getElementById('m-key').value = generateKey(name);
+}
+
+function copyKey() {
+  const val = document.getElementById('m-key').value.trim();
+  if (!val) { toast('Generate a key first.', 'err'); return; }
+  navigator.clipboard.writeText(val).then(() => toast('Key copied.', 'ok'));
+}
+
+// ── Close modal on bg click ───────────────────────────────────
+document.getElementById("modal-bg").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.getElementById("detail-modal-bg").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeDetailModal();
+});
+document.getElementById("block-modal-bg").addEventListener("click", e => {
+  if (e.target === e.currentTarget) closeBlockModal();
+});
+
+// ── Secret input enter key ────────────────────────────────────
+document.getElementById("secret-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") doLogin();
+});
+</script>
+<div id="demo-bar" style="position:fixed;left:0;right:0;bottom:0;z-index:500;background:#141018;border-top:1px solid #3a2a55;padding:10px 14px;display:flex;gap:12px;align-items:center;justify-content:center;font:600 12px Inter,system-ui,sans-serif;color:#c9b8e8">
+<span>DEMO statis &middot; data contoh &middot; tidak terhubung ke server</span>
+<a href="../" style="color:#f5b73d;text-decoration:none;border:1px solid #5a3f2a;padding:4px 10px;border-radius:8px">Lihat paket source &rarr;</a>
+</div>
+<script>
+(function(){
+  if (location.search.indexOf("demo=1") === -1) return;
+  window.addEventListener("load", function(){
+    var i=document.getElementById("secret-input"); if(!i) return;
+    i.value="demo"; doLogin();
+  });
+})();
+</script>
+</body>
+</html>

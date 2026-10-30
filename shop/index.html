@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StarDev All — Toko Resmi</title>
+<meta name="description" content="Beli lisensi StarDev All: StarDevXSchool Offline, AdminApp, StarDevNett, Key Lulu. Bayar QRIS, aktivasi via WhatsApp.">
+<meta name="theme-color" content="#060810">
+<style>
+/*TOKENS:START*/
+:root {
+  --c-bg: #060810;
+  --c-bg-soft: #0a0e18;
+  --c-surface: rgba(255,255,255,0.035);
+  --c-surface-2: rgba(255,255,255,0.06);
+  --c-line: rgba(255,255,255,0.08);
+  --c-line-strong: rgba(255,255,255,0.16);
+  --c-text: #eef2fb;
+  --c-text-dim: #93a3be;
+  --c-text-muted: #64748b;
+  --c-brand: #f5b73d;
+  --c-brand-soft: #ffe6b0;
+  --c-lulu: #c4a2ff;
+  --c-info: #5eb8ff;
+  --c-success: #5eead4;
+  --c-warn: #f7d774;
+  --c-danger: #ff8fa3;
+  --c-video: #ff8fa3;
+  --c-roblox: #ff8080;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-xs: 11px;
+  --fs-sm: 12.5px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 20px;
+  --fs-2xl: 26px;
+  --fs-3xl: 38px;
+  --fs-display: clamp(38px, 7vw, 74px);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 750;
+  --leading-tight: 1.15;
+  --leading-base: 1.55;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.14em;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 22px;
+  --sp-6: 28px;
+  --sp-7: 36px;
+  --sp-8: 48px;
+  --sp-9: 64px;
+  --r-sm: 9px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-full: 999px;
+  --sh-sm: 0 6px 18px rgba(0,0,0,0.28);
+  --sh-md: 0 14px 34px rgba(0,0,0,0.36);
+  --sh-lg: 0 24px 60px rgba(0,0,0,0.48);
+  --sh-glow: 0 8px 26px rgba(245,183,61,0.25);
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --motion-slow: 320ms;
+  --motion-ease: cubic-bezier(.2,.7,.3,1);
+}
+/*TOKENS:END*/
+*{box-sizing:border-box}
+body{margin:0;color:var(--c-text);font-family:var(--font-sans);line-height:var(--leading-base);
+  background:
+    radial-gradient(900px 520px at 15% -8%,color-mix(in srgb,var(--c-brand) 16%,transparent),transparent 62%),
+    radial-gradient(820px 480px at 90% -6%,color-mix(in srgb,var(--c-info) 12%,transparent),transparent 60%),
+    var(--c-bg);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 70px}
+code{font-family:var(--font-mono);font-size:.86em;color:var(--c-text-dim);background:var(--c-surface);border:1px solid var(--c-line);padding:1px 6px;border-radius:6px}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:linear-gradient(180deg,color-mix(in srgb,var(--c-bg) 92%,transparent),transparent);border-bottom:1px solid var(--c-line)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:var(--fs-lg)}
+.mark{width:32px;height:32px;border-radius:10px;background:conic-gradient(from 210deg,var(--c-brand),var(--c-danger),var(--c-lulu),var(--c-info),var(--c-brand));display:grid;place-items:center}
+.mark i{width:23px;height:23px;border-radius:7px;background:var(--c-bg);display:grid;place-items:center;font-style:normal;font-size:9px;font-weight:700;color:var(--c-brand-soft)}
+.nav-links{margin-left:auto;display:flex;gap:4px;font-size:var(--fs-sm);color:var(--c-text-dim)}
+.nav-links a{padding:7px 11px;border-radius:9px}
+.nav-links a:hover{color:var(--c-text);background:var(--c-surface-2)}
+.badge-live{display:inline-flex;align-items:center;gap:7px;border:1px solid color-mix(in srgb,var(--c-success) 36%,transparent);background:color-mix(in srgb,var(--c-success) 10%,transparent);color:var(--c-success);border-radius:var(--r-full);padding:5px 12px;font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.badge-live b{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+
+header.hero{padding:58px 0 10px}
+h1{font-size:clamp(34px,6.4vw,58px);line-height:1;letter-spacing:-.035em;margin:16px 0 12px;font-weight:750}
+h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%,var(--c-danger) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--c-text-dim);max-width:60ch;margin:0;font-size:var(--fs-md)}
+
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:34px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.panel{border:1px solid var(--c-line);border-radius:var(--r-xl);padding:22px;background:linear-gradient(180deg,var(--c-surface),rgba(255,255,255,.01))}
+.panel h2{margin:0 0 4px;font-size:var(--fs-xl);letter-spacing:-.02em}
+.panel .sub{color:var(--c-text-dim);font-size:var(--fs-sm);margin:0 0 16px}
+
+.features{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.features li{display:flex;gap:10px;align-items:flex-start;font-size:var(--fs-sm);color:var(--c-text-dim)}
+.features svg{flex:0 0 auto;margin-top:2px;color:var(--c-success)}
+.features b{color:var(--c-text);font-weight:600}
+
+.field{display:block;margin-bottom:14px}
+.field>span{display:block;font-size:var(--fs-sm);color:var(--c-text-dim);margin-bottom:6px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{border:1px solid var(--c-line);background:var(--c-surface);border-radius:var(--r-md);padding:9px 13px;font-size:var(--fs-sm);cursor:pointer;transition:var(--motion-fast) var(--motion-ease)}
+.opt:hover{border-color:var(--c-line-strong)}
+.opt.on{border-color:color-mix(in srgb,var(--c-brand) 60%,transparent);background:color-mix(in srgb,var(--c-brand) 12%,transparent);color:var(--c-brand-soft);font-weight:600}
+
+.summary{border:1px dashed var(--c-line-strong);border-radius:var(--r-lg);padding:14px;margin:16px 0 14px}
+.summary .line{display:flex;justify-content:space-between;gap:12px;font-size:var(--fs-sm);color:var(--c-text-dim);padding:4px 0}
+.summary .total{border-top:1px solid var(--c-line);margin-top:8px;padding-top:10px;font-size:var(--fs-lg);color:var(--c-text);font-weight:700}
+.summary .total span{color:var(--c-brand)}
+.mono{font-family:var(--font-mono);color:var(--c-text)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px solid var(--c-line-strong);
+  background:var(--c-surface);color:var(--c-text);padding:13px 16px;border-radius:var(--r-md);font-size:var(--fs-sm);
+  font-weight:600;cursor:pointer;transition:var(--motion-fast) var(--motion-ease)}
+.btn:hover{background:var(--c-surface-2);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--c-brand-soft),var(--c-brand));color:#1a1205;border-color:transparent;box-shadow:var(--shadow-glow)}
+.btn.wa{background:linear-gradient(135deg,#25d366,#1da851);color:#041b0c;border-color:transparent}
+.btn.ghost{background:transparent}
+.btn+.btn{margin-top:9px}
+.note{font-size:var(--fs-xs);color:var(--c-text-muted);margin:10px 0 0}
+
+.qris{display:grid;gap:12px}
+.qrbox{aspect-ratio:1;border-radius:var(--r-lg);border:1px dashed var(--c-line-strong);background:rgba(0,0,0,.25);display:grid;place-items:center;text-align:center;padding:18px;color:var(--c-text-muted);font-size:var(--fs-sm)}
+.qrbox img{width:100%;height:100%;object-fit:contain;border-radius:var(--r-md);background:#fff}
+.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:flex;gap:10px;font-size:var(--fs-sm);color:var(--c-text-dim)}
+.steps li::before{content:counter(s);flex:0 0 auto;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--c-brand) 16%,transparent);color:var(--c-brand);font-size:10.5px;font-weight:700}
+.copyline{display:flex;align-items:center;gap:8px;border:1px solid var(--c-line);background:rgba(0,0,0,.3);border-radius:10px;padding:8px 10px;font-family:var(--font-mono);font-size:var(--fs-sm)}
+.copyline span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copyline button{border:0;background:transparent;color:var(--c-text-dim);cursor:pointer;padding:2px}
+
+.section{margin-top:46px}
+.section h2{font-size:var(--fs-2xl);letter-spacing:-.02em;margin:0 0 6px}
+.section p.sub{color:var(--c-text-dim);font-size:var(--fs-sm);margin:0 0 16px}
+details{border:1px solid var(--c-line);border-radius:var(--r-md);background:var(--c-surface);padding:13px 15px;margin-bottom:8px}
+details summary{cursor:pointer;font-size:var(--fs-sm);font-weight:600}
+details p{margin:8px 0 0;color:var(--c-text-dim);font-size:var(--fs-sm)}
+footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color:var(--c-text-muted);font-size:var(--fs-sm);display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);opacity:0;pointer-events:none;background:#151c2b;border:1px solid var(--c-line-strong);padding:9px 16px;border-radius:999px;font-size:var(--fs-sm);transition:.2s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:620px){.wrap{padding:0 14px 56px}.nav-links{display:none}header.hero{padding-top:40px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="nav-in">
+  <a class="logo" href="../"><span class="mark"><i>SD</i></span> StarDev Store</a>
+  <div class="nav-links">
+    <a href="#produk">Produk</a><a href="#bayar">Pembayaran</a><a href="#faq">FAQ</a>
+    <a href="../">Katalog</a><a href="../design/">Design</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <header class="hero">
+    <span class="badge-live"><b></b> QRIS · Pesanan diproses manual</span>
+    <h1>StarDev <span>All</span></h1>
+    <p class="lede">Satu lisensi untuk seluruh ekosistem StarDev: StarDevXSchool Offline, AdminApp, StarDevNett, dan Key Lulu. Bayar QRIS, aktivasi langsung lewat WhatsApp.</p>
+  </header>
+
+  <div class="layout">
+    <section class="panel" id="produk">
+      <h2>Isi paket</h2>
+      <p class="sub">Semua aplikasi dalam satu lisensi, pembaruan versi gratis.</p>
+      <ul class="features">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>StarDevXSchool Offline</b> — presentasi offline: editor slide, OCR, export HTML, grafik otomatis.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>AdminApp</b> — kelola lisensi dan perangkat dari HP.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>StarDevNett</b> — berbagi berkas antar perangkat lewat socket.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Key Lulu</b> — akses jajaran produk Lulu.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Dukungan WhatsApp</b> — bantuan pemasangan dan aktivasi.</span></li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="order-title">
+      <h2 id="order-title">Pesan sekarang</h2>
+      <p class="sub">Pilih jumlah perangkat, lalu lanjut ke WhatsApp.</p>
+
+      <label class="field"><span>Jumlah perangkat</span>
+        <div class="opts" id="devices">
+          <div class="opt on" data-dev="1">1 perangkat</div>
+          <div class="opt" data-dev="2">2 perangkat</div>
+          <div class="opt" data-dev="3">3 perangkat</div>
+        </div>
+      </label>
+
+      <label class="field"><span>Masa aktif</span>
+        <div class="opts" id="plans">
+          <div class="opt on" data-plan="1 Bulan">1 bulan</div>
+          <div class="opt" data-plan="1 Tahun">1 tahun</div>
+          <div class="opt" data-plan="Lifetime">Lifetime</div>
+        </div>
+      </label>
+
+      <div class="summary">
+        <div class="line"><span>Produk</span><span class="mono">StarDev All</span></div>
+        <div class="line"><span>Perangkat</span><span class="mono" id="sumDev">1</span></div>
+        <div class="line"><span>Masa aktif</span><span class="mono" id="sumPlan">1 Bulan</span></div>
+        <div class="line"><span>Kode pesanan</span><span class="mono" id="sumCode">—</span></div>
+        <div class="line total"><span>Total</span><span id="sumPrice">Hubungi admin</span></div>
+      </div>
+
+      <button class="btn wa" id="orderBtn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-1.7-.6-3.5-2.1-4.6-4-.5-.9-.8-1.7-.8-2.4 0-.7.4-1.2.6-1.5.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.5l-.4.5c-.1.1-.2.3-.1.4.3.6.7 1.1 1.2 1.5.5.4 1 .6 1.4.8.2.1.4 0 .5-.1l.6-.7c.1-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.4v.6Z"/></svg>
+        Pesan via WhatsApp
+      </button>
+      <button class="btn ghost" id="copyOrder">Salin kode pesanan</button>
+      <p class="note">Order diteruskan ke admin <b id="waLabel">0852-9952-6216</b>. Pembayaran QRIS setelah kode pesanan dibuat.</p>
+    </section>
+  </div>
+
+  <section class="section" id="bayar">
+    <h2>Pembayaran QRIS</h2>
+    <p class="sub">Scan, bayar sesuai total, cantumkan kode pesanan di keterangan.</p>
+    <div class="layout">
+      <div class="panel qris">
+        <div class="qrbox" id="qrbox">
+          <span>QRIS resmi StarDev<br><small>Minta ke admin via WhatsApp bila belum tampil</small></span>
+        </div>
+        <div class="copyline"><span id="waNum">6285299526216</span><button id="copyWa" title="Salin nomor">Salin</button></div>
+        <p class="note">QRIS statis atas nama merchant StarDev. Nominal diisi manual setelah kode pesanan dikonfirmasi admin.</p>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:var(--fs-lg);margin-bottom:12px">Alur pesanan</h2>
+        <ol class="steps">
+          <li>Pilih perangkat &amp; masa aktif, tekan <b>Pesan via WhatsApp</b>.</li>
+          <li>Admin mengonfirmasi ketersediaan dan nominal akhir.</li>
+          <li>Bayar lewat QRIS, kirim bukti + kode pesanan.</li>
+          <li>Lisensi dan panduan aktivasi dikirim di chat yang sama.</li>
+        </ol>
+        <p class="note">Pesanan diproses pada jam kerja. Simpan kode pesanan sampai lisensi aktif.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <h2>Pertanyaan umum</h2>
+    <p class="sub">Jawaban singkat sebelum membeli.</p>
+    <details><summary>Apakah lisensi bisa dipakai di beberapa HP?</summary><p>Jumlah perangkat mengikuti paket yang dipilih (1–3). Lisensi terikat pada perangkat yang didaftarkan.</p></details>
+    <details><summary>Apakah ada pembaruan?</summary><p>Ya. Pembaruan versi dalam masa aktif dikirim lewat WhatsApp tanpa biaya tambahan.</p></details>
+    <details><summary>Bagaimana kalau lisensi hilang?</summary><p>Simpan kode pesanan dan key. Bila key hilang, hubungi admin dengan kode pesanan untuk pemulihan.</p></details>
+    <details><summary>Metode pembayaran selain QRIS?</summary><p>Saat ini QRIS. Untuk kebutuhan lain, tanyakan ke admin lewat WhatsApp.</p></details>
+  </section>
+
+  <footer>
+    <span>StarDev Store · <span id="year">2026</span> · pembayaran QRIS</span>
+    <span>Dikelola oleh StarAsitance</span>
+  </footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const SHOP = {
+  product: "StarDev All",
+  wa: "6285299526216",
+  waDisplay: "0852-9952-6216",
+  qrisImage: "qris.png",
+  currency: "Rp",
+  plans: { "1 Bulan": null, "1 Tahun": null, "Lifetime": null },
+  pricePerDevice: { 1: null, 2: null, 3: null }
+};
+
+const $ = s => document.querySelector(s);
+const state = { dev: 1, plan: "1 Bulan" };
+const code = "SDA-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+
+function rupiah(n){ return SHOP.currency + " " + n.toLocaleString("id-ID"); }
+
+function total(){
+  const base = SHOP.plans[state.plan];
+  if(base == null) return null;
+  const devAdj = SHOP.pricePerDevice[state.dev];
+  if(devAdj == null) return base * state.dev;
+  return devAdj;
+}
+
+function render(){
+  $("#sumDev").textContent = state.dev + " perangkat";
+  $("#sumPlan").textContent = state.plan;
+  $("#sumCode").textContent = code;
+  const t = total();
+  $("#sumPrice").textContent = t == null ? "Hubungi admin" : rupiah(t);
+  $("#waLabel").textContent = SHOP.waDisplay;
+  $("#waNum").textContent = SHOP.wa;
+}
+
+function selectGroup(id, key, attr){
+  document.querySelectorAll("#"+id+" .opt").forEach(el=>{
+    el.onclick = () => {
+      document.querySelectorAll("#"+id+" .opt").forEach(o=>o.classList.remove("on"));
+      el.classList.add("on");
+      state[key] = attr === "dev" ? Number(el.dataset.dev) : el.dataset.plan;
+      render();
+    };
+  });
+}
+
+function waLink(){
+  const t = total();
+  const lines = [
+    "Halo admin StarDev, saya mau pesan:",
+    "Produk: " + SHOP.product,
+    "Kode pesanan: " + code,
+    "Perangkat: " + state.dev,
+    "Masa aktif: " + state.plan,
+    "Total: " + (t == null ? "menunggu konfirmasi admin" : rupiah(t)),
+    "",
+    "Mohon info QRIS dan langkah aktivasi."
+  ];
+  return "https://wa.me/" + SHOP.wa + "?text=" + encodeURIComponent(lines.join("\n"));
+}
+
+function toast(msg){
+  const el = $("#toast"); el.textContent = msg; el.classList.add("show");
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove("show"), 1600);
+}
+
+async function copy(text, label){
+  try{ await navigator.clipboard.writeText(text); }
+  catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(_){}
+    ta.remove();
+  }
+  toast(label);
+}
+
+function initQris(){
+  const img = new Image();
+  img.onload = () => {
+    const box = $("#qrbox");
+    box.innerHTML = "";
+    img.alt = "QRIS StarDev All";
+    box.appendChild(img);
+  };
+  img.src = SHOP.qrisImage;
+}
+
+selectGroup("devices","dev","dev");
+selectGroup("plans","plan","plan");
+$("#orderBtn").onclick = () => { window.open(waLink(), "_blank", "noopener"); };
+$("#copyOrder").onclick = () => copy(code, "Kode pesanan disalin");
+$("#copyWa").onclick = () => copy(SHOP.wa, "Nomor WhatsApp disalin");
+$("#year").textContent = new Date().getFullYear();
+render();
+initQris();
+</script>
+</body>
+</html>

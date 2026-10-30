@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Key System Roblox: Cara Kerja, Biaya, dan Cara Punya Sendiri</title>
+<meta name="description" content="Penjelasan key system Roblox: alur verifikasi key, HWID, masa aktif, kenapa sistem gratis sering down, dan opsi punya sistem sendiri dengan source code. Harga dan contoh kode.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/key-system-roblox/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Key System Roblox — cara kerja dan cara punya sendiri">
+<meta property="og:description" content="Alur verifikasi, HWID, masa aktif, biaya, dan opsi source code milik sendiri.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">PANDUAN</span>
+  <h1>Key system Roblox: cara kerjanya dan cara punya sendiri</h1>
+  <p class="lead">Key system adalah pintu masuk sebelum script berjalan: pengguna menempel key, server memeriksa key itu masih aktif dan dipakai di perangkat yang benar, baru scriptnya dieksekusi. Di balik layar hanya ada tiga hal — key, HWID, dan masa aktif.</p>
+
+  <h2>Alur satu kali verifikasi</h2>
+  <ol>
+    <li>Script memanggil endpoint verifikasi dengan <code>key</code>, <code>hwid</code>, dan id produk.</li>
+    <li>Server mencari key di database, memeriksa status, tanggal kedaluwarsa, dan jumlah perangkat terdaftar.</li>
+    <li>Kalau cocok, HWID dicatat (atau dicocokkan dengan yang lama) dan server mengembalikan token sesi.</li>
+    <li>Script menyimpan token di memori, bukan di file, lalu lanjut berjalan.</li>
+  </ol>
+  <p>Kegagalan yang paling sering terjadi bukan "key salah", tapi HWID berubah setelah update sistem atau ganti perangkat, dan key yang sama dipakai berpindah-pindah.</p>
+
+  <h2>Contoh panggilan dari Luau</h2>
+<pre>local HttpService = game:GetService("HttpService")
+
+local function hwid()
+    -- gabungkan beberapa nilai perangkat; jangan pakai yang berubah tiap sesi
+    return HttpService:GenerateGUID(false)
+end
+
+local body = HttpService:JSONEncode({
+    key  = "LULU-XXXX-XXXX",
+    hwid = hwid(),
+    app  = "my-script"
+})
+
+local ok, res = pcall(function()
+    return HttpService:RequestAsync({
+        Url    = "https://your-app.vercel.app/api/verify",
+        Method = "POST",
+        Headers = { ["Content-Type"] = "application/json" },
+        Body   = body
+    })
+end)
+
+if not ok or not res.Success then
+    return warn("Verifikasi gagal, script berhenti.")
+end
+
+local data = HttpService:JSONDecode(res.Body)
+if not data.valid then
+    return warn(data.message or "Key tidak valid.")
+end
+-- lanjut inisialisasi script</pre>
+  <p class="note">Di Roblox, permintaan HTTP hanya bisa ke domain yang diizinkan dan dari server script. Jangan taruh secret admin di client.</p>
+
+  <h2>Tiga model yang beredar</h2>
+  <table>
+    <tr><th>Model</th><th>Biaya</th><th>Risiko</th></tr>
+    <tr><td>Key system gratis (Linkvertise)</td><td>Nol</td><td>Iklan, sering down, data di vendor, tidak bisa dikustom</td></tr>
+    <tr><td>Langganan layanan key</td><td>Bulanan</td><td>Harga naik, kuota, layanan tutup</td></tr>
+    <tr><td>Source code milik sendiri</td><td>Sekali bayar</td><td>Kamu yang deploy dan backup</td></tr>
+  </table>
+
+  <h2>Kalau mau punya sendiri</h2>
+  <p>Yang dibutuhkan: satu endpoint verifikasi, satu database key, panel untuk membuat dan memblokir key, lalu client di produkmu. Untuk skala kecil, Vercel + Upstash Redis cukup dan masih di kuota gratis.</p>
+  <p>StarDev Licence V4 sudah berisi semuanya sebagai source code: endpoint <code>/api/verify</code>, panel admin web, app admin Android, bot Telegram pembeli, bot Discord admin, dan client Luau dengan mode <code>raw</code>, <code>aes</code>, atau <code>aes_sign</code>.</p>
+
+  <div class="cta">
+    <a class="btn p" href="../shop/">Lihat source &amp; harga (Rp 100.000)</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Coba demo panel admin</a>
+  </div>
+  <p class="note">Demo memakai data contoh dan tidak terhubung ke server. Source code, bukan sewa lisensi.</p>
+
+  <h2>Kesalahan yang bikin key system bocor</h2>
+  <ul>
+    <li>Menaruh logika verifikasi di client saja — bisa dilewati dengan mengubah script.</li>
+    <li>HWID dari nilai acak tiap sesi, sehingga key selalu "salah perangkat".</li>
+    <li>Tidak ada rate limit, jadi key bisa ditebak berulang.</li>
+    <li>Secret admin ikut terkirim ke client atau tersimpan di repo publik.</li>
+    <li>Tidak ada pencatatan percobaan gagal, sehingga penyalahgunaan tidak terlihat.</li>
+  </ul>
+
+  <footer>StarDev · <a href="../panduan/">semua panduan</a> · <a href="../shop/">toko</a></footer>
+</main>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Key System Roblox: cara kerja dan cara punya sendiri","inLanguage":"id","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/key-system-roblox/"}
+</script>
+</body>
+</html>

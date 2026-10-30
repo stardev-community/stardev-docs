@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyAuth Alternative: When Self-Hosting a License System Wins</title>
+<meta name="description" content="KeyAuth is a solid hosted option until limits, pricing, or uptime get in the way. Compare hosted key auth with self-hosted source code, and see what migrating actually involves.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/keyauth-alternative/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KeyAuth alternative — hosted vs self-hosted license system">
+<meta property="og:description" content="What changes when the licensing backend is yours: cost, limits, data, and maintenance.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(52,211,153,.4);background:rgba(52,211,153,.1);color:#34d399;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">COMPARISON</span>
+  <h1>KeyAuth alternative: what you give up, what you gain</h1>
+  <p class="lead">KeyAuth works. The problem is rarely the API — it is what happens when your product outgrows a plan, the price changes, or the service has a bad week. This page is about the trade, not about pretending hosted services are bad.</p>
+
+  <h2>When staying hosted is the right call</h2>
+  <ul>
+    <li>You ship one small product and want zero infrastructure work.</li>
+    <li>You are fine with a dashboard and do not need custom logic.</li>
+    <li>You would rather pay monthly than think about Redis, backups, and deploy keys.</li>
+  </ul>
+
+  <h2>When self-hosting starts to pay off</h2>
+  <ul>
+    <li>Your own customers submit HWID resets and you want to handle them without a vendor queue.</li>
+    <li>You need behaviour the dashboard does not expose: custom expiry rules, extra metadata, unusual rate limits.</li>
+    <li>You sell to people who ask where their key data lives.</li>
+    <li>You are already paying, and the yearly total is bigger than a one-time source purchase.</li>
+  </ul>
+
+  <h2>The comparison that matters</h2>
+  <table>
+    <tr><th></th><th>Hosted (KeyAuth and similar)</th><th>Self-hosted source</th></tr>
+    <tr><td>Setup effort</td><td>Minutes</td><td>An afternoon: Vercel, Redis, keys</td></tr>
+    <tr><td>Ongoing cost</td><td>Plan-dependent, recurring</td><td>Infra only (free tiers can cover small products)</td></tr>
+    <tr><td>Ceiling</td><td>Set by the plan</td><td>Set by your infra</td></tr>
+    <tr><td>Data location</td><td>Vendor</td><td>Your database</td></tr>
+    <tr><td>Custom logic</td><td>What the API exposes</td><td>Edit the code</td></tr>
+    <tr><td>Uptime</td><td>Vendor's responsibility</td><td>Yours</td></tr>
+    <tr><td>Support</td><td>Vendor</td><td>You (plus docs)</td></tr>
+  </table>
+  <p class="note">Check KeyAuth's current plans, limits, and terms on their site — those change, and this page does not quote them.</p>
+
+  <h2>What migrating actually looks like</h2>
+  <p>The client side is small: one request, one boolean, one expiry. The work is mapping your key records and HWID history into the new store, then keeping the same response shape so old clients do not break.</p>
+<pre>POST /api/verify
+{ "key": "XXXX-XXXX", "hwid": "ab12...", "app": "my-script" }
+
+200 { "valid": true,  "expiresAt": 1767225600, "plan": "user" }
+200 { "valid": false, "message": "Key expired" }</pre>
+  <p>Keeping that contract stable is what makes a migration a weekend job instead of a rewrite. It is also why a self-hosted stack is easier to leave later: the endpoint is yours.</p>
+
+  <h2>What StarDev Licence V4 ships</h2>
+  <p>Source code, one brand per purchase: verify/admin/HWID/security endpoints, web admin panel, Android admin app, Telegram buyer bot, Discord admin bot, rebrandable storefront, and a Roblox Luau client in <code>raw</code>, <code>aes</code>, or <code>aes_sign</code> mode with a self-test.</p>
+
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. You host the licensed copy yourself.</p>
+
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+</main>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"KeyAuth alternative: what you give up, what you gain","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/keyauth-alternative/"}
+</script>
+</body>
+</html>

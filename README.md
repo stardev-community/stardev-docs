@@ -7,8 +7,8 @@ yang ada di penyimpanan Termux dan `/sdcard`.
 - **Sumber tunggal:** [`index.html`](index.html) — HTML mandiri, tanpa build step,
   tanpa CDN, tanpa dependensi. Buka langsung dari file manager juga jalan.
 - **Data:** array `DATA` di dalam `index.html` (49 entri), dikelompokkan per
-  kategori: StarDev, Android, Lulu, Web, Video, AI & Bot, Roblox, Tooling,
-  Akademik.
+  bidang: StarDev Community (termasuk jajaran produk Lulu), Android, Web,
+  Video, AI & Bot, Roblox, Tooling, Akademik.
 
 ## Fitur
 

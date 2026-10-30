@@ -3,199 +3,336 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StarDev Project Catalog</title>
-<meta name="description" content="Katalog seluruh proyek StarDev & Lulu: aplikasi Android, web, video, bot, dan tooling.">
+<title>StarDev Community — Project Index</title>
+<meta name="description" content="Indeks karya StarDev Community: StarDevXSchool, Lulu, LuluUI, produksi video, bot, dan tooling.">
+<meta name="theme-color" content="#060810">
 <style>
   :root{
-    --bg:#07090f; --bg2:#0d1119; --panel:#111725; --panel2:#161e2e;
-    --line:#233047; --txt:#e7ecf6; --dim:#8ea0bd; --dim2:#61708c;
-    --amber:#f0b429; --green:#4ade80; --purple:#c084fc; --blue:#38bdf8;
-    --pink:#fb7185; --cyan:#22d3ee; --red:#f87171; --slate:#94a3b8; --yellow:#facc15;
-    --radius:16px;
+    --bg:#060810; --bg-soft:#0a0e18; --panel:rgba(255,255,255,.035);
+    --panel-2:rgba(255,255,255,.055); --line:rgba(255,255,255,.08);
+    --line-2:rgba(255,255,255,.14);
+    --txt:#eef2fb; --dim:#93a3be; --dim2:#64748b;
+    --amber:#f5b73d; --green:#5eead4; --purple:#c4a2ff; --blue:#5eb8ff;
+    --pink:#ff8fa3; --cyan:#4dd9f0; --red:#ff8080; --slate:#9aa8c0; --yellow:#f7d774;
+    --max:1200px; --r:18px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0; background:
-      radial-gradient(900px 500px at 12% -8%, rgba(240,180,41,.14), transparent 60%),
-      radial-gradient(800px 500px at 92% 0%, rgba(56,189,248,.12), transparent 60%),
-      var(--bg);
-    color:var(--txt);
-    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.55;
+    margin:0;color:var(--txt);background:var(--bg);
+    font-family:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;
   }
-  a{color:inherit}
-  .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 64px}
-  header.hero{padding:34px 0 10px}
-  .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .mark{
-    width:44px;height:44px;border-radius:13px;flex:0 0 auto;
-    background:linear-gradient(145deg,#f0b429,#e07b2a 55%,#b4451f);
-    box-shadow:0 10px 30px rgba(240,180,41,.25);
-    display:grid;place-items:center;font-weight:800;color:#1b1205;font-size:19px;
-  }
-  .brand small{display:block;color:var(--dim);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
-  .brand b{font-size:16px;letter-spacing:.02em}
-  h1{font-size:clamp(26px,5vw,42px);line-height:1.12;margin:6px 0 10px;letter-spacing:-.02em}
-  h1 span{background:linear-gradient(92deg,#f0b429,#ffd97a 40%,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lede{color:var(--dim);max-width:62ch;margin:0 0 22px;font-size:15.5px}
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin:20px 0 26px}
-  .stat{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:13px 14px}
-  .stat b{display:block;font-size:23px;letter-spacing:-.02em}
-  .stat span{color:var(--dim2);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em}
-  .controls{position:sticky;top:0;z-index:20;padding:12px 0 14px;background:linear-gradient(180deg,var(--bg) 72%,rgba(7,9,15,0));backdrop-filter:blur(8px)}
-  .searchrow{display:flex;gap:10px;flex-wrap:wrap}
-  .search{flex:1 1 260px;position:relative}
-  .search input{
-    width:100%;padding:12px 14px 12px 40px;border-radius:13px;border:1px solid var(--line);
-    background:var(--panel);color:var(--txt);font-size:14.5px;outline:none;transition:.18s
-  }
-  .search input:focus{border-color:#3b5578;box-shadow:0 0 0 4px rgba(56,189,248,.09)}
-  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.55}
-  .search kbd{
-    position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--dim2);
-    border:1px solid var(--line);border-radius:6px;padding:2px 6px;background:var(--bg2)
-  }
-  select{
-    padding:12px 12px;border-radius:13px;border:1px solid var(--line);background:var(--panel);color:var(--txt);
-    font-size:14px;outline:none
-  }
-  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
-  .chip{
-    border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:999px;
-    padding:6px 12px;font-size:12.5px;cursor:pointer;transition:.16s;user-select:none
-  }
-  .chip:hover{color:var(--txt);border-color:#33455f}
-  .chip.on{background:var(--txt);color:#0a0e16;border-color:var(--txt);font-weight:650}
-  .chip .n{opacity:.6;margin-left:5px;font-weight:500}
-  .meta{color:var(--dim2);font-size:12.5px;margin:16px 0 12px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-  .card{
-    background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
-    border-radius:var(--radius);padding:16px 16px 14px;position:relative;overflow:hidden;
-    transition:transform .16s ease,border-color .16s,box-shadow .16s;
-  }
-  .card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent,var(--slate));opacity:.85}
-  .card:hover{transform:translateY(-2px);border-color:#33455f;box-shadow:0 14px 34px rgba(0,0,0,.32)}
-  .card h3{margin:0 0 6px;font-size:16.5px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .badge{
-    font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;
-    padding:2px 8px;border-radius:999px;color:var(--accent,var(--slate));
-    background:color-mix(in srgb,var(--accent,var(--slate)) 14%,transparent);
-    border:1px solid color-mix(in srgb,var(--accent,var(--slate)) 34%,transparent)
-  }
-  .card p{margin:0 0 12px;color:var(--dim);font-size:13.5px}
-  .path{
-    display:flex;align-items:center;gap:8px;background:#0a0f18;border:1px solid var(--line);
-    border-radius:10px;padding:7px 9px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#a9bbd6;
-    overflow:hidden
-  }
-  .path span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-  .copy{border:0;background:transparent;color:var(--dim2);cursor:pointer;padding:2px;border-radius:5px;flex:0 0 auto}
-  .copy:hover{color:var(--txt);background:#1a2333}
-  .row{display:flex;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap;color:var(--dim2);font-size:12px}
-  .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
-  .row a{color:var(--blue);text-decoration:none}
-  .row a:hover{text-decoration:underline}
-  .state{border-radius:999px;padding:1px 8px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid}
-  .state.aktif{color:var(--green);border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.08)}
-  .state.arsip{color:var(--slate);border-color:rgba(148,163,184,.3);background:rgba(148,163,184,.07)}
-  .state.duplikat{color:var(--yellow);border-color:rgba(250,204,21,.3);background:rgba(250,204,21,.07)}
-  .state.data{color:var(--cyan);border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.07)}
-  .empty{padding:48px 10px;text-align:center;color:var(--dim2)}
-  section.extra{margin-top:46px}
-  section.extra h2{font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
-  section.extra p{color:var(--dim);font-size:13.5px;margin:0 0 14px}
-  .list{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-  .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:13px;color:var(--dim)}
-  .item b{display:block;color:var(--txt);font-size:13.5px;font-weight:600}
-  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim2);font-size:12.5px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
-  .toast{
-    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
-    background:#1b2537;border:1px solid #33455f;color:var(--txt);padding:9px 16px;border-radius:999px;
-    font-size:13px;transition:.22s;z-index:60
-  }
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit}
+  .shell{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+  /* ---------- ambient background ---------- */
+  .bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background:
+    radial-gradient(1100px 620px at 18% -10%, rgba(245,183,61,.16), transparent 62%),
+    radial-gradient(950px 560px at 88% -4%, rgba(94,184,255,.14), transparent 60%),
+    radial-gradient(900px 700px at 50% 108%, rgba(196,162,255,.10), transparent 62%),
+    var(--bg);}
+  .grid-lines{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 78%);}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);
+    background:linear-gradient(180deg,rgba(6,8,16,.92),rgba(6,8,16,.55) 70%,rgba(6,8,16,0));
+    border-bottom:1px solid transparent;transition:border-color .2s}
+  .nav.stuck{border-color:var(--line)}
+  .nav-in{display:flex;align-items:center;gap:18px;height:66px}
+  .logo{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+  .logo-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+    background:conic-gradient(from 210deg,#f5b73d,#ff8fa3,#c4a2ff,#5eb8ff,#f5b73d);
+    box-shadow:0 6px 22px rgba(245,183,61,.28)}
+  .logo-mark i{width:26px;height:26px;border-radius:8px;background:#0a0d15;display:grid;place-items:center;
+    font:800 13px/1 ui-sans-serif,system-ui;color:#ffe6b0;font-style:normal;letter-spacing:.02em}
+  .logo b{font-size:14.5px;letter-spacing:.01em;display:block}
+  .logo span{font-size:10.5px;color:var(--dim2);letter-spacing:.18em;text-transform:uppercase}
+  .nav-links{display:flex;gap:4px;margin-left:auto}
+  .nav-links a{padding:7px 11px;border-radius:9px;font-size:13.5px;color:var(--dim);transition:.16s}
+  .nav-links a:hover{color:var(--txt);background:var(--panel-2)}
+  .btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);
+    background:var(--panel);padding:8px 13px;border-radius:10px;font-size:13px;font-weight:600;transition:.18s}
+  .btn:hover{background:var(--panel-2);border-color:rgba(255,255,255,.24);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(135deg,#ffe0a0,#f5b73d);color:#1a1205;border-color:transparent;
+    box-shadow:0 8px 24px rgba(245,183,61,.22)}
+  .btn.primary:hover{filter:brightness(1.05)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 26px;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;background:rgba(255,255,255,.025)}
+  .eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-size:clamp(38px,7vw,74px);line-height:.98;letter-spacing:-.035em;margin:20px 0 16px;font-weight:750}
+  h1 .grad{background:linear-gradient(100deg,#ffe6b0 4%,#f5b73d 34%,#ff9db0 62%,#8fc9ff 92%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  .lede{color:var(--dim);max-width:60ch;font-size:15.5px;margin:0}
+  .lede code{font:12.5px ui-monospace,Menlo,monospace;color:#c6d3e8;background:rgba(255,255,255,.05);
+    border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+  .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ---------- KPI ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:34px 0 8px}
+  .kpi{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;
+    padding:16px 16px 14px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
+  .kpi::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;
+    background:linear-gradient(90deg,var(--ac,#f5b73d),transparent);opacity:.7}
+  .kpi b{display:block;font-size:28px;letter-spacing:-.03em;line-height:1.1}
+  .kpi span{color:var(--dim2);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .kpi em{position:absolute;right:14px;top:14px;font-style:normal;opacity:.28}
+
+  /* ---------- featured ---------- */
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:56px 0 18px;flex-wrap:wrap}
+  .sec-head h2{margin:0;font-size:clamp(20px,3vw,26px);letter-spacing:-.02em}
+  .sec-head p{margin:4px 0 0;color:var(--dim);font-size:13.5px}
+  .featured{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+  .feat{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;padding:22px;
+    min-height:220px;display:flex;flex-direction:column;background:#0b0f18;
+    background-image:radial-gradient(420px 200px at 100% 0%,var(--tint),transparent 70%)}
+  .feat::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+    background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.16) 1px,transparent 0);
+    background-size:14px 14px;mask-image:linear-gradient(160deg,#000,transparent 62%);
+    -webkit-mask-image:linear-gradient(160deg,#000,transparent 62%)}
+  .feat .tag{align-self:flex-start;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+    background:color-mix(in srgb,var(--accent) 12%,transparent);padding:3px 9px;border-radius:999px;font-weight:700}
+  .feat h3{margin:16px 0 8px;font-size:24px;letter-spacing:-.025em;line-height:1.15}
+  .feat p{margin:0 0 18px;color:var(--dim);font-size:13.5px;max-width:38ch}
+  .feat .foot{margin-top:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:12px;color:var(--dim2)}
+  .feat .foot .chipmini{border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--dim)}
+  .feat .glyph{position:absolute;right:14px;top:16px;opacity:.13;pointer-events:none}
+  .feat:hover{border-color:rgba(255,255,255,.2)}
+
+  /* ---------- catalog toolbar ---------- */
+  .catalog{margin-top:8px}
+  .toolbar{position:sticky;top:66px;z-index:40;padding:14px 0 12px;
+    background:linear-gradient(180deg,var(--bg) 74%,rgba(6,8,16,0))}
+  .toolbar-row{display:flex;gap:10px;flex-wrap:wrap}
+  .search{flex:1 1 280px;position:relative}
+  .search input{width:100%;padding:13px 14px 13px 42px;border-radius:13px;border:1px solid var(--line);
+    background:rgba(255,255,255,.04);color:var(--txt);font-size:14.5px;outline:none;transition:.18s}
+  .search input::placeholder{color:var(--dim2)}
+  .search input:focus{border-color:rgba(94,184,255,.55);box-shadow:0 0 0 4px rgba(94,184,255,.1);
+    background:rgba(255,255,255,.06)}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--dim2)}
+  .search kbd{position:absolute;right:11px;top:50%;transform:translateY(-50%);font:11px ui-monospace;
+    color:var(--dim2);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  .seg{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03)}
+  .seg button{padding:0 14px;height:46px;background:transparent;border:0;cursor:pointer;font-size:13px;
+    color:var(--dim);transition:.15s}
+  .seg button+button{border-left:1px solid var(--line)}
+  .seg button.on{background:rgba(255,255,255,.1);color:var(--txt);font-weight:600}
+  select{height:46px;padding:0 12px;border-radius:12px;border:1px solid var(--line);
+    background:rgba(255,255,255,.04);color:var(--txt);font-size:13px;outline:none}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+  .chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);color:var(--dim);border-radius:999px;padding:6px 12px;
+    font-size:12.5px;cursor:pointer;transition:.16s;user-select:none}
+  .chip i{width:6px;height:6px;border-radius:50%;background:var(--c,#9aa8c0);font-style:normal}
+  .chip:hover{color:var(--txt);border-color:var(--line-2);background:rgba(255,255,255,.06)}
+  .chip.on{background:var(--c,#eef2fb);color:#080b12;border-color:var(--c,#eef2fb);font-weight:700}
+  .chip.on .n{opacity:.6}
+  .chip .n{opacity:.55;font-weight:500}
+
+  /* ---------- groups & cards ---------- */
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    color:var(--dim2);font-size:12.5px;margin:18px 0 12px;flex-wrap:wrap}
+  .group{margin-bottom:34px;animation:rise .35s ease both}
+  .group-head{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+  .group-head .bar{width:4px;height:18px;border-radius:3px;background:var(--accent,#9aa8c0)}
+  .group-head h3{margin:0;font-size:15px;letter-spacing:.02em}
+  .group-head span{color:var(--dim2);font-size:12px}
+  .group-head .rule{flex:1;height:1px;background:var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+  .card{position:relative;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);
+    border-radius:var(--r);padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.042),rgba(255,255,255,.012));
+    transition:transform .18s ease,border-color .18s,box-shadow .18s,background .18s}
+  .card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent,#9aa8c0) 38%,transparent);
+    box-shadow:0 18px 40px rgba(0,0,0,.42),0 0 30px color-mix(in srgb,var(--accent,#9aa8c0) 12%,transparent)}
+  .card-top{display:flex;align-items:flex-start;gap:11px;margin-bottom:11px}
+  .glyph-box{width:36px;height:36px;border-radius:11px;flex:0 0 auto;display:grid;place-items:center;
+    color:var(--accent,#9aa8c0);
+    background:color-mix(in srgb,var(--accent,#9aa8c0) 14%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent,#9aa8c0) 26%,transparent)}
+  .card-top .t{min-width:0;flex:1}
+  .card h4{margin:0;font-size:15.5px;letter-spacing:-.01em;line-height:1.25;overflow-wrap:anywhere}
+  .card .type{color:var(--dim2);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+  .card p{margin:0 0 12px;color:var(--dim);font-size:13.2px;flex:1}
+  .path{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.32);border:1px solid var(--line);
+    border-radius:10px;padding:7px 9px;font:11.5px/1.4 ui-monospace,Menlo,monospace;color:#a7b8d3;overflow:hidden}
+  .path span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .copy{border:0;background:transparent;color:var(--dim2);cursor:pointer;padding:2px;border-radius:5px;display:grid;place-items:center}
+  .copy:hover{color:var(--txt);background:rgba(255,255,255,.1)}
+  .card-foot{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11.5px;color:var(--dim2);flex-wrap:wrap}
+  .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
+  .state{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    border-radius:999px;padding:1px 7px;border:1px solid}
+  .state.aktif{color:#7bf0c6;border-color:rgba(123,240,198,.32);background:rgba(123,240,198,.08)}
+  .state.arsip{color:#a9b6cb;border-color:rgba(169,182,203,.28);background:rgba(169,182,203,.07)}
+  .state.duplikat{color:#f7d774;border-color:rgba(247,215,116,.3);background:rgba(247,215,116,.07)}
+  .state.data{color:#7fd7ef;border-color:rgba(127,215,239,.3);background:rgba(127,215,239,.07)}
+  .repo-link{display:inline-flex;align-items:center;gap:4px;color:#8ec5ff;font-weight:600}
+  .repo-link:hover{text-decoration:underline}
+  .empty{padding:60px 12px;text-align:center;color:var(--dim2);border:1px dashed var(--line);border-radius:18px}
+
+  /* ---------- extras ---------- */
+  .extras{margin-top:14px;border-top:1px solid var(--line);padding-top:34px}
+  .extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+  .extra-item{border:1px solid var(--line);border-radius:14px;padding:13px 15px;
+    background:rgba(255,255,255,.025);font-size:12.8px;color:var(--dim)}
+  .extra-item b{display:block;color:var(--txt);font-size:13.5px;font-weight:600;margin-bottom:3px}
+  .extra-item code{font:11.5px ui-monospace;color:#b9c7dd}
+
+  footer{margin-top:54px;padding:22px 0 40px;border-top:1px solid var(--line);
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    color:var(--dim2);font-size:12.5px}
+  footer b{color:var(--dim)}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);opacity:0;pointer-events:none;
+    background:#151c2b;border:1px solid var(--line-2);padding:9px 16px;border-radius:999px;font-size:13px;
+    transition:.2s;z-index:70;box-shadow:0 12px 30px rgba(0,0,0,.4)}
   .toast.show{opacity:1;transform:translate(-50%,0)}
-  @media (max-width:560px){
-    .wrap{padding:20px 13px 52px}
+
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (max-width:640px){
+    .shell{padding:0 14px}
+    .hero{padding:44px 0 10px}
+    .nav-links{display:none}
+    .nav-in{height:60px}
+    .toolbar{top:60px}
     .grid{grid-template-columns:1fr}
     .search kbd{display:none}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
-    <div class="brand">
-      <div class="mark">S</div>
-      <div>
-        <b>StarDev</b>
-        <small>Project Catalog</small>
+<div class="bg"></div>
+<div class="grid-lines"></div>
+
+<nav class="nav" id="nav">
+  <div class="shell nav-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark"><i>SD</i></span>
+      <span><b>StarDev</b><span>Community</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#unggulan">Unggulan</a>
+      <a href="#katalog">Katalog</a>
+      <a href="#arsip">Arsip</a>
+    </div>
+    <a class="btn" href="https://github.com/stardev-community/stardev-docs" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main class="shell" id="top">
+  <section class="hero">
+    <span class="eyebrow"><b></b> StarDev Community · Project Index</span>
+    <h1>Satu komunitas.<br><span class="grad">Semua karya.</span></h1>
+    <div class="hero-row">
+      <p class="lede">StarDevXSchool, Lulu, LuluUI, produksi video, bot, dan tooling — semua yang dibangun di Termux dan <code>/sdcard</code>, dalam satu indeks. Lulu adalah bagian dari StarDev Community.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#katalog">Lihat katalog</a>
+        <a class="btn" href="#unggulan">Unggulan</a>
       </div>
     </div>
-    <h1>Semua proyek <span>StarDev &amp; Lulu</span><br>dalam satu halaman.</h1>
-    <p class="lede">Katalog lengkap aplikasi Android, web, produksi video, bot, dan tooling yang ada di penyimpanan Termux dan <code>/sdcard</code>. Data per 30 Oktober 2026.</p>
+    <div class="kpis" id="kpis"></div>
+  </section>
 
-    <div class="stats" id="stats"></div>
+  <section id="unggulan">
+    <div class="sec-head">
+      <div>
+        <h2>Unggulan</h2>
+        <p>Karya paling matang dari ekosistem StarDev.</p>
+      </div>
+    </div>
+    <div class="featured" id="featured"></div>
+  </section>
 
-    <div class="controls">
-      <div class="searchrow">
+  <section class="catalog" id="katalog">
+    <div class="sec-head">
+      <div>
+        <h2>Katalog</h2>
+        <p>Semua proyek, dikelompokkan per bidang.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="toolbar-row">
         <label class="search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="q" type="search" placeholder="Cari nama, deskripsi, teknologi, atau path…" autocomplete="off">
+          <input id="q" type="search" placeholder="Cari proyek, teknologi, atau path…" autocomplete="off">
           <kbd>/</kbd>
         </label>
         <select id="sort" aria-label="Urutkan">
-          <option value="name">Urut: Nama A–Z</option>
-          <option value="date">Urut: Terbaru</option>
-          <option value="size">Urut: Ukuran terbesar</option>
-          <option value="cat">Urut: Kategori</option>
+          <option value="name">Nama A–Z</option>
+          <option value="date">Terbaru</option>
+          <option value="size">Ukuran terbesar</option>
         </select>
+        <div class="seg" role="tablist" aria-label="Tampilan">
+          <button id="vGroup" class="on" role="tab" aria-selected="true">Kelompok</button>
+          <button id="vFlat" role="tab" aria-selected="false">Datar</button>
+        </div>
       </div>
       <div class="chips" id="chips"></div>
     </div>
-    <div class="meta" id="meta"></div>
-  </header>
+    <div class="meta"><span id="meta"></span><span id="meta2"></span></div>
+    <div id="groups"></div>
+  </section>
 
-  <main class="grid" id="grid"></main>
-
-  <section class="extra">
-    <h2>Arsip, aset &amp; data</h2>
-    <p>Bukan proyek aktif, tapi bagian dari ekosistem. Disimpan di <code>/sdcard</code>.</p>
-    <div class="list">
-      <div class="item"><b>arsip build StarDev</b>51 ZIP di <code>Download/</code>: AIDE(1–25), -baru, -updated, -debug, -GitHub, server, StarDevNett, licence. Download total 2,8 GB.</div>
-      <div class="item"><b>StarDevXSchool <em>(data)</em></b><code>Download/StarDevXSchool</code> — key perangkat, LuluMath.js, materi matematika, Tester.</div>
-      <div class="item"><b>StarDev <em>(aset merek)</em></b><code>/sdcard/StarDev</code> + <code>Canva/StarDev_*</code> — gambar dan materi visual.</div>
-      <div class="item"><b>StarDevXscholl <em>(dokumen)</em></b><code>/sdcard/StarDevXscholl</code> — Data Kelas X.xlsx, Skripsi_PMat_PBL.docx, X LENGKAP.xlsx.</div>
-      <div class="item"><b>Cerita Kecil Kita v4–v6</b>Arsip <code>.zip</code> di <code>~/proyek</code> (versi sebelum v9).</div>
-      <div class="item"><b>downloads/stardev</b>Bukan proyek StarDev — aset video Lulu (all_lulu_v2.mp4, cerita_kecil_kita_v9, q_*.jpg).</div>
+  <section class="extras" id="arsip">
+    <div class="sec-head">
+      <div>
+        <h2>Arsip, aset &amp; data</h2>
+        <p>Bukan proyek aktif, tapi bagian dari ekosistem.</p>
+      </div>
+    </div>
+    <div class="extra-grid">
+      <div class="extra-item"><b>Arsip build StarDev</b>51 ZIP di <code>Download/</code>: AIDE 1–25, -baru, -debug, -GitHub, server, licence. Total Download 2,8 GB.</div>
+      <div class="extra-item"><b>Data aplikasi</b><code>Download/StarDevXSchool</code> — key perangkat, LuluMath.js, materi matematika, Tester.</div>
+      <div class="extra-item"><b>Aset merek</b><code>/sdcard/StarDev</code> dan <code>Canva/StarDev_*</code> — gambar serta materi visual.</div>
+      <div class="extra-item"><b>Dokumen</b><code>/sdcard/StarDevXscholl</code> — Data Kelas X.xlsx, X LENGKAP.xlsx, Skripsi_PMat_PBL.docx.</div>
+      <div class="extra-item"><b>Cerita Kecil Kita v4–v6</b>Arsip <code>.zip</code> di <code>~/proyek</code>, versi sebelum v9.</div>
+      <div class="extra-item"><b>Aset video Lulu</b><code>~/downloads/stardev</code> — all_lulu_v2.mp4, cerita_kecil_kita_v9, q_*.jpg.</div>
     </div>
   </section>
 
   <footer>
-    <span>Dibuat oleh <b>StarAsitance</b> · 30 Okt 2026</span>
+    <span>Disusun oleh <b>StarAsitance</b> · data 30 Oktober 2026</span>
     <span id="foot"></span>
   </footer>
-</div>
+</main>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const HOME = "/data/data/com.termux/files/home";
 const CATS = {
-  stardev: {label:"StarDev", color:"#f0b429"},
-  android:{label:"Android", color:"#4ade80"},
-  lulu:   {label:"Lulu",    color:"#c084fc"},
-  web:    {label:"Web",     color:"#38bdf8"},
-  video:  {label:"Video",   color:"#fb7185"},
-  ai:     {label:"AI & Bot",color:"#22d3ee"},
-  roblox: {label:"Roblox",  color:"#f87171"},
-  tool:   {label:"Tooling", color:"#94a3b8"},
-  akademik:{label:"Akademik",color:"#facc15"}
+  stardev:{label:"StarDev Community", color:"#f5b73d", glyph:"star"},
+  android:{label:"Android",          color:"#5eead4", glyph:"phone"},
+  web:    {label:"Web",              color:"#5eb8ff", glyph:"globe"},
+  video:  {label:"Video",            color:"#ff8fa3", glyph:"film"},
+  ai:     {label:"AI & Bot",         color:"#4dd9f0", glyph:"bot"},
+  roblox: {label:"Roblox",           color:"#ff8080", glyph:"cube"},
+  tool:   {label:"Tooling",          color:"#9aa8c0", glyph:"wrench"},
+  akademik:{label:"Akademik",        color:"#f7d774", glyph:"book"}
 };
 
 const DATA = [
-{name:"StarDevXScholl", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-10-23", mb:2, files:103,
+{name:"StarDevXScholl", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-10-23", mb:2, files:103, feat:true,
  desc:"Aplikasi presentasi offline: editor slide zoom-pan, OCR Tesseract, Convert to HTML, grafik otomatis, LuluMath, link & backup server. v1.3 (versionCode 4). Sumber kanonik.",
  path:"~/proyek/StarDevXScholl"},
 {name:"StarDevXSchoolOffline", cat:"stardev", type:"Android · Gradle", status:"duplikat", date:"2026-10-14", mb:2, files:103,
@@ -220,7 +357,7 @@ const DATA = [
  desc:"Aplikasi Android StarDevNett (com.yt.sockshare) untuk berbagi berkas lewat socket.",
  path:"/sdcard/AideProjects/SockShare"},
 {name:"ZipGit", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-10-02", mb:1, files:105,
- desc:"Pilih ZIP → ekstrak → unggah semuanya ke repo GitHub sebagai SATU commit via Git Data API. Tanpa Termux, tanpa git.",
+ desc:"Pilih ZIP, ekstrak, lalu unggah semuanya ke repo GitHub sebagai SATU commit via Git Data API. Tanpa Termux, tanpa git.",
  path:"/sdcard/AideProjects/ZipGit"},
 {name:"my-stardev-all-licence", cat:"stardev", type:"Node · Monorepo", status:"aktif", date:"2026-09-24", mb:77, files:188,
  desc:"Monorepo KeySystemV4: API lisensi, apps/AdminApp, client-templates, scripts, konfigurasi Vercel.",
@@ -229,8 +366,33 @@ const DATA = [
  desc:"Salinan sumber monorepo lisensi KeySystemV4 untuk deploy web.",
  path:"/sdcard/Download/(tesweb)/source"},
 
+{name:"LULU IG", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-03", mb:1, files:72,
+ desc:"Aplikasi LULU IG (com.iglulu.modz) dari jajaran produk Lulu.",
+ path:"/sdcard/AideProjects/LULU IG"},
+{name:"LULUGAME", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-30", mb:11, files:82,
+ desc:"Aplikasi LULUGAME, 10 kelas Java.",
+ path:"/sdcard/AideProjects/LULUGAME"},
+{name:"LuluZipTxt", cat:"stardev", sub:"Lulu", type:"Android · Gradle", status:"aktif", date:"2026-10-01", mb:1, files:84,
+ desc:"Lulu ZIP TXT (com.lulux.ziptext) — utilitas arsip teks.",
+ path:"/sdcard/AideProjects/LuluZipTxt"},
+{name:"Time Pop Up Lulu", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-27", mb:15, files:202,
+ desc:"Timer pop-up Lulu (com.timerlulu.modz) dengan 8 kelas Java.",
+ path:"/sdcard/AideProjects/Time Pop Up Lulu"},
+{name:"lulu ball", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-01", mb:1, files:170,
+ desc:"Game Lulu Ball (com.luluball.modz).",
+ path:"/sdcard/AideProjects/lulu ball"},
+{name:"lulu.graft_AIDE", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-09", mb:2, files:220,
+ desc:"Aplikasi Lulu All (paket lulu.graft), 12 kelas Java.",
+ path:"/sdcard/AideProjects/lulu.graft_AIDE"},
+{name:"lulu_maps_ml", cat:"stardev", sub:"Lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-08", mb:1, files:19,
+ desc:"Lulu Maps dengan dukungan ML — proyek ringkas 19 berkas.",
+ path:"/sdcard/AideProjects/lulu_maps_ml"},
+{name:"KEY LULU", cat:"stardev", sub:"Lulu", type:"Android · Gradle", status:"aktif", date:"2025-05-27", mb:21, files:184,
+ desc:"Aplikasi Key Lulu v1.3 (com.lulu.modz), struktur Gradle lengkap.",
+ path:"/sdcard/KEYLULUv1.3/KEY LULU"},
+
 {name:"Offline UI Detector", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-04", mb:1, files:27,
- desc:"Offline UI Detector — deteksi elemen antarmuka secara offline lewat accessibility.",
+ desc:"Deteksi elemen antarmuka secara offline lewat accessibility.",
  path:"/sdcard/AideProjects/OfflineUIDetectionApp-Full"},
 {name:"ImageDecomposer", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-03", mb:1, files:59,
  desc:"Dekomposisi gambar menjadi bagian-bagian (com.stardev.imagedecomposer).",
@@ -269,37 +431,12 @@ const DATA = [
  desc:"Auto-Il2cppDumper dengan antarmuka ImGui — eksperimen tooling native.",
  path:"/sdcard/AideProjects/MY-IMGUI"},
 
-{name:"LULU IG", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-03", mb:1, files:72,
- desc:"Aplikasi LULU IG (com.iglulu.modz).",
- path:"/sdcard/AideProjects/LULU IG"},
-{name:"LULUGAME", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-30", mb:11, files:82,
- desc:"Aplikasi LULUGAME, 10 kelas Java.",
- path:"/sdcard/AideProjects/LULUGAME"},
-{name:"LuluZipTxt", cat:"lulu", type:"Android · Gradle", status:"aktif", date:"2026-10-01", mb:1, files:84,
- desc:"Lulu ZIP TXT (com.lulux.ziptext) — utilitas arsip teks.",
- path:"/sdcard/AideProjects/LuluZipTxt"},
-{name:"Time Pop Up Lulu", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-27", mb:15, files:202,
- desc:"Timer pop-up Lulu (com.timerlulu.modz) dengan 8 kelas Java.",
- path:"/sdcard/AideProjects/Time Pop Up Lulu"},
-{name:"lulu ball", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-01", mb:1, files:170,
- desc:"Game Lulu Ball (com.luluball.modz).",
- path:"/sdcard/AideProjects/lulu ball"},
-{name:"lulu.graft_AIDE", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-09", mb:2, files:220,
- desc:"Aplikasi Lulu All (paket lulu.graft), 12 kelas Java.",
- path:"/sdcard/AideProjects/lulu.graft_AIDE"},
-{name:"lulu_maps_ml", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-08", mb:1, files:19,
- desc:"Lulu Maps dengan dukungan ML — proyek ringkas 19 berkas.",
- path:"/sdcard/AideProjects/lulu_maps_ml"},
-{name:"KEY LULU", cat:"lulu", type:"Android · Gradle", status:"aktif", date:"2025-05-27", mb:21, files:184,
- desc:"Aplikasi Key Lulu v1.3 (com.lulu.modz), struktur Gradle lengkap.",
- path:"/sdcard/KEYLULUv1.3/KEY LULU"},
-
 {name:"G3Store", cat:"web", type:"Web statis", status:"aktif", date:"2026-08-08", mb:1, files:13,
  desc:"Situs toko G3Store: beranda, katalog, produk, kontak, panduan, plus data.js dan asset.",
  path:"/sdcard/G3Store-main"},
 
-{name:"UdaNext", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-28", mb:24, files:440,
- desc:"Cerita Kecil Kita v10 / GoldTime — produksi video HTML canvas, render 90fps, GitHub Actions. Commit terakhir: smooth motion tanpa pulse per-beat.",
+{name:"UdaNext", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-28", mb:24, files:440, feat:true,
+ desc:"Cerita Kecil Kita v10 / GoldTime — produksi video HTML canvas, render 90fps, GitHub Actions. Smooth motion tanpa pulse per-beat.",
  path:"~/proyek/UdaNext", repo:"https://github.com/stardev-community/UdaNext"},
 {name:"all_lulu_project", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-27", mb:230, files:440,
  desc:"All Lulu — produksi video lengkap dengan all_lulu.mp4, elemen, fonts, dan config scene.",
@@ -333,7 +470,7 @@ const DATA = [
  desc:"Analisis tren TikTok: Bun + Cloudflare, data pipeline, dashboard publik.",
  path:"~/proyek/titok_analisis"},
 
-{name:"LuluXRoblox", cat:"roblox", type:"Luau · Roblox", status:"aktif", date:"2026-10-28", mb:2, files:83,
+{name:"LuluXRoblox", cat:"roblox", type:"Luau · Roblox", status:"aktif", date:"2026-10-28", mb:2, files:83, feat:true,
  desc:"LuluUI — framework UI Roblox resmi (Window, Tab, Section, notify) plus modul android-control.",
  path:"~/LuluXRoblox"},
 
@@ -356,31 +493,60 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const short = p => p.replace(HOME, "~");
 const fmtMB = n => n >= 1024 ? (n/1024).toFixed(1)+" GB" : n+" MB";
+const ICONS = {
+  star:'<path d="M12 3.2l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.6 6.7 19.4l1.1-5.9L3.5 9.4l5.9-.8L12 3.2Z"/>',
+  phone:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.6h2"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.6 3 14.4 0 18M12 3c-3 3.6-3 14.4 0 18"/>',
+  film:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7.5 5v14M16.5 5v14M3 10h4.5M3 14h4.5M16.5 10H21M16.5 14H21"/>',
+  bot:'<rect x="4" y="7.5" width="16" height="12" rx="3.5"/><path d="M12 3.5v4M9 13.5h.01M15 13.5h.01M9.5 17h5"/>',
+  cube:'<path d="M12 3l8 4.6v8.8L12 21l-8-4.6V7.6L12 3Z"/><path d="M12 12l8-4.4M12 12L4 7.6M12 12v9"/>',
+  wrench:'<path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L4 17l3 3 4.7-4.7a4.5 4.5 0 0 0 6-6l-2.4 2.4-2.3.3-.3-2.3 2.4-2.4Z"/>',
+  book:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19a2.5 2.5 0 0 1 2.5-2.5H20"/>'
+};
+const svg = (k, s=18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]||ICONS.star}</svg>`;
 
-let state = {cat:"all", q:"", sort:"name"};
+let state = {cat:"all", q:"", sort:"name", view:"group"};
 
-function renderStats(){
+function renderKpis(){
   const total = DATA.length;
-  const cats = new Set(DATA.map(d=>d.cat)).size;
-  const mb = DATA.reduce((a,d)=>a+(d.mb||0),0);
   const aktif = DATA.filter(d=>d.status==="aktif").length;
-  $("#stats").innerHTML = [
-    [total, "Proyek"],
-    [aktif, "Aktif"],
-    [cats, "Kategori"],
-    [fmtMB(mb), "Total ukuran"]
-  ].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+  const mb = DATA.reduce((a,d)=>a+(d.mb||0),0);
+  const cats = new Set(DATA.map(d=>d.cat)).size;
+  const items = [[total,"Proyek","#f5b73d","star"],[aktif,"Aktif","#5eead4","cube"],
+    [cats,"Bidang","#5eb8ff","globe"],[fmtMB(mb),"Total data","#c4a2ff","wrench"]];
+  $("#kpis").innerHTML = items.map(([v,l,c,g])=>
+    `<div class="kpi" style="--ac:${c}"><em>${svg(g,16)}</em><b>${v}</b><span>${l}</span></div>`).join("");
   $("#foot").textContent = `${total} entri · ${fmtMB(mb)}`;
+}
+
+function renderFeatured(){
+  const feats = DATA.filter(d=>d.feat);
+  $("#featured").innerHTML = feats.map(d=>{
+    const c = CATS[d.cat];
+    return `<a class="feat" href="#katalog" style="--accent:${c.color};--tint:color-mix(in srgb,${c.color} 22%,transparent)" data-jump="${esc(d.name)}">
+      <span class="tag">${esc(c.label)}${d.sub?" · "+esc(d.sub):""}</span>
+      <h3>${esc(d.name)}</h3>
+      <p>${esc(d.desc)}</p>
+      <div class="foot"><span class="chipmini">${esc(d.type)}</span><span class="chipmini">${fmtMB(d.mb)}</span>
+      <span class="chipmini">${d.files} file</span></div>
+      <span class="glyph">${svg(c.glyph,72)}</span>
+    </a>`;
+  }).join("");
+  $("#featured").querySelectorAll("[data-jump]").forEach(el=>{
+    el.addEventListener("click",()=>{
+      setTimeout(()=>{ state.q = el.dataset.jump; $("#q").value = state.q; render(); }, 60);
+    });
+  });
 }
 
 function renderChips(){
   const counts = {};
   DATA.forEach(d=>counts[d.cat]=(counts[d.cat]||0)+1);
-  const order = Object.keys(CATS);
-  let html = `<div class="chip ${state.cat==="all"?"on":""}" data-cat="all">Semua <span class="n">${DATA.length}</span></div>`;
-  order.forEach(k=>{
+    let html = `<div class="chip ${state.cat==="all"?"on":""}" style="--c:#eef2fb" data-cat="all"><i style="--c:#eef2fb"></i>Semua <span class="n">${DATA.length}</span></div>`;
+  Object.keys(CATS).forEach(k=>{
     if(!counts[k]) return;
-    html += `<div class="chip ${state.cat===k?"on":""}" data-cat="${k}">${CATS[k].label} <span class="n">${counts[k]}</span></div>`;
+    const c = CATS[k];
+    html += `<div class="chip ${state.cat===k?"on":""}" style="--c:${c.color}" data-cat="${k}"><i style="--c:${c.color}"></i>${esc(c.label)} <span class="n">${counts[k]}</span></div>`;
   });
   $("#chips").innerHTML = html;
   $("#chips").querySelectorAll(".chip").forEach(el=>{
@@ -392,52 +558,52 @@ function match(d){
   if(state.cat !== "all" && d.cat !== state.cat) return false;
   const q = state.q.trim().toLowerCase();
   if(!q) return true;
-  return [d.name,d.desc,d.type,d.path,CATS[d.cat].label].join(" ").toLowerCase().includes(q);
+  return [d.name,d.desc,d.type,d.path,d.sub||"",CATS[d.cat].label].join(" ").toLowerCase().includes(q);
 }
-
-function render(){
-  let rows = DATA.filter(match);
+function sortRows(rows){
   const by = state.sort;
-  rows.sort((a,b)=>{
-    if(by==="name") return a.name.localeCompare(b.name,"id");
-    if(by==="date") return (b.date||"").localeCompare(a.date||"") || a.name.localeCompare(b.name);
+  const key = s => String(s||"").replace(/^[^0-9a-z]+/i,"").toLowerCase();
+  return rows.sort((a,b)=>{
+    if(by==="name") return key(a.name).localeCompare(key(b.name),"id") || a.name.localeCompare(b.name,"id");
+    if(by==="date") return (b.date||"").localeCompare(a.date||"") || key(a.name).localeCompare(key(b.name),"id");
     if(by==="size") return (b.mb||0)-(a.mb||0);
-    if(by==="cat") return CATS[a.cat].label.localeCompare(CATS[b.cat].label) || a.name.localeCompare(b.name);
     return 0;
   });
-  $("#meta").textContent = `${rows.length} dari ${DATA.length} proyek ditampilkan`;
-  if(!rows.length){
-    $("#grid").innerHTML = `<div class="empty">Tidak ada proyek yang cocok. Coba kata kunci lain.</div>`;
-    return;
-  }
-  $("#grid").innerHTML = rows.map(d=>{
-    const c = CATS[d.cat];
-    const st = d.status || "aktif";
-    return `<article class="card" style="--accent:${c.color}">
-      <h3>${esc(d.name)} <span class="badge">${esc(c.label)}</span></h3>
-      <p>${esc(d.desc)}</p>
-      <div class="path"><span title="${esc(d.path)}">${esc(short(d.path))}</span>
-        <button class="copy" data-copy="${esc(d.path)}" title="Salin path" aria-label="Salin path">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
-        </button>
-      </div>
-      <div class="row">
-        <span class="state ${st}">${esc(st)}</span>
-        <span>${esc(d.type)}</span>
-        <span class="dot"></span>
-        <span>${fmtMB(d.mb||0)} · ${d.files||0} file</span>
-        ${d.date?`<span class="dot"></span><span>${esc(d.date)}</span>`:""}
-        ${d.repo?`<span class="dot"></span><a href="${esc(d.repo)}" target="_blank" rel="noopener">repo</a>`:""}
-      </div>
-    </article>`;
-  }).join("");
+}
 
-  $("#grid").querySelectorAll(".copy").forEach(btn=>{
+function card(d, i){
+  const c = CATS[d.cat], st = d.status || "aktif";
+  return `<article class="card" style="--accent:${c.color};animation-delay:${Math.min(i,12)*18}ms">
+    <div class="card-top">
+      <span class="glyph-box">${svg(c.glyph)}</span>
+      <div class="t">
+        <h4>${esc(d.name)}</h4>
+        <div class="type">${esc(d.type)}</div>
+      </div>
+    </div>
+    <p>${esc(d.desc)}</p>
+    <div class="path"><span title="${esc(d.path)}">${esc(short(d.path))}</span>
+      <button class="copy" data-copy="${esc(d.path)}" title="Salin path" aria-label="Salin path">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+      </button>
+    </div>
+    <div class="card-foot">
+      <span class="state ${st}">${esc(st)}</span>
+      ${d.sub?`<span>${esc(d.sub)}</span><span class="dot"></span>`:""}
+      <span>${fmtMB(d.mb||0)}</span><span class="dot"></span><span>${d.files||0} file</span>
+      ${d.date?`<span class="dot"></span><span>${esc(d.date)}</span>`:""}
+      ${d.repo?`<span class="dot"></span><a class="repo-link" href="${esc(d.repo)}" target="_blank" rel="noopener">repo
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>`:""}
+    </div>
+  </article>`;
+}
+
+function bindCopy(root){
+  root.querySelectorAll(".copy").forEach(btn=>{
     btn.onclick = async () => {
       const text = btn.dataset.copy.replace(/^~/, HOME);
-      try{
-        await navigator.clipboard.writeText(text);
-      }catch(e){
+      try{ await navigator.clipboard.writeText(text); }
+      catch(e){
         const ta = document.createElement("textarea");
         ta.value = text; document.body.appendChild(ta); ta.select();
         try{ document.execCommand("copy"); }catch(_){}
@@ -446,6 +612,35 @@ function render(){
       toast("Path disalin");
     };
   });
+}
+
+function render(){
+  let rows = sortRows(DATA.filter(match));
+  $("#meta").textContent = `${rows.length} dari ${DATA.length} proyek`;
+  $("#meta2").textContent = state.view==="group" && state.cat==="all" ? "dikelompokkan per bidang" : "tampilan datar";
+  if(!rows.length){
+    $("#groups").innerHTML = `<div class="empty">Tidak ada proyek yang cocok. Coba kata kunci lain atau tekan Esc.</div>`;
+    return;
+  }
+  let html = "";
+  if(state.view==="group" && state.cat==="all"){
+    const order = Object.keys(CATS);
+    let i = 0;
+    order.forEach(k=>{
+      const grp = rows.filter(d=>d.cat===k);
+      if(!grp.length) return;
+      const c = CATS[k];
+      html += `<section class="group" style="--accent:${c.color}">
+        <div class="group-head"><span class="bar"></span><h3>${esc(c.label)}</h3>
+          <span>${grp.length} proyek</span><span class="rule"></span></div>
+        <div class="grid">${grp.map(d=>card(d,i++)).join("")}</div>
+      </section>`;
+    });
+  }else{
+    html = `<div class="grid">${rows.map((d,i)=>card(d,i)).join("")}</div>`;
+  }
+  $("#groups").innerHTML = html;
+  bindCopy($("#groups"));
 }
 
 let toastTimer;
@@ -458,16 +653,26 @@ function toast(msg){
 
 $("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
 $("#sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+$("#vGroup").addEventListener("click", () => { state.view="group"; segState(); render(); });
+$("#vFlat").addEventListener("click", () => { state.view="flat"; segState(); render(); });
+function segState(){
+  $("#vGroup").classList.toggle("on", state.view==="group");
+  $("#vFlat").classList.toggle("on", state.view==="flat");
+  $("#vGroup").setAttribute("aria-selected", state.view==="group");
+  $("#vFlat").setAttribute("aria-selected", state.view==="flat");
+}
 document.addEventListener("keydown", e => {
-  if(e.key === "/" && document.activeElement !== $("#q")){
-    e.preventDefault(); $("#q").focus();
-  }
+  if(e.key === "/" && document.activeElement !== $("#q")){ e.preventDefault(); $("#q").focus(); }
   if(e.key === "Escape" && document.activeElement === $("#q")){
     $("#q").value = ""; state.q = ""; render(); $("#q").blur();
   }
 });
+window.addEventListener("scroll", () => {
+  $("#nav").classList.toggle("stuck", window.scrollY > 8);
+}, {passive:true});
 
-renderStats();
+renderKpis();
+renderFeatured();
 renderChips();
 render();
 </script>

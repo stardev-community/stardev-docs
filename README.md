@@ -49,10 +49,12 @@ Ukuran dari `du`, jumlah berkas dan tanggal dari filesystem.
 
 ## Catatan
 
-- Toko menjual **source code StarDev Licence** (`g3xstardev-licence`), bukan
-  lisensi pemakaian aplikasi.
+- Toko menjual **source code StarDev Licence V4** (`my-stardev-all-licence`,
+  KeySystemV4) — bukan lisensi pemakaian aplikasi.
 - Harga: source + update 1 bulan **Rp 100.000**, source + update lifetime
   **Rp 200.000** (1 brand/stack). QRIS atas nama **Service Lulu**
   (NMID `ID1026542074640`).
+- Halaman toko memuat dokumentasi visual (storefront, katalog, panel admin) dan
+  panduan integrasi untuk Roblox script, mod APK, APK mandiri, web, dan bot.
 - Proyek pihak ketiga (tool PUBG/Frida, data executor Delta) tidak
   didokumentasikan di sini.

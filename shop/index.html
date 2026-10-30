@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Source Code StarDev Licence — Toko Resmi</title>
-<meta name="description" content="Beli source code StarDev Licence: backend lisensi Vercel + Upstash, bot Telegram, bot Discord, AdminApp, dan template 1 buyer = 1 stack.">
+<title>Source Code StarDev Licence V4 — Toko Resmi</title>
+<meta name="description" content="Source code StarDev Licence V4 (KeySystemV4): backend Vercel + Upstash, bot Telegram & Discord, AdminApp, panel admin, dan storefront. Bisa dipakai untuk lisensi Roblox script, mod APK, APK mandiri, web, dan bot.">
 <meta name="theme-color" content="#060810">
 <style>
 /*TOKENS:START*/
@@ -83,18 +83,18 @@ nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:linea
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:var(--fs-lg)}
 .mark{width:32px;height:32px;border-radius:10px;background:conic-gradient(from 210deg,var(--c-brand),var(--c-danger),var(--c-lulu),var(--c-info),var(--c-brand));display:grid;place-items:center}
 .mark i{width:23px;height:23px;border-radius:7px;background:var(--c-bg);display:grid;place-items:center;font-style:normal;font-size:9px;font-weight:700;color:var(--c-brand-soft)}
-.nav-links{margin-left:auto;display:flex;gap:4px;font-size:var(--fs-sm);color:var(--c-text-dim)}
-.nav-links a{padding:7px 11px;border-radius:9px}
+.nav-links{margin-left:auto;display:flex;gap:2px;font-size:var(--fs-sm);color:var(--c-text-dim);flex-wrap:wrap}
+.nav-links a{padding:7px 10px;border-radius:9px}
 .nav-links a:hover{color:var(--c-text);background:var(--c-surface-2)}
 .badge-live{display:inline-flex;align-items:center;gap:7px;border:1px solid color-mix(in srgb,var(--c-success) 36%,transparent);background:color-mix(in srgb,var(--c-success) 10%,transparent);color:var(--c-success);border-radius:var(--r-full);padding:5px 12px;font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 .badge-live b{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
 
-header.hero{padding:58px 0 10px}
+header.hero{padding:56px 0 8px}
 h1{font-size:clamp(34px,6.4vw,58px);line-height:1;letter-spacing:-.035em;margin:16px 0 12px;font-weight:750}
 h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%,var(--c-danger) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lede{color:var(--c-text-dim);max-width:62ch;margin:0;font-size:var(--fs-md)}
+.lede{color:var(--c-text-dim);max-width:66ch;margin:0;font-size:var(--fs-md)}
 
-.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:34px;align-items:start}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:30px;align-items:start}
 @media (max-width:900px){.layout{grid-template-columns:1fr}}
 .panel{border:1px solid var(--c-line);border-radius:var(--r-xl);padding:22px;background:linear-gradient(180deg,var(--c-surface),rgba(255,255,255,.01))}
 .panel h2{margin:0 0 4px;font-size:var(--fs-xl);letter-spacing:-.02em}
@@ -105,6 +105,10 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .features svg{flex:0 0 auto;margin-top:2px;color:var(--c-success)}
 .features b{color:var(--c-text);font-weight:600}
 .features .mono{font-family:var(--font-mono);color:var(--c-brand-soft);font-size:.94em}
+
+.targets{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 0}
+.targets span{border:1px solid var(--c-line);background:color-mix(in srgb,var(--c-info) 8%,transparent);color:var(--c-text-dim);border-radius:var(--r-full);padding:5px 11px;font-size:var(--fs-xs)}
+.targets b{color:var(--c-info);font-weight:600}
 
 .field{display:block;margin-bottom:14px}
 .field>span{display:block;font-size:var(--fs-sm);color:var(--c-text-dim);margin-bottom:6px}
@@ -149,6 +153,24 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .section{margin-top:46px}
 .section h2{font-size:var(--fs-2xl);letter-spacing:-.02em;margin:0 0 6px}
 .section p.sub{color:var(--c-text-dim);font-size:var(--fs-sm);margin:0 0 16px}
+
+.gallery{display:grid;gap:14px}
+figure{margin:0;border:1px solid var(--c-line);border-radius:var(--r-lg);overflow:hidden;background:var(--c-surface)}
+figure img{display:block;width:100%;height:auto;max-height:560px;object-fit:cover;object-position:top}
+figcaption{padding:10px 13px;font-size:var(--fs-xs);color:var(--c-text-muted);border-top:1px solid var(--c-line)}
+figcaption b{color:var(--c-text-dim);font-weight:600}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.card{border:1px solid var(--c-line);border-radius:var(--r-lg);background:var(--c-surface);padding:18px}
+.card h3{margin:0 0 8px;font-size:var(--fs-md)}
+.card ol,.card ul{margin:0;padding-left:20px;color:var(--c-text-dim);font-size:var(--fs-sm)}
+.card li{margin-bottom:6px}
+.card li b{color:var(--c-text)}
+pre{margin:10px 0 0;padding:12px 14px;border-radius:10px;border:1px solid var(--c-line);background:rgba(0,0,0,.4);overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:var(--c-text-dim);font-size:12px;line-height:1.55;white-space:pre}
+pre .k{color:var(--c-brand-soft)}
+
 details{border:1px solid var(--c-line);border-radius:var(--r-md);background:var(--c-surface);padding:13px 15px;margin-bottom:8px}
 details summary{cursor:pointer;font-size:var(--fs-sm);font-weight:600}
 details p{margin:8px 0 0;color:var(--c-text-dim);font-size:var(--fs-sm)}
@@ -163,29 +185,39 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 <nav><div class="nav-in">
   <a class="logo" href="../"><span class="mark"><i>SD</i></span> StarDev Store</a>
   <div class="nav-links">
-    <a href="#produk">Isi source</a><a href="#bayar">Pembayaran</a><a href="#faq">FAQ</a>
-    <a href="../">Katalog</a><a href="../design/">Design</a>
+    <a href="#produk">Isi source</a><a href="#dokumentasi">Dokumentasi</a><a href="#pakai">Cara pakai</a>
+    <a href="#bayar">Bayar</a><a href="#faq">FAQ</a><a href="../">Katalog</a>
   </div>
 </div></nav>
 
 <main class="wrap">
   <header class="hero">
-    <span class="badge-live"><b></b> Source code · QRIS</span>
-    <h1>StarDev <span>Licence</span></h1>
-    <p class="lede">Source code sistem lisensi StarDev: backend Vercel + Upstash Redis, bot Telegram pembeli, bot Discord admin, dan AdminApp Android. Satu pembeli = satu stack, siap di-branding ulang.</p>
+    <span class="badge-live"><b></b> Source code · V4 · QRIS</span>
+    <h1>StarDev <span>Licence V4</span></h1>
+    <p class="lede">Source code <b>KeySystemV4</b> — versi terbaru. Backend Vercel + Upstash Redis, bot Telegram pembeli, bot Discord admin, AdminApp Android, panel admin web, dan storefront siap branding. Satu pembeli = satu stack.</p>
   </header>
 
   <div class="layout">
     <section class="panel" id="produk">
       <h2>Isi source code</h2>
-      <p class="sub">Monorepo <span class="mono">g3xstardev-licence</span> v2.0.0 — bukan lisensi pemakaian aplikasi.</p>
+      <p class="sub">Monorepo <span class="mono">my-stardev-all-licence</span> · KeySystemV4 · bukan lisensi pemakaian aplikasi.</p>
       <ul class="features">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Backend lisensi</b> — API di Vercel, penyimpanan Upstash Redis, verifikasi key dan kuota.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Bot Telegram pembeli</b> — order, aktivasi, dan masa aktif.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Bot Discord admin</b> — kelola key dan pengguna dari server Discord.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>AdminApp Android</b> — aplikasi admin untuk cek dan cabut lisensi.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Template &amp; skrip</b> — <span class="mono">client-templates</span>, <span class="mono">scripts/new-buyer.sh</span>, <span class="mono">vercel.json</span>, dokumentasi deploy.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>API lisensi siap pakai</b> — <span class="mono">/api/verify</span>, <span class="mono">/api/admin</span>, <span class="mono">/api/hwid</span>, <span class="mono">/api/security</span> dengan Redis + Ed25519.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>3 mode protokol</b> — <span class="mono">raw</span>, <span class="mono">aes</span> (AES-256), <span class="mono">aes_sign</span> (AES + HMAC + anti-replay).</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Panel admin web</b> — buat/edit/hapus key, blokir HWID, lihat event keamanan.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Bot Telegram &amp; Discord</b> — pembeli redeem/cek key; admin kelola key lewat slash command.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>AdminApp Android + storefront</b> — toko <span class="mono">index/katalog/produk/panduan</span> dari satu <span class="mono">data.js</span>.</span></li>
       </ul>
+
+      <div class="targets">
+        <span><b>Roblox</b> script (.lua)</span>
+        <span><b>Mod APK</b></span>
+        <span><b>APK mandiri</b></span>
+        <span><b>Web / API</b></span>
+        <span><b>Bot</b> Discord &amp; Telegram</span>
+        <span><b>Tool internal</b></span>
+      </div>
+
       <div class="terms">
         <b>Ketentuan source</b>
         <span>Untuk 1 brand/stack per pembelian. Boleh dimodifikasi untuk kebutuhan sendiri; tidak untuk dijual ulang atau dibagikan ulang sebagai source.</span>
@@ -213,7 +245,7 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
       <p class="note" style="margin:-4px 0 14px">Harga untuk 1 brand. Untuk 2–3 brand, admin menghitung lewat WhatsApp.</p>
 
       <div class="summary">
-        <div class="line"><span>Produk</span><span class="mono">Source StarDev Licence</span></div>
+        <div class="line"><span>Produk</span><span class="mono">StarDev Licence V4</span></div>
         <div class="line"><span>Brand/stack</span><span class="mono" id="sumDev">1</span></div>
         <div class="line"><span>Paket</span><span class="mono" id="sumPlan">Update 1 Bulan</span></div>
         <div class="line"><span>Kode pesanan</span><span class="mono" id="sumCode">—</span></div>
@@ -228,6 +260,88 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
       <p class="note">Order diteruskan ke admin <b id="waLabel">0852-9952-6216</b>. Source dikirim setelah pembayaran terverifikasi.</p>
     </section>
   </div>
+
+  <section class="section" id="dokumentasi">
+    <h2>Dokumentasi visual</h2>
+    <p class="sub">Tampilan asli dari source V4 — storefront, katalog, dan panel admin. Data pada panel admin adalah contoh.</p>
+    <div class="gallery">
+      <figure>
+        <img src="docs/ui-store.png" alt="Storefront KeySystemV4 — halaman depan toko" loading="lazy">
+        <figcaption><b>Storefront.</b> Halaman toko bawaan: hero, katalog, panduan, dan tombol chat admin. Isi diubah dari <code>public/data.js</code>.</figcaption>
+      </figure>
+      <figure>
+        <img src="docs/ui-admin.png" alt="Panel admin KeySystemV4 — daftar key, HWID, security event" loading="lazy">
+        <figcaption><b>Panel admin.</b> Total/aktif/HWID, pencarian, tambah key, blokir HWID, dan event keamanan.</figcaption>
+      </figure>
+      <figure>
+        <img src="docs/ui-katalog.png" alt="Halaman katalog produk storefront" loading="lazy">
+        <figcaption><b>Katalog produk.</b> Daftar produk, tipe (.apk/.web/.lua), harga mulai, dan detail paket.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Tersedia juga AdminApp Android (build sendiri dari <code>apps/AdminApp</code>) dan bot Telegram/Discord dengan command <code>/addkey /listkeys /editkey /delkey /blockhwid /unblockhwid</code>.</p>
+  </section>
+
+  <section class="section" id="pakai">
+    <h2>Cara pakai</h2>
+    <p class="sub">Sama untuk lisensi Roblox script, mod APK, APK mandiri, web, maupun bot — semua lewat endpoint yang sama.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>1. Deploy server</h3>
+        <ol>
+          <li>Import repo ke project Vercel baru (root <code>/</code>).</li>
+          <li>Buat Upstash Redis, isi <code>UPSTASH_REDIS_REST_URL</code> + <code>TOKEN</code>.</li>
+          <li>Generate Ed25519: <code>openssl genpkey -algorithm ed25519 -out ed25519.pem</code> → <code>ED25519_PRIVATE_KEY</code>.</li>
+          <li>Set <code>ADMIN_SECRET</code>, <code>SITE_URL</code>, dan <code>PROTOCOL_MODE</code>.</li>
+          <li>(Opsional) token bot Telegram/Discord, lalu <code>set-webhook.js</code>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>2. Buat key</h3>
+        <ol>
+          <li>Buka <code>https://domain/admin</code>, login dengan <code>ADMIN_SECRET</code>.</li>
+          <li>Tekan <b>Add Key</b>: nama, masa aktif, maksimal HWID.</li>
+          <li>Atau lewat AdminApp Android, bot Discord admin, atau <code>POST /api/admin</code>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>3a. Roblox script</h3>
+        <p style="font-size:var(--fs-sm);color:var(--c-text-dim);margin:0">Pakai dua ModuleScript dari <code>client-templates/roblox</code>:</p>
+        <pre><code><span class="k">local</span> VerifyClient = require(path.to.VerifyClient)
+
+<span class="k">local</span> result = VerifyClient.verify(userKey, VerifyClient.getHwid())
+<span class="k">if</span> result <span class="k">and</span> result.valid <span class="k">then</span>
+  <span class="k">print</span>("Key sah, lanjut jalan")
+<span class="k">else</span>
+  warn(result <span class="k">and</span> result.message <span class="k">or</span> "Gagal konek server")
+<span class="k">end</span></code></pre>
+        <p class="note">Isi <code>CONFIG</code> (SITE_URL, MODE, AES/HMAC key). Jalankan <code>CryptoClient.selfTest()</code> sekali di Studio — semua harus <code>PASS</code>.</p>
+      </div>
+
+      <div class="card">
+        <h3>3b. APK / web / bot</h3>
+        <p style="font-size:var(--fs-sm);color:var(--c-text-dim);margin:0">Panggil endpoint verifikasi saat aplikasi start:</p>
+        <pre><code>POST https://domain/api/verify
+Content-Type: application/json
+
+{"key":"SDV4-XXXX-XXXX","hwid":"android-id"}
+
+→ {"valid":true,"expireAt":0,"plan":"lifetime"}</code></pre>
+        <p class="note">Mod APK &amp; APK mandiri: ambil HWID dari <code>Settings.Secure.ANDROID_ID</code> atau gabungan model + ID. Simpan hasil verifikasi dengan masa cache singkat.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3>Mode protokol harus sama di server &amp; klien</h3>
+      <ul>
+        <li><b>raw</b> — JSON polos, paling cepat, andalkan HTTPS.</li>
+        <li><b>aes</b> — payload AES-256-CBC, wajib kirim <code>timestamp</code> (anti-replay 300 detik).</li>
+        <li><b>aes_sign</b> — AES + HMAC + tanda tangan Ed25519 pada respons; paling aman.</li>
+      </ul>
+      <p class="note">Kalau mode klien beda dengan <code>PROTOCOL_MODE</code> server, verifikasi akan gagal walau key benar.</p>
+    </div>
+  </section>
 
   <section class="section" id="bayar">
     <h2>Pembayaran QRIS</h2>
@@ -262,11 +376,12 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
   <section class="section" id="faq">
     <h2>Pertanyaan umum</h2>
     <p class="sub">Jawaban singkat sebelum membeli.</p>
-    <details><summary>Yang dibeli itu source code atau lisensi aplikasi?</summary><p>Source code sistem lisensi StarDev (<span class="mono">g3xstardev-licence</span>): API, bot Telegram, bot Discord, dan AdminApp. Bukan lisensi pemakaian StarDev All.</p></details>
+    <details><summary>Ini versi V4 atau G3XStarDev?</summary><p>V4 — <b>KeySystemV4</b> (<code>my-stardev-all-licence</code>), versi terbaru yang menggabungkan <code>lulux-licence</code>, <code>my-stardev-all-licence</code>, dan AdminApp.</p></details>
+    <details><summary>Bisa dipakai untuk lisensi apa saja?</summary><p>Roblox script (.lua), mod APK, APK mandiri, aplikasi web, bot Discord/Telegram, atau tool internal. Selama klien bisa memanggil HTTP <code>/api/verify</code>, sistemnya jalan.</p></details>
     <details><summary>Apa bedanya paket 1 bulan dan Lifetime?</summary><p>Source code sama-sama menjadi milik pembeli. Bedanya masa pembaruan dan dukungan: 1 bulan atau selamanya.</p></details>
     <details><summary>Apakah hosting dan bot token termasuk?</summary><p>Tidak. Akun Vercel, Upstash Redis, token Telegram/Discord, dan domain diurus pembeli. Panduan deploy disertakan.</p></details>
+    <details><summary>Bagaimana kalau key dibagikan?</summary><p>Ada batas HWID per key, blokir otomatis setelah percobaan gagal berulang, blokir manual oleh admin, dan rate limit 5x/jam per HWID.</p></details>
     <details><summary>Boleh dijual ulang?</summary><p>Tidak. Source untuk 1 brand/stack, boleh dimodifikasi untuk kebutuhan sendiri, tetapi tidak untuk dijual atau dibagikan ulang sebagai source.</p></details>
-    <details><summary>Metode pembayaran selain QRIS?</summary><p>Saat ini QRIS. Untuk kebutuhan lain, tanyakan ke admin lewat WhatsApp.</p></details>
   </section>
 
   <footer>
@@ -278,7 +393,7 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 
 <script>
 const SHOP = {
-  product: "Source Code StarDev Licence",
+  product: "Source Code StarDev Licence V4 (KeySystemV4)",
   wa: "6285299526216",
   waDisplay: "0852-9952-6216",
   merchant: "Service Lulu",
@@ -361,7 +476,7 @@ function initQris(){
     const box = $("#qrbox");
     box.innerHTML = "";
     box.classList.add("has-img");
-    img.alt = "QRIS Service Lulu — StarDev Licence";
+    img.alt = "QRIS Service Lulu — StarDev Licence V4";
     box.appendChild(img);
   };
   img.onerror = () => {

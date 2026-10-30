@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StarDev All — Toko Resmi</title>
-<meta name="description" content="Beli lisensi StarDev All: StarDevXSchool Offline, AdminApp, StarDevNett, Key Lulu. Bayar QRIS, aktivasi via WhatsApp.">
+<title>Source Code StarDev Licence — Toko Resmi</title>
+<meta name="description" content="Beli source code StarDev Licence: backend lisensi Vercel + Upstash, bot Telegram, bot Discord, AdminApp, dan template 1 buyer = 1 stack.">
 <meta name="theme-color" content="#060810">
 <style>
 /*TOKENS:START*/
@@ -92,7 +92,7 @@ nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:linea
 header.hero{padding:58px 0 10px}
 h1{font-size:clamp(34px,6.4vw,58px);line-height:1;letter-spacing:-.035em;margin:16px 0 12px;font-weight:750}
 h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%,var(--c-danger) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lede{color:var(--c-text-dim);max-width:60ch;margin:0;font-size:var(--fs-md)}
+.lede{color:var(--c-text-dim);max-width:62ch;margin:0;font-size:var(--fs-md)}
 
 .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:34px;align-items:start}
 @media (max-width:900px){.layout{grid-template-columns:1fr}}
@@ -104,6 +104,7 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .features li{display:flex;gap:10px;align-items:flex-start;font-size:var(--fs-sm);color:var(--c-text-dim)}
 .features svg{flex:0 0 auto;margin-top:2px;color:var(--c-success)}
 .features b{color:var(--c-text);font-weight:600}
+.features .mono{font-family:var(--font-mono);color:var(--c-brand-soft);font-size:.94em}
 
 .field{display:block;margin-bottom:14px}
 .field>span{display:block;font-size:var(--fs-sm);color:var(--c-text-dim);margin-bottom:6px}
@@ -127,6 +128,11 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .btn.ghost{background:transparent}
 .btn+.btn{margin-top:9px}
 .note{font-size:var(--fs-xs);color:var(--c-text-muted);margin:10px 0 0}
+.note b{color:var(--c-text-dim)}
+
+.terms{border:1px solid color-mix(in srgb,var(--c-warn) 28%,transparent);background:color-mix(in srgb,var(--c-warn) 7%,transparent);border-radius:var(--r-md);padding:13px 15px;margin-top:14px}
+.terms b{display:block;font-size:var(--fs-sm);color:var(--c-warn);margin-bottom:4px}
+.terms span{font-size:var(--fs-sm);color:var(--c-text-dim)}
 
 .qris{display:grid;gap:12px}
 .qrbox{position:relative;border-radius:var(--r-lg);border:1px dashed var(--c-line-strong);background:rgba(0,0,0,.25);display:grid;place-items:center;text-align:center;padding:18px;min-height:240px;color:var(--c-text-muted);font-size:var(--fs-sm);overflow:hidden}
@@ -157,57 +163,61 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 <nav><div class="nav-in">
   <a class="logo" href="../"><span class="mark"><i>SD</i></span> StarDev Store</a>
   <div class="nav-links">
-    <a href="#produk">Produk</a><a href="#bayar">Pembayaran</a><a href="#faq">FAQ</a>
+    <a href="#produk">Isi source</a><a href="#bayar">Pembayaran</a><a href="#faq">FAQ</a>
     <a href="../">Katalog</a><a href="../design/">Design</a>
   </div>
 </div></nav>
 
 <main class="wrap">
   <header class="hero">
-    <span class="badge-live"><b></b> QRIS · Pesanan diproses manual</span>
-    <h1>StarDev <span>All</span></h1>
-    <p class="lede">Satu lisensi untuk seluruh ekosistem StarDev: StarDevXSchool Offline, AdminApp, StarDevNett, dan Key Lulu. Bayar QRIS, aktivasi langsung lewat WhatsApp.</p>
+    <span class="badge-live"><b></b> Source code · QRIS</span>
+    <h1>StarDev <span>Licence</span></h1>
+    <p class="lede">Source code sistem lisensi StarDev: backend Vercel + Upstash Redis, bot Telegram pembeli, bot Discord admin, dan AdminApp Android. Satu pembeli = satu stack, siap di-branding ulang.</p>
   </header>
 
   <div class="layout">
     <section class="panel" id="produk">
-      <h2>Isi paket</h2>
-      <p class="sub">Semua aplikasi dalam satu lisensi, pembaruan versi gratis.</p>
+      <h2>Isi source code</h2>
+      <p class="sub">Monorepo <span class="mono">g3xstardev-licence</span> v2.0.0 — bukan lisensi pemakaian aplikasi.</p>
       <ul class="features">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>StarDevXSchool Offline</b> — presentasi offline: editor slide, OCR, export HTML, grafik otomatis.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>AdminApp</b> — kelola lisensi dan perangkat dari HP.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>StarDevNett</b> — berbagi berkas antar perangkat lewat socket.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Key Lulu</b> — akses jajaran produk Lulu.</span></li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Dukungan WhatsApp</b> — bantuan pemasangan dan aktivasi.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Backend lisensi</b> — API di Vercel, penyimpanan Upstash Redis, verifikasi key dan kuota.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Bot Telegram pembeli</b> — order, aktivasi, dan masa aktif.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Bot Discord admin</b> — kelola key dan pengguna dari server Discord.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>AdminApp Android</b> — aplikasi admin untuk cek dan cabut lisensi.</span></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Template &amp; skrip</b> — <span class="mono">client-templates</span>, <span class="mono">scripts/new-buyer.sh</span>, <span class="mono">vercel.json</span>, dokumentasi deploy.</span></li>
       </ul>
+      <div class="terms">
+        <b>Ketentuan source</b>
+        <span>Untuk 1 brand/stack per pembelian. Boleh dimodifikasi untuk kebutuhan sendiri; tidak untuk dijual ulang atau dibagikan ulang sebagai source.</span>
+      </div>
     </section>
 
     <section class="panel" aria-labelledby="order-title">
-      <h2 id="order-title">Pesan sekarang</h2>
-      <p class="sub">Pilih jumlah perangkat, lalu lanjut ke WhatsApp.</p>
+      <h2 id="order-title">Pesan source</h2>
+      <p class="sub">Pilih paket, lalu lanjut ke WhatsApp untuk pembayaran QRIS.</p>
 
-      <label class="field"><span>Jumlah perangkat</span>
+      <label class="field"><span>Jumlah brand/stack</span>
         <div class="opts" id="devices">
-          <div class="opt on" data-dev="1">1 perangkat</div>
-          <div class="opt" data-dev="2">2 perangkat</div>
-          <div class="opt" data-dev="3">3 perangkat</div>
+          <div class="opt on" data-dev="1">1 brand</div>
+          <div class="opt" data-dev="2">2 brand</div>
+          <div class="opt" data-dev="3">3 brand</div>
         </div>
       </label>
 
-      <label class="field"><span>Masa aktif</span>
+      <label class="field"><span>Paket</span>
         <div class="opts" id="plans">
-          <div class="opt on" data-plan="1 Bulan">1 bulan · Rp 100.000</div>
-          <div class="opt" data-plan="Lifetime">Lifetime · Rp 200.000</div>
+          <div class="opt on" data-plan="Update 1 Bulan">Source + update 1 bulan · Rp 100.000</div>
+          <div class="opt" data-plan="Lifetime">Source + update lifetime · Rp 200.000</div>
         </div>
       </label>
-      <p class="note" style="margin:-4px 0 14px">Harga untuk 1 perangkat. Untuk 2–3 perangkat, admin menghitung harga khusus lewat WhatsApp.</p>
+      <p class="note" style="margin:-4px 0 14px">Harga untuk 1 brand. Untuk 2–3 brand, admin menghitung lewat WhatsApp.</p>
 
       <div class="summary">
-        <div class="line"><span>Produk</span><span class="mono">StarDev All</span></div>
-        <div class="line"><span>Perangkat</span><span class="mono" id="sumDev">1</span></div>
-        <div class="line"><span>Masa aktif</span><span class="mono" id="sumPlan">1 Bulan</span></div>
+        <div class="line"><span>Produk</span><span class="mono">Source StarDev Licence</span></div>
+        <div class="line"><span>Brand/stack</span><span class="mono" id="sumDev">1</span></div>
+        <div class="line"><span>Paket</span><span class="mono" id="sumPlan">Update 1 Bulan</span></div>
         <div class="line"><span>Kode pesanan</span><span class="mono" id="sumCode">—</span></div>
-        <div class="line total"><span>Total</span><span id="sumPrice">Hubungi admin</span></div>
+        <div class="line total"><span>Total</span><span id="sumPrice">Rp 100.000</span></div>
       </div>
 
       <button class="btn wa" id="orderBtn">
@@ -215,7 +225,7 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
         Pesan via WhatsApp
       </button>
       <button class="btn ghost" id="copyOrder">Salin kode pesanan</button>
-      <p class="note">Order diteruskan ke admin <b id="waLabel">0852-9952-6216</b>. Pembayaran QRIS setelah kode pesanan dibuat.</p>
+      <p class="note">Order diteruskan ke admin <b id="waLabel">0852-9952-6216</b>. Source dikirim setelah pembayaran terverifikasi.</p>
     </section>
   </div>
 
@@ -227,10 +237,10 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
         <div class="qrbox" id="qrbox">
           <span>QRIS resmi <b>Service Lulu</b><br><small>Memuat gambar…</small></span>
         </div>
-        <div class="line" style="display:flex;justify-content:space-between;gap:10px;font-size:var(--fs-sm);color:var(--c-text-dim)">
+        <div style="display:flex;justify-content:space-between;gap:10px;font-size:var(--fs-sm);color:var(--c-text-dim)">
           <span>Merchant</span><span class="mono">Service Lulu</span>
         </div>
-        <div class="line" style="display:flex;justify-content:space-between;gap:10px;font-size:var(--fs-sm);color:var(--c-text-dim)">
+        <div style="display:flex;justify-content:space-between;gap:10px;font-size:var(--fs-sm);color:var(--c-text-dim)">
           <span>NMID</span><span class="mono">ID1026542074640</span>
         </div>
         <div class="copyline"><span id="waNum">6285299526216</span><button id="copyWa" title="Salin nomor">Salin</button></div>
@@ -239,12 +249,12 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
       <div class="panel">
         <h2 style="font-size:var(--fs-lg);margin-bottom:12px">Alur pesanan</h2>
         <ol class="steps">
-          <li><span>Pilih perangkat &amp; masa aktif, lalu tekan <b>Pesan via WhatsApp</b>.</span></li>
+          <li><span>Pilih paket, tekan <b>Pesan via WhatsApp</b>.</span></li>
           <li><span>Admin mengonfirmasi ketersediaan dan nominal akhir.</span></li>
           <li><span>Bayar lewat QRIS, kirim bukti + kode pesanan.</span></li>
-          <li><span>Lisensi dan panduan aktivasi dikirim di chat yang sama.</span></li>
+          <li><span>Source code dan panduan deploy dikirim di chat yang sama.</span></li>
         </ol>
-        <p class="note">Pesanan diproses pada jam kerja. Simpan kode pesanan sampai lisensi aktif.</p>
+        <p class="note">Pengiriman berupa arsip source atau undangan repo privat, sesuai pilihan admin.</p>
       </div>
     </div>
   </section>
@@ -252,9 +262,10 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
   <section class="section" id="faq">
     <h2>Pertanyaan umum</h2>
     <p class="sub">Jawaban singkat sebelum membeli.</p>
-    <details><summary>Apakah lisensi bisa dipakai di beberapa HP?</summary><p>Jumlah perangkat mengikuti paket yang dipilih (1–3). Lisensi terikat pada perangkat yang didaftarkan.</p></details>
-    <details><summary>Apakah ada pembaruan?</summary><p>Ya. Pembaruan versi dalam masa aktif dikirim lewat WhatsApp tanpa biaya tambahan.</p></details>
-    <details><summary>Bagaimana kalau lisensi hilang?</summary><p>Simpan kode pesanan dan key. Bila key hilang, hubungi admin dengan kode pesanan untuk pemulihan.</p></details>
+    <details><summary>Yang dibeli itu source code atau lisensi aplikasi?</summary><p>Source code sistem lisensi StarDev (<span class="mono">g3xstardev-licence</span>): API, bot Telegram, bot Discord, dan AdminApp. Bukan lisensi pemakaian StarDev All.</p></details>
+    <details><summary>Apa bedanya paket 1 bulan dan Lifetime?</summary><p>Source code sama-sama menjadi milik pembeli. Bedanya masa pembaruan dan dukungan: 1 bulan atau selamanya.</p></details>
+    <details><summary>Apakah hosting dan bot token termasuk?</summary><p>Tidak. Akun Vercel, Upstash Redis, token Telegram/Discord, dan domain diurus pembeli. Panduan deploy disertakan.</p></details>
+    <details><summary>Boleh dijual ulang?</summary><p>Tidak. Source untuk 1 brand/stack, boleh dimodifikasi untuk kebutuhan sendiri, tetapi tidak untuk dijual atau dibagikan ulang sebagai source.</p></details>
     <details><summary>Metode pembayaran selain QRIS?</summary><p>Saat ini QRIS. Untuk kebutuhan lain, tanyakan ke admin lewat WhatsApp.</p></details>
   </section>
 
@@ -267,20 +278,20 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 
 <script>
 const SHOP = {
-  product: "StarDev All",
+  product: "Source Code StarDev Licence",
   wa: "6285299526216",
   waDisplay: "0852-9952-6216",
   merchant: "Service Lulu",
   nmid: "ID1026542074640",
   qrisImage: "qris.jpeg",
   currency: "Rp",
-  plans: { "1 Bulan": 100000, "Lifetime": 200000 },
+  plans: { "Update 1 Bulan": 100000, "Lifetime": 200000 },
   pricePerDevice: { 2: null, 3: null }
 };
 
 const $ = s => document.querySelector(s);
-const state = { dev: 1, plan: "1 Bulan" };
-const code = "SDA-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+const state = { dev: 1, plan: "Update 1 Bulan" };
+const code = "SDL-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
 
 function rupiah(n){ return SHOP.currency + " " + n.toLocaleString("id-ID"); }
 
@@ -293,7 +304,7 @@ function total(){
 }
 
 function render(){
-  $("#sumDev").textContent = state.dev + " perangkat";
+  $("#sumDev").textContent = state.dev + " brand";
   $("#sumPlan").textContent = state.plan;
   $("#sumCode").textContent = code;
   const t = total();
@@ -316,14 +327,14 @@ function selectGroup(id, key, attr){
 function waLink(){
   const t = total();
   const lines = [
-    "Halo admin StarDev, saya mau pesan:",
+    "Halo admin StarDev, saya mau beli source code:",
     "Produk: " + SHOP.product,
     "Kode pesanan: " + code,
-    "Perangkat: " + state.dev,
-    "Masa aktif: " + state.plan,
+    "Brand/stack: " + state.dev,
+    "Paket: " + state.plan,
     "Total: " + (t == null ? "menunggu konfirmasi admin" : rupiah(t)),
     "",
-    "Mohon info QRIS dan langkah aktivasi."
+    "Mohon info QRIS dan cara pengiriman source."
   ];
   return "https://wa.me/" + SHOP.wa + "?text=" + encodeURIComponent(lines.join("\n"));
 }
@@ -350,7 +361,7 @@ function initQris(){
     const box = $("#qrbox");
     box.innerHTML = "";
     box.classList.add("has-img");
-    img.alt = "QRIS Service Lulu — StarDev All";
+    img.alt = "QRIS Service Lulu — StarDev Licence";
     box.appendChild(img);
   };
   img.onerror = () => {

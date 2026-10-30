@@ -26,7 +26,8 @@ const marker = /\/\*TOKENS:START\*\/[\s\S]*?\/\*TOKENS:END\*\//;
 const targets = [
   { file: join(here, "index.html"), kind: "css" },
   { file: join(here, "..", "index.html"), kind: "both", optional: true },
-  { file: join(here, "..", "shop", "index.html"), kind: "css", optional: true }
+  { file: join(here, "..", "shop", "index.html"), kind: "css", optional: true },
+  { file: join(here, "..", "shop", "en", "index.html"), kind: "css", optional: true }
 ];
 
 let changed = 0;

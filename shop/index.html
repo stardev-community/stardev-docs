@@ -6,6 +6,8 @@
 <title>Source Code StarDev Licence V4 — Toko Resmi</title>
 <meta name="description" content="Source code StarDev Licence V4 (KeySystemV4): backend Vercel + Upstash, bot Telegram & Discord, AdminApp, panel admin, dan storefront. Bisa dipakai untuk lisensi Roblox script, mod APK, APK mandiri, web, dan bot.">
 <meta name="theme-color" content="#060810">
+<link rel="alternate" hreflang="id" href="./">
+<link rel="alternate" hreflang="en" href="en/">
 <style>
 /*TOKENS:START*/
 :root {
@@ -129,6 +131,7 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .btn:hover{background:var(--c-surface-2);transform:translateY(-1px)}
 .btn.primary{background:linear-gradient(135deg,var(--c-brand-soft),var(--c-brand));color:#1a1205;border-color:transparent;box-shadow:var(--shadow-glow)}
 .btn.wa{background:linear-gradient(135deg,#25d366,#1da851);color:#041b0c;border-color:transparent}
+.btn.tg{background:linear-gradient(135deg,#2aabee,#229ed9);color:#04121b;border-color:transparent}
 .btn.ghost{background:transparent}
 .btn+.btn{margin-top:9px}
 .note{font-size:var(--fs-xs);color:var(--c-text-muted);margin:10px 0 0}
@@ -139,6 +142,8 @@ h1 span{background:linear-gradient(100deg,var(--c-brand-soft),var(--c-brand) 45%
 .terms span{font-size:var(--fs-sm);color:var(--c-text-dim)}
 
 .qris{display:grid;gap:12px}
+.paygrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media (max-width:860px){.paygrid{grid-template-columns:1fr}}
 .qrbox{position:relative;border-radius:var(--r-lg);border:1px dashed var(--c-line-strong);background:rgba(0,0,0,.25);display:grid;place-items:center;text-align:center;padding:18px;min-height:240px;color:var(--c-text-muted);font-size:var(--fs-sm);overflow:hidden}
 .qrbox.has-img{padding:0;border-style:solid;border-color:var(--c-line);background:#fff}
 .qrbox img{display:block;width:100%;height:auto}
@@ -186,7 +191,7 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
   <a class="logo" href="../"><span class="mark"><i>SD</i></span> StarDev Store</a>
   <div class="nav-links">
     <a href="#produk">Isi source</a><a href="#dokumentasi">Dokumentasi</a><a href="#pakai">Cara pakai</a>
-    <a href="#bayar">Bayar</a><a href="#faq">FAQ</a><a href="../">Katalog</a>
+    <a href="#bayar">Bayar</a><a href="#faq">FAQ</a><a href="../">Katalog</a><a href="en/">EN</a>
   </div>
 </div></nav>
 
@@ -226,7 +231,14 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 
     <section class="panel" aria-labelledby="order-title">
       <h2 id="order-title">Pesan source</h2>
-      <p class="sub">Pilih paket, lalu lanjut ke WhatsApp untuk pembayaran QRIS.</p>
+      <p class="sub">Pilih wilayah dan paket; lanjut ke admin untuk pembayaran.</p>
+
+      <label class="field"><span>Wilayah</span>
+        <div class="opts" id="regions">
+          <div class="opt on" data-region="id">Indonesia · QRIS</div>
+          <div class="opt" data-region="intl">International · Binance</div>
+        </div>
+      </label>
 
       <label class="field"><span>Jumlah brand/stack</span>
         <div class="opts" id="devices">
@@ -246,6 +258,7 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
 
       <div class="summary">
         <div class="line"><span>Produk</span><span class="mono">StarDev Licence V4</span></div>
+        <div class="line"><span>Wilayah</span><span class="mono" id="sumRegion">Indonesia · QRIS</span></div>
         <div class="line"><span>Brand/stack</span><span class="mono" id="sumDev">1</span></div>
         <div class="line"><span>Paket</span><span class="mono" id="sumPlan">Update 1 Bulan</span></div>
         <div class="line"><span>Kode pesanan</span><span class="mono" id="sumCode">—</span></div>
@@ -257,28 +270,20 @@ footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--c-line);color
         Pesan via WhatsApp
       </button>
       <button class="btn ghost" id="copyOrder">Salin kode pesanan</button>
-      <p class="note">Order diteruskan ke admin <b id="waLabel">0852-9952-6216</b>. Source dikirim setelah pembayaran terverifikasi.</p>
+      <p class="note" id="contactNote">Admin WhatsApp 0852-9952-6216. Source dikirim setelah pembayaran terverifikasi.</p>
     </section>
   </div>
 
   <section class="section" id="dokumentasi">
     <h2>Dokumentasi visual</h2>
-    <p class="sub">Tampilan asli dari source V4 — storefront, katalog, dan panel admin. Data pada panel admin adalah contoh.</p>
+    <p class="sub">Tampilan panel admin dari source V4. Data pada gambar adalah contoh.</p>
     <div class="gallery">
       <figure>
-        <img src="docs/ui-store.png" alt="Storefront KeySystemV4 — halaman depan toko" loading="lazy">
-        <figcaption><b>Storefront.</b> Halaman toko bawaan: hero, katalog, panduan, dan tombol chat admin. Isi diubah dari <code>public/data.js</code>.</figcaption>
-      </figure>
-      <figure>
         <img src="docs/ui-admin.png" alt="Panel admin KeySystemV4 — daftar key, HWID, security event" loading="lazy">
-        <figcaption><b>Panel admin.</b> Total/aktif/HWID, pencarian, tambah key, blokir HWID, dan event keamanan.</figcaption>
-      </figure>
-      <figure>
-        <img src="docs/ui-katalog.png" alt="Halaman katalog produk storefront" loading="lazy">
-        <figcaption><b>Katalog produk.</b> Daftar produk, tipe (.apk/.web/.lua), harga mulai, dan detail paket.</figcaption>
+        <figcaption><b>Panel admin.</b> Total/aktif/HWID, pencarian, tambah key, blokir HWID, dan event keamanan. Data di atas contoh tampilan.</figcaption>
       </figure>
     </div>
-    <p class="note">Tersedia juga AdminApp Android (build sendiri dari <code>apps/AdminApp</code>) dan bot Telegram/Discord dengan command <code>/addkey /listkeys /editkey /delkey /blockhwid /unblockhwid</code>.</p>
+    <p class="note">Termasuk AdminApp Android (build dari <code>apps/AdminApp</code>) dan bot Telegram/Discord: <code>/addkey /listkeys /editkey /delkey /blockhwid /unblockhwid</code>.</p>
   </section>
 
   <section class="section" id="pakai">
@@ -344,10 +349,11 @@ Content-Type: application/json
   </section>
 
   <section class="section" id="bayar">
-    <h2>Pembayaran QRIS</h2>
-    <p class="sub">Scan, bayar sesuai total, cantumkan kode pesanan di keterangan.</p>
-    <div class="layout">
+    <h2>Pembayaran</h2>
+    <p class="sub">Indonesia lewat QRIS. Luar negeri lewat Binance, diurus via Telegram <b>@yt_lulu</b>.</p>
+    <div class="paygrid">
       <div class="panel qris">
+        <h2 style="font-size:var(--fs-lg);margin-bottom:10px">Indonesia · QRIS</h2>
         <div class="qrbox" id="qrbox">
           <span>QRIS resmi <b>Service Lulu</b><br><small>Memuat gambar…</small></span>
         </div>
@@ -358,18 +364,32 @@ Content-Type: application/json
           <span>NMID</span><span class="mono">ID1026542074640</span>
         </div>
         <div class="copyline"><span id="waNum">6285299526216</span><button id="copyWa" title="Salin nomor">Salin</button></div>
-        <p class="note">QRIS statis atas nama Service Lulu. Isi nominal sesuai total, cantumkan kode pesanan di keterangan, lalu kirim bukti ke WhatsApp.</p>
+        <p class="note">QRIS statis. Isi nominal sesuai total, cantumkan kode pesanan, kirim bukti ke WhatsApp.</p>
       </div>
       <div class="panel">
-        <h2 style="font-size:var(--fs-lg);margin-bottom:12px">Alur pesanan</h2>
-        <ol class="steps">
-          <li><span>Pilih paket, tekan <b>Pesan via WhatsApp</b>.</span></li>
-          <li><span>Admin mengonfirmasi ketersediaan dan nominal akhir.</span></li>
-          <li><span>Bayar lewat QRIS, kirim bukti + kode pesanan.</span></li>
-          <li><span>Source code dan panduan deploy dikirim di chat yang sama.</span></li>
-        </ol>
-        <p class="note">Pengiriman berupa arsip source atau undangan repo privat, sesuai pilihan admin.</p>
+        <h2 style="font-size:var(--fs-lg);margin-bottom:10px">International · Binance</h2>
+        <ul class="features" style="margin-bottom:12px">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span>Bayar via <b>Binance Pay</b> atau <b>USDT</b>.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span>Nominal otomatis dalam <b>USD</b> (kurs terkunci saat order).</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12.5 5 5L20 6.5"/></svg><span>Admin: <b>Telegram @yt_lulu</b>.</span></li>
+        </ul>
+        <a class="btn wa" style="background:linear-gradient(135deg,#2aabee,#229ed9);color:#04121b" href="https://t.me/yt_lulu" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 19 20c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.6-.2L7.5 13.4l-4.4-1.4c-1-.3-1-1 .2-1.4l17.2-6.6c.8-.3 1.5.2 1.4 1.3Z"/></svg>
+          Chat @yt_lulu
+        </a>
+        <div class="copyline" style="margin-top:9px"><span>@yt_lulu</span><button id="copyTg" title="Salin username">Salin</button></div>
+        <p class="note">Detail Binance Pay ID / alamat USDT dikirim admin di chat. Sertakan kode pesanan + TXID.</p>
       </div>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:var(--fs-lg);margin-bottom:12px">Alur pesanan</h2>
+      <ol class="steps">
+        <li><span>Pilih wilayah + paket, tekan tombol kontak.</span></li>
+        <li><span>Admin konfirmasi nominal (QRIS atau USD) dan ketersediaan.</span></li>
+        <li><span>Bayar, kirim bukti + kode pesanan (sertakan TXID untuk Binance).</span></li>
+        <li><span>Source code dan panduan deploy dikirim di chat yang sama.</span></li>
+      </ol>
+      <p class="note">Pengiriman berupa arsip source atau undangan repo privat, sesuai pilihan admin.</p>
     </div>
   </section>
 
@@ -396,6 +416,8 @@ const SHOP = {
   product: "Source Code StarDev Licence V4 (KeySystemV4)",
   wa: "6285299526216",
   waDisplay: "0852-9952-6216",
+  telegram: "yt_lulu",
+  usdRate: 16200,
   merchant: "Service Lulu",
   nmid: "ID1026542074640",
   qrisImage: "qris.jpeg",
@@ -405,10 +427,12 @@ const SHOP = {
 };
 
 const $ = s => document.querySelector(s);
-const state = { dev: 1, plan: "Update 1 Bulan" };
+const state = { dev: 1, plan: "Update 1 Bulan", region: "id" };
 const code = "SDL-" + new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
 
 function rupiah(n){ return SHOP.currency + " " + n.toLocaleString("id-ID"); }
+function usd(n){ return Math.ceil((n / SHOP.usdRate) * 2) / 2; }
+function price(n){ return state.region === "id" ? rupiah(n) : "$ " + usd(n).toFixed(2); }
 
 function total(){
   const base = SHOP.plans[state.plan];
@@ -423,9 +447,13 @@ function render(){
   $("#sumPlan").textContent = state.plan;
   $("#sumCode").textContent = code;
   const t = total();
-  $("#sumPrice").textContent = t == null ? "Hubungi admin" : rupiah(t);
-  $("#waLabel").textContent = SHOP.waDisplay;
+  $("#sumPrice").textContent = t == null ? "Hubungi admin" : price(t);
+  $("#sumRegion").textContent = state.region === "id" ? "Indonesia · QRIS" : "International · Binance";
   $("#waNum").textContent = SHOP.wa;
+  const isID = state.region === "id";
+  $("#orderBtn").lastChild.textContent = isID ? "Pesan via WhatsApp" : "Chat via Telegram";
+  $("#orderBtn").classList.toggle("tg", !isID);
+  $("#contactNote").textContent = isID ? "Admin WhatsApp " + SHOP.waDisplay + "." : "Admin Telegram @yt_lulu.";
 }
 
 function selectGroup(id, key, attr){
@@ -439,9 +467,10 @@ function selectGroup(id, key, attr){
   });
 }
 
-function waLink(){
+function orderLink(){
   const t = total();
-  const lines = [
+  const id = state.region === "id";
+  const lines = id ? [
     "Halo admin StarDev, saya mau beli source code:",
     "Produk: " + SHOP.product,
     "Kode pesanan: " + code,
@@ -450,8 +479,19 @@ function waLink(){
     "Total: " + (t == null ? "menunggu konfirmasi admin" : rupiah(t)),
     "",
     "Mohon info QRIS dan cara pengiriman source."
+  ] : [
+    "Hi StarDev, I want to buy the source code:",
+    "Product: " + SHOP.product,
+    "Order code: " + code,
+    "Brands/stacks: " + state.dev,
+    "Plan: " + state.plan,
+    "Total: " + (t == null ? "to be confirmed" : "$" + usd(t).toFixed(2) + " USD"),
+    "",
+    "Please send Binance Pay details and delivery info."
   ];
-  return "https://wa.me/" + SHOP.wa + "?text=" + encodeURIComponent(lines.join("\n"));
+  return id
+    ? "https://wa.me/" + SHOP.wa + "?text=" + encodeURIComponent(lines.join("\n"))
+    : "https://t.me/" + SHOP.telegram + "?text=" + encodeURIComponent(lines.join("\n"));
 }
 
 function toast(msg){
@@ -487,9 +527,18 @@ function initQris(){
 
 selectGroup("devices","dev","dev");
 selectGroup("plans","plan","plan");
-$("#orderBtn").onclick = () => { window.open(waLink(), "_blank", "noopener"); };
+document.querySelectorAll("#regions .opt").forEach(el=>{
+  el.onclick = () => {
+    document.querySelectorAll("#regions .opt").forEach(o=>o.classList.remove("on"));
+    el.classList.add("on");
+    state.region = el.dataset.region;
+    render();
+  };
+});
+$("#orderBtn").onclick = () => { window.open(orderLink(), "_blank", "noopener"); };
 $("#copyOrder").onclick = () => copy(code, "Kode pesanan disalin");
 $("#copyWa").onclick = () => copy(SHOP.wa, "Nomor WhatsApp disalin");
+$("#copyTg").onclick = () => copy("@" + SHOP.telegram, "Username Telegram disalin");
 $("#year").textContent = new Date().getFullYear();
 render();
 initQris();

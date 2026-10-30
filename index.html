@@ -366,7 +366,8 @@ const DATA = [
  desc:"Monorepo lisensi v2.0.0: backend Vercel + Upstash Redis, bot Telegram pembeli, bot Discord admin, dan AdminApp. Template “1 buyer = 1 stack” dengan scripts/new-buyer.sh.",
  path:"/sdcard/Download/(tesweb)/extracted/g3xstardev-licence-monorepo/output"},
 {name:"StarDev Licence — KeySystemV4", cat:"stardev", sub:"Licence", type:"Node · Monorepo", status:"aktif", date:"2026-09-24", mb:77, files:188,
- desc:"Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel.",
+ desc:"Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel. Dijual sebagai source code.",
+ shop:"./shop/",
  path:"/sdcard/Download/my-stardev-all-licence"},
 {name:"MyStarDev Licence All", cat:"stardev", sub:"Licence", type:"Node · Monorepo", status:"aktif", date:"2026-09-23", mb:6, files:74,
  desc:"Ekstrak MyStarDev-licence-all — basis paket lisensi dengan client-templates untuk pembeli.",
@@ -604,6 +605,8 @@ function card(d, i){
       ${d.sub?`<span>${esc(d.sub)}</span><span class="dot"></span>`:""}
       <span>${fmtMB(d.mb||0)}</span><span class="dot"></span><span>${d.files||0} file</span>
       ${d.date?`<span class="dot"></span><span>${esc(d.date)}</span>`:""}
+      ${d.shop?`<span class="dot"></span><a class="repo-link" href="${esc(d.shop)}" style="color:#f5b73d">beli source
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>`:""}
       ${d.repo?`<span class="dot"></span><a class="repo-link" href="${esc(d.repo)}" target="_blank" rel="noopener">repo
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>`:""}
     </div>

@@ -2,7 +2,7 @@
 
 > Node · Monorepo · StarDev Community · Licence · aktif
 
-Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel.
+Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel. Dijual sebagai source code.
 
 ## Detail
 

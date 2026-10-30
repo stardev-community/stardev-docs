@@ -120,7 +120,8 @@
     "date": "2026-09-24",
     "mb": 77,
     "files": 188,
-    "desc": "Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel.",
+    "desc": "Monorepo lisensi KeySystemV4 (folder lengkap 77 MB): API, apps/AdminApp, client-templates, scripts, konfigurasi Vercel. Dijual sebagai source code.",
+    "shop": "./shop/",
     "path": "/sdcard/Download/my-stardev-all-licence"
   },
   {

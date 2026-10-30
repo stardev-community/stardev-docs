@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Hosted License Key System — Source Code for Roblox, APKs &amp; Apps</title>
+<meta name="description" content="Compare hosted key systems with a self-hosted licensing backend you own. Vercel + Upstash Redis source code with admin panel, HWID limits, Telegram and Discord bots. Works for Roblox scripts, mod APKs, APKs, web apps.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/self-hosted-license-system/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Self-Hosted License Key System — own your licensing backend">
+<meta property="og:description" content="Hosted key services bill monthly and cap you. A self-hosted licensing stack gives you the source, the data, and the limits you set.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:820px;margin:0 auto;padding:56px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(52,211,153,.4);background:rgba(52,211,153,.1);color:#34d399;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:24px;margin:38px 0 10px;letter-spacing:-.02em}
+h3{font-size:17px;margin:22px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:10px;text-align:left;vertical-align:top;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+footer{margin-top:50px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">LICENSING · SELF-HOSTED</span>
+  <h1>Self-hosted license key system you actually own</h1>
+  <p class="lead">Hosted key services are convenient until the bill, the rate limit, or the shutdown notice arrives. A self-hosted licensing backend keeps the source, the database, and the pricing under your control.</p>
+
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See the source (from $6.50)</a>
+    <a class="btn s" href="https://t.me/yt_lulu">Ask on Telegram</a>
+  </div>
+
+  <h2>Hosted vs self-hosted</h2>
+  <table>
+    <tr><th>Aspect</th><th>Hosted key service</th><th>Self-hosted (this source)</th></tr>
+    <tr><td>Cost</td><td>Subscription, tiers, add-ons</td><td>One purchase; free tiers of Vercel/Upstash can cover small products</td></tr>
+    <tr><td>Data</td><td>Lives on the vendor's servers</td><td>Your Redis, your keys, your logs</td></tr>
+    <tr><td>Limits</td><td>Set by plan</td><td>Set by your own infrastructure</td></tr>
+    <tr><td>Custom logic</td><td>Whatever the dashboard exposes</td><td>Edit the source</td></tr>
+    <tr><td>Vendor risk</td><td>Price change, shutdown, ban</td><td>None — you deploy it</td></tr>
+    <tr><td>Maintenance</td><td>Vendor handles it</td><td>You handle it (updates, backups)</td></tr>
+  </table>
+  <p class="note">Check current pricing and terms of any hosted provider yourself; the table describes the model, not a specific vendor.</p>
+
+  <h2>What the stack includes</h2>
+  <ul>
+    <li><code>/api/verify</code> — key + HWID check with expiry and device limits</li>
+    <li><code>/api/admin</code>, <code>/api/hwid</code>, <code>/api/security</code></li>
+    <li>Web admin panel: keys, HWID blocks, security events</li>
+    <li>Android admin app</li>
+    <li>Telegram buyer bot, Discord admin bot</li>
+    <li>Storefront driven by a single <code>data.js</code></li>
+    <li>Roblox Luau client with AES-256, HMAC, Ed25519 modes</li>
+  </ul>
+
+  <h2>Works where your product lives</h2>
+  <h3>Roblox scripts</h3>
+  <p>Two ModuleScripts, one <code>verify()</code> call on connect, configurable protocol mode. Self-test included to validate the Lua crypto port against the server.</p>
+  <h3>Mod APKs and standalone APKs</h3>
+  <p>Call <code>/api/verify</code> on launch with a HWID built from <code>ANDROID_ID</code> plus device model. Cache the result briefly; fail closed or open per your policy.</p>
+  <h3>Web apps, bots, desktop tools</h3>
+  <p>Any HTTP client works. Plain JSON in <code>raw</code> mode, or AES/HMAC if you want application-layer protection.</p>
+
+  <h2>Operational details people ask about</h2>
+  <h3>What happens if a key leaks?</h3>
+  <p>HWID limits per key, temporary auto-blocks after repeated failures, permanent manual blocks, and a rate limit of 5 checks per hour per HWID.</p>
+  <h3>Can I rebrand it?</h3>
+  <p>Yes. One brand per purchase; storefront text, colors, and bot names are yours to change. The source is not for resale.</p>
+  <h3>What do I need to run it?</h3>
+  <p>A Vercel project, an Upstash Redis database, and an Ed25519 key pair. Telegram and Discord are optional.</p>
+
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">Get the source — $6.50</a>
+    <a class="btn s" href="../shop/">Harga Indonesia — QRIS</a>
+  </div>
+
+  <footer>
+    StarDev · <a href="../shop/en/">store</a> · <a href="https://t.me/yt_lulu">@yt_lulu</a>
+  </footer>
+</main>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"What is a self-hosted license key system?","acceptedAnswer":{"@type":"Answer","text":"A licensing backend you deploy on your own infrastructure, so keys, HWID data, and limits stay under your control instead of a vendor's plan."}},
+ {"@type":"Question","name":"Does it work for Roblox scripts and APKs?","acceptedAnswer":{"@type":"Answer","text":"Yes. It ships a Roblox Luau client and a plain HTTP endpoint used by Android apps, mod APKs, web apps, and bots."}},
+ {"@type":"Question","name":"What infrastructure is required?","acceptedAnswer":{"@type":"Answer","text":"A Vercel project, an Upstash Redis database, and an Ed25519 key pair. Telegram and Discord bots are optional."}}
+]}
+</script>
+</body>
+</html>

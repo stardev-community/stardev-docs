@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>License Key API: A Minimal Contract That Scales</title>
+<meta name="description" content="Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/license-key-api/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="License Key API: A Minimal Contract That Scales">
+<meta property="og:description" content="Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">REFERENCE</span>
+  <h1>Designing a license key API that does not need rewrites</h1>
+  <p class="lead">Most licensing rewrites happen because the API leaked implementation details too early. Four endpoints and three rules avoid that.</p>
+  <h2>The four endpoints</h2>
+<table>
+<tr><th>Endpoint</th><th>Purpose</th><th>Auth</th></tr>
+<tr><td><code>POST /api/verify</code></td><td>Validate key + HWID, return expiry</td><td>App secret</td></tr>
+<tr><td><code>/api/admin</code></td><td>Create, edit, delete keys</td><td>Admin secret</td></tr>
+<tr><td><code>/api/hwid</code></td><td>Block or unblock device ids</td><td>Admin secret</td></tr>
+<tr><td><code>/api/security</code></td><td>Read failure events</td><td>Admin secret</td></tr>
+</table>
+
+<h2>Three rules</h2>
+<ol>
+<li><strong>Verify is read-mostly.</strong> It may register a HWID slot, but it must not silently extend expiry.</li>
+<li><strong>Errors are data, not HTTP codes.</strong> Return <code>200</code> with <code>valid:false</code> and a machine-readable <code>code</code>; reserve 4xx/5xx for transport and auth.</li>
+<li><strong>Creation is idempotent.</strong> Accept a client-generated request id so a retried POST does not mint duplicate keys.</li>
+</ol>
+
+<h2>Idempotent creation</h2>
+<pre>POST /api/admin
+{"op":"create","count":10,"days":30,"requestId":"7f3c..."}
+→ {"created":["K1","K2"],"requestId":"7f3c..."}
+→ retry with same requestId returns the same list</pre>
+
+<h2>Rate limits that do not punish buyers</h2>
+<p>Limit per HWID and per key, not per IP: mobile carriers share IPs, and shared NAT would lock out legitimate users. Five attempts per hour is generous for a real client.</p>
+
+<h2>Implementation</h2>
+<p>StarDev Licence V4 implements exactly this contract on Vercel + Upstash Redis, with AES/HMAC transport options and an Ed25519 key pair for envelope signing.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Designing a license key API that does not need rewrites","description":"Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/license-key-api/"}</script>
+</body>
+</html>

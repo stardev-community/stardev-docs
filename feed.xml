@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>StarDev — licensing guides</title>
+  <link>https://stardev-community.github.io/stardev-docs/panduan/</link>
+  <description>Practical guides on license key systems, HWID, and self-hosted licensing.</description>
+  <item>
+    <title>Sistem lisensi untuk APK dan mod APK</title>
+    <link>https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/</guid>
+    <description>Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>Jasa pembuatan key system — apa yang dikerjakan</title>
+    <link>https://stardev-community.github.io/stardev-docs/jasa-key-system/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/jasa-key-system/</guid>
+    <description>Jasa pasang sistem lisensi: deploy backend, integrasi ke script/APK/bot, uji verifikasi, dan serah terima. Ruang lingkup, estimasi waktu, dan hal yang tidak dikerjakan.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>Alternatif KeyAuth: kapan pindah, kapan tetap</title>
+    <link>https://stardev-community.github.io/stardev-docs/alternatif-keyauth/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/alternatif-keyauth/</guid>
+    <description>Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>License system for Roblox scripts</title>
+    <link>https://stardev-community.github.io/stardev-docs/license-system-for-roblox/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/license-system-for-roblox/</guid>
+    <description>How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>APK license system that survives real users</title>
+    <link>https://stardev-community.github.io/stardev-docs/apk-license-system/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/apk-license-system/</guid>
+    <description>How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>Designing a license key API that does not need rewrites</title>
+    <link>https://stardev-community.github.io/stardev-docs/license-key-api/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/license-key-api/</guid>
+    <description>Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+  <item>
+    <title>HWID licensing, without the fantasy</title>
+    <link>https://stardev-community.github.io/stardev-docs/hwid-licensing/</link>
+    <guid>https://stardev-community.github.io/stardev-docs/hwid-licensing/</guid>
+    <description>What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.</description>
+    <pubDate>2026-10-30T07:52:15.589Z</pubDate>
+  </item>
+</channel></rss>

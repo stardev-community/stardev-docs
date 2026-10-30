@@ -1,0 +1,33 @@
+# StarDev Licence V4 (KeySystemV4)
+
+> Self-hosted licensing system source code for Roblox scripts, mod APKs, APKs, web apps and bots. Vercel + Upstash Redis API, web admin panel, Android admin app, Telegram buyer bot, Discord admin bot, rebrandable storefront, Roblox Luau client (raw / aes / aes_sign). Source code, one brand per purchase. Not a hosted service.
+
+## Product
+- Price (ID/QRIS): Rp 100.000 (1 month updates), Rp 200.000 (lifetime)
+- Price (international/Binance): $6.50 (1 month updates), $12.50 (lifetime)
+- Currency note: USD amounts derived from Rp 16.200/USD, rounded up to $0.50
+- Store (ID): https://stardev-community.github.io/stardev-docs/shop/
+- Store (EN): https://stardev-community.github.io/stardev-docs/shop/en/
+- Interactive demo (sample data, no server): https://stardev-community.github.io/stardev-docs/shop/demo/
+- Contact ID (WhatsApp): https://wa.me/6285299526216
+- Contact intl (Telegram): https://t.me/yt_lulu
+
+## Guides
+- [Sistem lisensi untuk APK dan mod APK](https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/): Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.
+- [Jasa pembuatan key system — apa yang dikerjakan](https://stardev-community.github.io/stardev-docs/jasa-key-system/): Jasa pasang sistem lisensi: deploy backend, integrasi ke script/APK/bot, uji verifikasi, dan serah terima. Ruang lingkup, estimasi waktu, dan hal yang tidak dikerjakan.
+- [Alternatif KeyAuth: kapan pindah, kapan tetap](https://stardev-community.github.io/stardev-docs/alternatif-keyauth/): Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.
+- [License system for Roblox scripts](https://stardev-community.github.io/stardev-docs/license-system-for-roblox/): How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.
+- [APK license system that survives real users](https://stardev-community.github.io/stardev-docs/apk-license-system/): How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.
+- [Designing a license key API that does not need rewrites](https://stardev-community.github.io/stardev-docs/license-key-api/): Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.
+- [HWID licensing, without the fantasy](https://stardev-community.github.io/stardev-docs/hwid-licensing/): What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.
+- [Key system Roblox (ID)](https://stardev-community.github.io/stardev-docs/key-system-roblox/)
+- [Jual source sistem lisensi (ID)](https://stardev-community.github.io/stardev-docs/jual-sistem-lisensi/)
+- [Self-hosted license system (EN)](https://stardev-community.github.io/stardev-docs/self-hosted-license-system/)
+- [KeyAuth alternative (EN)](https://stardev-community.github.io/stardev-docs/keyauth-alternative/)
+- [All guides](https://stardev-community.github.io/stardev-docs/panduan/)
+
+## Facts
+- Deliverable is source code; buyer deploys on their own Vercel + Upstash account.
+- Includes Ed25519 key pair, AES-256 and HMAC transport modes, HWID device limits, rate limiting, security event log.
+- Excludes hosting, bot tokens, domains, custom development.
+- No claim of bypassing anti-cheat or platform protections, and no guarantee of sales.

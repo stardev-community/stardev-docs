@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistem Lisensi APK: Verifikasi Key + HWID Tanpa Server Sendiri</title>
+<meta name="description" content="Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sistem Lisensi APK: Verifikasi Key + HWID Tanpa Server Sendiri">
+<meta property="og:description" content="Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">PANDUAN · APK</span>
+  <h1>Sistem lisensi untuk APK dan mod APK</h1>
+  <p class="lead">APK tidak punya server sendiri, jadi verifikasi harus keluar ke satu endpoint HTTPS. Yang menentukan kualitas sistemnya bukan API-nya, tapi bagaimana aplikasi bersikap saat jaringan mati atau HWID berubah.</p>
+  <h2>HWID yang stabil di Android</h2>
+<p>Kombinasi paling aman: <code>Settings.Secure.ANDROID_ID</code> + nama model + paket aplikasi, lalu di-hash. Jangan pakai IMEI (butuh izin dan diblokir di Android 10+), dan jangan pakai nilai yang berubah setiap instal ulang.</p>
+<pre>val raw = Secure.getString(contentResolver, Secure.ANDROID_ID) +
+          Build.MANUFACTURER + Build.MODEL + packageName
+val hwid = MessageDigest.getInstance("SHA-256")
+    .digest(raw.toByteArray()).joinToString("") { "%02x".format(it) }</pre>
+
+<h2>Kontrak endpoint</h2>
+<p>Satu request, satu jawaban JSON. Simpan hanya field yang benar-benar dipakai aplikasi: <code>valid</code>, <code>expiresAt</code>, dan pesan error.</p>
+<pre>POST /api/verify
+{"key":"XXXX-XXXX","hwid":"a1b2...","app":"my-mod"}
+
+200 {"valid":true,"expiresAt":1767225600,"plan":"user"}
+200 {"valid":false,"message":"HWID limit reached (1/1)"}</pre>
+
+<h2>Tiga keputusan yang sering salah</h2>
+<table>
+<tr><th>Keputusan</th><th>Salah</th><th>Benar</th></tr>
+<tr><td>Saat offline</td><td>Langsung buka akses</td><td>Beri grace period singkat dari cache, lalu tutup</td></tr>
+<tr><td>Menyimpan key</td><td>Plaintext di SharedPreferences</td><td>Simpan token sesi, bukan key mentah</td></tr>
+<tr><td>HWID berubah</td><td>Otomatis reset</td><td>Batas 1–2 reset, sisanya manual oleh admin</td></tr>
+</table>
+
+<h2>Kapan butuh sistem sendiri</h2>
+<p>Kalau kamu menjual banyak key dan sering menangani permintaan reset perangkat, panel admin sendiri menghemat waktu. Kalau hanya beberapa pembeli, layanan hosted sudah cukup.</p>
+<p>StarDev Licence V4 menyertakan endpoint verifikasi, panel admin web, app admin Android, bot Telegram pembeli, dan bot Discord admin — sebagai source code yang kamu deploy di Vercel + Upstash.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/">Lihat source &amp; harga (Rp 100.000)</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Coba demo panel admin</a>
+  </div>
+  <p class="note">Demo memakai data contoh dan tidak terhubung ke server. Source code, bukan sewa lisensi.</p>
+  <footer>StarDev · <a href="../panduan/">semua panduan</a> · <a href="../shop/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sistem lisensi untuk APK dan mod APK","description":"Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.","inLanguage":"id","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/"}</script>
+</body>
+</html>

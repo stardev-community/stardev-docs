@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APK License System: Key + HWID Checks That Survive Offline Use</title>
+<meta name="description" content="How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/apk-license-system/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APK License System: Key + HWID Checks That Survive Offline Use">
+<meta property="og:description" content="How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">GUIDE · ANDROID</span>
+  <h1>APK license system that survives real users</h1>
+  <p class="lead">Mobile licensing fails in the boring cases: no signal on a train, a reinstall, a cheap device with a reset ID. Design for those three and the rest is bookkeeping.</p>
+  <h2>A HWID that does not change weekly</h2>
+<p>Hash a combination of <code>ANDROID_ID</code>, manufacturer, model, and package name. Avoid IMEI — restricted since Android 10 — and avoid values regenerated per install.</p>
+<pre>String raw = Settings.Secure.getString(cr, Settings.Secure.ANDROID_ID)
+           + Build.MANUFACTURER + Build.MODEL + getPackageName();
+String hwid = sha256(raw);</pre>
+
+<h2>Offline behaviour</h2>
+<p>Never let "no network" mean "full access forever". Cache the last successful response with its expiry, allow a bounded grace window (hours, not weeks), then close.</p>
+
+<h2>Endpoint contract</h2>
+<pre>POST /api/verify
+{"key":"XXXX-XXXX","hwid":"a1b2...","app":"my-app"}
+
+200 {"valid":true,"expiresAt":1767225600,"plan":"user"}
+200 {"valid":false,"message":"Key expired"}</pre>
+<p>Two fields are enough for the client. Everything else — plans, notes, device history — stays server-side.</p>
+
+<h2>Reset policy</h2>
+<p>Give each key one or two self-service resets, then require admin approval. Unlimited resets turn a device limit into decoration.</p>
+
+<h2>Build vs buy</h2>
+<p>If you already have Vercel and Redis, a self-hosted source is a weekend. If not, a hosted service will be cheaper than your time. StarDev Licence V4 is the source-code option: verify API, admin panel, Android admin app, Telegram and Discord bots.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"APK license system that survives real users","description":"How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/apk-license-system/"}</script>
+</body>
+</html>

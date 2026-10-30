@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>License System for Roblox Scripts Without a Monthly Vendor</title>
+<meta name="description" content="How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/license-system-for-roblox/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="License System for Roblox Scripts Without a Monthly Vendor">
+<meta property="og:description" content="How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">GUIDE · ROBLOX</span>
+  <h1>License system for Roblox scripts</h1>
+  <p class="lead">A Roblox script cannot keep a secret. So the check cannot live in the script — it has to live on a server you control, and the script only gets a yes or no.</p>
+  <h2>Where the check belongs</h2>
+<p>Roblox allows <code>HttpService</code> requests from server scripts only, to hosts you permit. That is the right place for verification: a server script asks your API, then hands the result to the rest of the system. A LocalScript cannot be trusted with a key or a secret.</p>
+<pre>local res = HttpService:RequestAsync({
+    Url = "https://your-app.vercel.app/api/verify",
+    Method = "POST",
+    Headers = { ["Content-Type"] = "application/json" },
+    Body = HttpService:JSONEncode({ key = key, hwid = hwid, app = "my-script" })
+})
+local ok = res.Success and HttpService:JSONDecode(res.Body).valid</pre>
+
+<h2>What "HWID" means in Roblox</h2>
+<p>There is no hardware id. Use a stable per-player value tied to the place and a server-side record — for example the player's <code>UserId</code> plus a value stored in your own database. Treat it as a slot counter, not a fingerprint: the goal is limiting sharing, not identifying a device.</p>
+
+<h2>Failure modes worth designing for</h2>
+<table>
+<tr><th>Situation</th><th>Bad behaviour</th><th>Better</th></tr>
+<tr><td>API unreachable</td><td>Script runs anyway</td><td>Fail closed, with a short cached grace window</td></tr>
+<tr><td>Key shared</td><td>Unlimited players</td><td>Slot limit + rate limit per key</td></tr>
+<tr><td>Key leaked publicly</td><td>Nothing you can do</td><td>Revoke, block slots, log the attempt</td></tr>
+</table>
+
+<h2>Running it yourself</h2>
+<p>StarDev Licence V4 ships the verify endpoint, admin panel, Android admin app, Telegram buyer bot, Discord admin bot, and a Luau client in raw, AES, or AES+HMAC mode, with a self-test that checks the Lua crypto against the server.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"License system for Roblox scripts","description":"How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/license-system-for-roblox/"}</script>
+</body>
+</html>

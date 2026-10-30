@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HWID Licensing: Limits, Resets, and the Privacy Trade</title>
+<meta name="description" content="What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/hwid-licensing/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HWID Licensing: Limits, Resets, and the Privacy Trade">
+<meta property="og:description" content="What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">EXPLAINER</span>
+  <h1>HWID licensing, without the fantasy</h1>
+  <p class="lead">A HWID check stops casual sharing. It does not stop a determined attacker, and it should never be treated as proof of identity.</p>
+  <h2>What it actually buys you</h2>
+<ul>
+<li>One key, N devices — the most common commercial rule.</li>
+<li>Visible history: which devices used a key and when.</li>
+<li>A reason to revoke a key that is being passed around.</li>
+</ul>
+<p>What it does not buy: protection against someone patching your client, or against a leaked key used on one device at a time.</p>
+
+<h2>How many devices</h2>
+<table>
+<tr><th>Product</th><th>Reasonable default</th></tr>
+<tr><td>Roblox script</td><td>1–2 slots</td></tr>
+<tr><td>Mobile app</td><td>2 slots (phone + tablet)</td></tr>
+<tr><td>Desktop tool</td><td>1–2 slots</td></tr>
+<tr><td>Reseller stock</td><td>1 slot until first activation</td></tr>
+</table>
+
+<h2>Reset policy</h2>
+<p>Self-service reset once per 30 days, second reset on request, third and beyond manual. Log every reset with the old and new identifier — that log is what lets you spot a key being resold.</p>
+
+<h2>Privacy</h2>
+<p>Store a salted hash, not the raw identifier, and delete device history when a key is deleted. You need to recognise a returning device, not to know who owns it.</p>
+
+<h2>Where this is implemented</h2>
+<p>StarDev Licence V4 keeps HWID slots, blocks, and security events in one Redis store, with admin actions from the web panel or the Android app. Source code, one brand per purchase.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"HWID licensing, without the fantasy","description":"What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/hwid-licensing/"}</script>
+</body>
+</html>

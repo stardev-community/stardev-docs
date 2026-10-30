@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alternatif KeyAuth untuk Produk Kecil dan Menengah</title>
+<meta name="description" content="Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/alternatif-keyauth/">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alternatif KeyAuth untuk Produk Kecil dan Menengah">
+<meta property="og:description" content="Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">PERBANDINGAN</span>
+  <h1>Alternatif KeyAuth: kapan pindah, kapan tetap</h1>
+  <p class="lead">KeyAuth bukan pilihan buruk. Masalahnya baru muncul ketika kuota, harga, atau kebutuhan kustom mulai bertabrakan dengan paket yang kamu bayar.</p>
+  <h2>Tetap hosted kalau…</h2>
+<ul>
+<li>Produkmu satu dan kecil, dan kamu tidak ingin mengurus infrastruktur.</li>
+<li>Kebutuhanmu sudah tercakup dashboard.</li>
+<li>Kamu lebih suka biaya bulanan yang kecil daripada pekerjaan deploy.</li>
+</ul>
+
+<h2>Pindah kalau…</h2>
+<ul>
+<li>Reset HWID pelanggan menumpuk dan harus antre ke vendor.</li>
+<li>Butuh aturan kedaluwarsa atau metadata yang tidak tersedia di dashboard.</li>
+<li>Total biaya setahun lebih besar daripada sekali beli source.</li>
+<li>Pembeli bertanya di mana data key mereka disimpan.</li>
+</ul>
+
+<h2>Yang membuat migrasi murah</h2>
+<p>Jaga bentuk respons API tetap sama. Kalau klien hanya membaca <code>valid</code> dan <code>expiresAt</code>, pindah backend tidak menyentuh kode produk.</p>
+<pre>POST /api/verify
+{"key":"XXXX","hwid":"ab12...","app":"my-app"}
+
+200 {"valid":true,"expiresAt":1767225600}</pre>
+<p>Sebaliknya, kalau logika verifikasi tersebar di banyak tempat, migrasi jadi proyek besar. Itu alasan teknis, bukan alasan pemasaran.</p>
+
+<h2>Yang perlu disiapkan</h2>
+<ul>
+<li>Ekspor key dan riwayat HWID dari sistem lama.</li>
+<li>Akun Vercel + database Redis.</li>
+<li>Rencana rollback: dua endpoint aktif berdampingan selama sepekan.</li>
+</ul>
+  <div class="cta">
+    <a class="btn p" href="../shop/">Lihat source &amp; harga (Rp 100.000)</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Coba demo panel admin</a>
+  </div>
+  <p class="note">Demo memakai data contoh dan tidak terhubung ke server. Source code, bukan sewa lisensi.</p>
+  <footer>StarDev · <a href="../panduan/">semua panduan</a> · <a href="../shop/">store</a></footer>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Alternatif KeyAuth: kapan pindah, kapan tetap","description":"Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.","inLanguage":"id","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/alternatif-keyauth/"}</script>
+</body>
+</html>

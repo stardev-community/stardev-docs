@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Hosting a KeyAuth-Style License Server: What It Takes</title>
+<meta name="description" content="A practical look at running your own key server: endpoints, Redis schema, key rotation, backups, and the failure cases that bite in production.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/keyauth-self-hosted/">
+<link rel="icon" href="https://stardev-community.github.io/stardev-docs/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Self-Hosting a KeyAuth-Style License Server: What It Takes">
+<meta property="og:description" content="A practical look at running your own key server: endpoints, Redis schema, key rotation, backups, and the failure cases that bite in production.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">SETUP</span>
+  <h1>Running your own key server</h1>
+  <p class="lead">Self-hosting removes the vendor from the path between your product and its keys. It also removes the person who used to handle backups at 2am.</p>
+  <h2>The minimum shape</h2>
+<table>
+<tr><th>Piece</th><th>Job</th></tr>
+<tr><td>Verify endpoint</td><td>Key + HWID check, expiry, slot registration</td></tr>
+<tr><td>Key store</td><td>Key, owner label, expiry, plan, slot list</td></tr>
+<tr><td>Admin surface</td><td>Create, revoke, block, inspect</td></tr>
+<tr><td>Event log</td><td>Failed attempts with reason codes</td></tr>
+</table>
+
+<h2>Redis layout that stays readable</h2>
+<pre>key:&lt;KEY&gt;        hash  {status, expireAt, maxHwid, plan}
+key:&lt;KEY&gt;:hwids set   [hwid, ...]
+hwid:blocked     set   [hwid, ...]
+events           list  (capped, newest first)</pre>
+<p>Keep one hash per key and one set per key's devices. Avoid a single JSON blob for everything — you will rewrite it the first time two requests race.</p>
+
+<h2>Race conditions</h2>
+<p>Two devices activating at the same moment can both see "1 of 2 slots free". Use an atomic check-and-add (Lua script or WATCH/MULTI) so the slot count cannot exceed the limit.</p>
+
+<h2>Backups and rotation</h2>
+<p>Export keys and device lists daily. Rotate the admin secret and the signing key pair on a schedule, and keep the old public key available until shipped clients have updated.</p>
+
+<h2>What you get for the effort</h2>
+<p>No plan ceiling, no queue for resets, and key data you can audit. The cost is operational: uptime, backups, and the occasional race condition.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+    <a class="btn s" href="https://t.me/yt_lulu">Ask on Telegram</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(8,12,20,.94);border-top:1px solid #1e293b;padding:9px 14px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;backdrop-filter:blur(8px)">
+    <span style="color:#8fa1b8">Source code · $6.50</span>
+    <a href="../shop/en/" style="color:#1a1205;background:linear-gradient(135deg,#ffe0a3,#f5b73d);padding:7px 13px;border-radius:9px;font-weight:700;text-decoration:none">Buy</a>
+    <a href="../shop/demo/?demo=1" style="color:#dbe6f5;border:1px solid #26344a;padding:7px 13px;border-radius:9px;font-weight:600;text-decoration:none">Demo</a>
+  </div>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Running your own key server","description":"A practical look at running your own key server: endpoints, Redis schema, key rotation, backups, and the failure cases that bite in production.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/keyauth-self-hosted/"}</script>
+</body>
+</html>

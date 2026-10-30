@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roblox Script Key System: Slots, Sessions, and Revocation</title>
+<meta name="description" content="Design a Roblox key system that handles shared keys, session expiry, and revocation without breaking legitimate players.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/roblox-script-key-system/">
+<link rel="icon" href="https://stardev-community.github.io/stardev-docs/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Roblox Script Key System: Slots, Sessions, and Revocation">
+<meta property="og:description" content="Design a Roblox key system that handles shared keys, session expiry, and revocation without breaking legitimate players.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">GUIDE · ROBLOX</span>
+  <h1>Roblox script key system, end to end</h1>
+  <p class="lead">Roblox gives you no hardware id and no persistent client storage. That changes the design: slots are per player, sessions are short, and revocation must be instant.</p>
+  <h2>Slots, not fingerprints</h2>
+<p>Use the player's <code>UserId</code> as the slot identity. It is stable, verifiable server-side, and needs no client cooperation. Enforce the slot limit in the same atomic operation as verification.</p>
+
+<h2>Session length</h2>
+<p>Issue a short-lived token (hours) rather than trusting a single check at join. On expiry, re-verify. If the key was revoked, the session dies at the next check instead of lasting until the server closes.</p>
+
+<h2>Revocation</h2>
+<table>
+<tr><th>Event</th><th>Effect</th></tr>
+<tr><td>Key revoked</td><td>Next verify fails; active sessions end at token expiry</td></tr>
+<tr><td>Slot removed</td><td>That player fails on next check</td></tr>
+<tr><td>Key expired</td><td>All slots fail immediately</td></tr>
+</table>
+
+<h2>Don't punish honest players</h2>
+<p>Roblox servers restart, players rejoin, and networks drop. Log a failed attempt but only block after a threshold — otherwise a bad minute looks like abuse.</p>
+
+<h2>Implementation</h2>
+<p>StarDev Licence V4 includes this flow: atomic slot registration, short sessions, revocation from the web panel or Android app, and a Luau client with a self-test against the server's crypto.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
+    <a class="btn s" href="https://t.me/yt_lulu">Ask on Telegram</a>
+  </div>
+  <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>
+  <footer>StarDev · <a href="../panduan/">all guides</a> · <a href="../shop/en/">store</a></footer>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(8,12,20,.94);border-top:1px solid #1e293b;padding:9px 14px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;backdrop-filter:blur(8px)">
+    <span style="color:#8fa1b8">Source code · $6.50</span>
+    <a href="../shop/en/" style="color:#1a1205;background:linear-gradient(135deg,#ffe0a3,#f5b73d);padding:7px 13px;border-radius:9px;font-weight:700;text-decoration:none">Buy</a>
+    <a href="../shop/demo/?demo=1" style="color:#dbe6f5;border:1px solid #26344a;padding:7px 13px;border-radius:9px;font-weight:600;text-decoration:none">Demo</a>
+  </div>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Roblox script key system, end to end","description":"Design a Roblox key system that handles shared keys, session expiry, and revocation without breaking legitimate players.","inLanguage":"en","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/roblox-script-key-system/"}</script>
+</body>
+</html>

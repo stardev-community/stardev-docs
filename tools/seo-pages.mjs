@@ -415,4 +415,166 @@ String hwid = sha256(raw);</pre>
 <h2>If you go self-hosted</h2>
 <p>Keep the client contract to two fields — valid and expiry — and everything else on the server. That single decision is what makes migration or a rewrite cheap later.</p>`
   }
+
+  ,
+  {
+    slug: "jual-key-system",
+    lang: "id",
+    badge: "JUALAN",
+    title: "Jual Key System: Stok, Harga, dan Cara Kirim ke Pembeli",
+    desc: "Cara mengelola penjualan key: membuat stok, menentukan masa aktif, mengirim setelah pembayaran, menangani reset perangkat, dan mencatat pembeli.",
+    h1: "Menjual key system tanpa kacau",
+    lead: "Kalau kamu menjual akses, pekerjaanmu bukan lagi menulis kode — tapi stok, pengiriman, dan sengketa. Tiga hal itu yang menentukan reputasi.",
+    body: `
+<h2>Struktur stok yang rapi</h2>
+<table>
+<tr><th>Jenis</th><th>Masa aktif</th><th>Dipakai untuk</th></tr>
+<tr><td>Trial</td><td>1–3 hari</td><td>Uji coba, jangan diberi slot banyak</td></tr>
+<tr><td>Bulanan</td><td>30 hari</td><td>Mayoritas penjualan</td></tr>
+<tr><td>Lifetime</td><td>Tidak kedaluwarsa</td><td>Harga lebih tinggi, hati-hati jumlah slot</td></tr>
+<tr><td>Reseller</td><td>30 hari aktif</td><td>Belum terikat perangkat sampai aktivasi pertama</td></tr>
+</table>
+
+<h2>Alur kirim yang tidak menimbulkan sengketa</h2>
+<ol>
+<li>Pembayaran masuk, cek mutasi — jangan hanya percaya tangkapan layar.</li>
+<li>Buat key dengan masa aktif sesuai paket, catat nama pembeli.</li>
+<li>Kirim key + instruksi singkat pemakaian.</li>
+<li>Simpan bukti kirim sampai masa aktif habis.</li>
+</ol>
+
+<h2>Reset perangkat</h2>
+<p>Beri satu reset gratis per pembeli per 30 hari, sisanya manual. Tanpa batas, satu key bisa dipakai berpulang-pindah dan penjualan bulananmu ikut hilang.</p>
+
+<h2>Yang perlu dicatat</h2>
+<p>Minimal: tanggal, nama, paket, key, dan perangkat pertama. Saat ada permintaan refund, catatan ini yang menentukan siapa yang benar.</p>`
+  },
+  {
+    slug: "source-code-key-system",
+    lang: "id",
+    badge: "PRODUK",
+    title: "Source Code Key System: Isi Paket, Syarat Server, dan Batasannya",
+    desc: "Rincian isi source code key system: endpoint verifikasi, panel admin, app admin, bot Telegram/Discord, client Luau. Plus kebutuhan Vercel/Upstash dan batasan lisensi.",
+    h1: "Apa isi source code key system",
+    lead: "Membeli source code berarti kamu mendapat proyek yang harus kamu deploy sendiri. Karena itu isi paket harus jelas sebelum bayar, bukan setelah.",
+    body: `
+<h2>Isi paket</h2>
+<ul>
+<li><code>/api/verify</code> — validasi key + HWID, masa aktif, batas perangkat, rate limit.</li>
+<li><code>/api/admin</code>, <code>/api/hwid</code>, <code>/api/security</code> — kelola key, blokir perangkat, baca log.</li>
+<li>Panel admin web + app admin Android.</li>
+<li>Bot Telegram pembeli dan bot Discord admin.</li>
+<li>Storefront yang bisa diganti nama dan warna.</li>
+<li>Client Luau: mode raw, AES, atau AES + HMAC, dengan self-test.</li>
+</ul>
+
+<h2>Yang harus kamu siapkan</h2>
+<table>
+<tr><th>Kebutuhan</th><th>Biaya</th></tr>
+<tr><td>Akun Vercel</td><td>Gratis untuk skala kecil</td></tr>
+<tr><td>Database Upstash Redis</td><td>Ada kuota gratis</td></tr>
+<tr><td>Pasangan kunci Ed25519</td><td>Dibuat sendiri, gratis</td></tr>
+<tr><td>Token bot (opsional)</td><td>Gratis</td></tr>
+</table>
+
+<h2>Batasan lisensi</h2>
+<p>Satu brand/stack per pembelian. Boleh diubah untuk produkmu, tidak boleh dijual ulang atau dibagikan sebagai source. Hosting dan token bukan bagian dari paket.</p>
+
+<h2>Yang tidak dijanjikan</h2>
+<p>Tidak ada klaim anti-bocor mutlak, tidak ada klaim lolos anti-cheat, dan tidak ada jaminan penjualan. Yang dijanjikan hanya mekanismenya: pembatasan perangkat, pencabutan key, dan log percobaan.</p>`
+  },
+  {
+    slug: "panel-key-system",
+    lang: "id",
+    badge: "FITUR",
+    title: "Panel Key System: Fitur yang Benar-Benar Dipakai Admin",
+    desc: "Fitur panel admin yang berguna sehari-hari: daftar key, pencarian, blokir perangkat, log keamanan, dan aksi massal. Plus yang sering ada tapi jarang dipakai.",
+    h1: "Panel key system yang dipakai, bukan dipajang",
+    lead: "Panel yang bagus bukan yang punya banyak menu, tapi yang membuat tiga pekerjaan berulang selesai dalam hitungan detik: cari key, buat key, dan cabut akses.",
+    body: `
+<h2>Lima hal yang wajib ada</h2>
+<ol>
+<li><strong>Pencarian</strong> berdasarkan key, nama pembeli, atau status.</li>
+<li><strong>Buat key massal</strong> dengan masa aktif yang sama.</li>
+<li><strong>Detail perangkat</strong> per key, termasuk waktu aktivasi.</li>
+<li><strong>Blokir perangkat</strong> permanen atau sementara.</li>
+<li><strong>Log percobaan gagal</strong> untuk melihat pola penyalahgunaan.</li>
+</ol>
+
+<h2>Yang sering ada tapi jarang dipakai</h2>
+<ul>
+<li>Grafik penjualan di dalam panel — biasanya lebih enak di spreadsheet.</li>
+<li>Editor tema di dalam panel — cukup sekali diatur.</li>
+<li>Sistem tiket internal — pembeli tetap akan chat WhatsApp/Telegram.</li>
+</ul>
+
+<h2>Kenapa log keamanan penting</h2>
+<p>Tanpa log, kamu hanya tahu key "tidak bisa dipakai". Dengan log, kamu tahu apakah itu salah ketik, perangkat berubah, atau key dibagikan ke banyak orang.</p>
+
+<h2>Coba sendiri</h2>
+<p>Panel StarDev Licence V4 bisa dicoba langsung dengan data contoh: daftar key, blokir perangkat, dan log keamanan — tanpa daftar dan tanpa server.</p>`
+  },
+  {
+    slug: "keyauth-self-hosted",
+    lang: "en",
+    badge: "SETUP",
+    title: "Self-Hosting a KeyAuth-Style License Server: What It Takes",
+    desc: "A practical look at running your own key server: endpoints, Redis schema, key rotation, backups, and the failure cases that bite in production.",
+    h1: "Running your own key server",
+    lead: "Self-hosting removes the vendor from the path between your product and its keys. It also removes the person who used to handle backups at 2am.",
+    body: `
+<h2>The minimum shape</h2>
+<table>
+<tr><th>Piece</th><th>Job</th></tr>
+<tr><td>Verify endpoint</td><td>Key + HWID check, expiry, slot registration</td></tr>
+<tr><td>Key store</td><td>Key, owner label, expiry, plan, slot list</td></tr>
+<tr><td>Admin surface</td><td>Create, revoke, block, inspect</td></tr>
+<tr><td>Event log</td><td>Failed attempts with reason codes</td></tr>
+</table>
+
+<h2>Redis layout that stays readable</h2>
+<pre>key:&lt;KEY&gt;        hash  {status, expireAt, maxHwid, plan}
+key:&lt;KEY&gt;:hwids set   [hwid, ...]
+hwid:blocked     set   [hwid, ...]
+events           list  (capped, newest first)</pre>
+<p>Keep one hash per key and one set per key's devices. Avoid a single JSON blob for everything — you will rewrite it the first time two requests race.</p>
+
+<h2>Race conditions</h2>
+<p>Two devices activating at the same moment can both see "1 of 2 slots free". Use an atomic check-and-add (Lua script or WATCH/MULTI) so the slot count cannot exceed the limit.</p>
+
+<h2>Backups and rotation</h2>
+<p>Export keys and device lists daily. Rotate the admin secret and the signing key pair on a schedule, and keep the old public key available until shipped clients have updated.</p>
+
+<h2>What you get for the effort</h2>
+<p>No plan ceiling, no queue for resets, and key data you can audit. The cost is operational: uptime, backups, and the occasional race condition.</p>`
+  },
+  {
+    slug: "roblox-script-key-system",
+    lang: "en",
+    badge: "GUIDE · ROBLOX",
+    title: "Roblox Script Key System: Slots, Sessions, and Revocation",
+    desc: "Design a Roblox key system that handles shared keys, session expiry, and revocation without breaking legitimate players.",
+    h1: "Roblox script key system, end to end",
+    lead: "Roblox gives you no hardware id and no persistent client storage. That changes the design: slots are per player, sessions are short, and revocation must be instant.",
+    body: `
+<h2>Slots, not fingerprints</h2>
+<p>Use the player's <code>UserId</code> as the slot identity. It is stable, verifiable server-side, and needs no client cooperation. Enforce the slot limit in the same atomic operation as verification.</p>
+
+<h2>Session length</h2>
+<p>Issue a short-lived token (hours) rather than trusting a single check at join. On expiry, re-verify. If the key was revoked, the session dies at the next check instead of lasting until the server closes.</p>
+
+<h2>Revocation</h2>
+<table>
+<tr><th>Event</th><th>Effect</th></tr>
+<tr><td>Key revoked</td><td>Next verify fails; active sessions end at token expiry</td></tr>
+<tr><td>Slot removed</td><td>That player fails on next check</td></tr>
+<tr><td>Key expired</td><td>All slots fail immediately</td></tr>
+</table>
+
+<h2>Don't punish honest players</h2>
+<p>Roblox servers restart, players rejoin, and networks drop. Log a failed attempt but only block after a threshold — otherwise a bad minute looks like abuse.</p>
+
+<h2>Implementation</h2>
+<p>StarDev Licence V4 includes this flow: atomic slot registration, short sessions, revocation from the web panel or Android app, and a Luau client with a self-test against the server's crypto.</p>`
+  }
 ];

@@ -37,6 +37,13 @@ done
 # best-effort index probe (Bing blocks bots for site:, so this is informational only)
 NA=$(curl -s -m 20 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0 Safari/537.36" "https://www.bing.com/search?q=site%3A$HOST" | grep -o 'b_algo' | wc -l)
 
-if [ ! -f "$LOG" ]; then echo "timestamp,urls_pinged,bing_b_algo_probe,note" > "$LOG"; fi
-echo "$(date -Iseconds),$(echo "$URLS" | wc -l),$NA,probe unreliable for site: queries" >> "$LOG"
+BAD=0
+for u in $URLS; do
+  CODE=$(curl -s -o /dev/null -m 20 -w "%{http_code}" "$u")
+  [ "$CODE" != "200" ] && { BAD=$((BAD+1)); echo "warn: $CODE $u"; }
+done
+PAGES=$(ls -1 */index.html 2>/dev/null | wc -l)
+
+if [ ! -f "$LOG" ]; then echo "timestamp,urls_pinged,non_200,bing_probe,note" > "$LOG"; fi
+echo "$(date -Iseconds),$(echo "$URLS" | wc -l),$BAD,$NA,probe unreliable for site: queries" >> "$LOG"
 echo "autopilot done: $(echo "$URLS" | wc -l) urls pinged"

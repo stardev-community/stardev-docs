@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StarDev Project Catalog</title>
+<meta name="description" content="Katalog seluruh proyek StarDev & Lulu: aplikasi Android, web, video, bot, dan tooling.">
+<style>
+  :root{
+    --bg:#07090f; --bg2:#0d1119; --panel:#111725; --panel2:#161e2e;
+    --line:#233047; --txt:#e7ecf6; --dim:#8ea0bd; --dim2:#61708c;
+    --amber:#f0b429; --green:#4ade80; --purple:#c084fc; --blue:#38bdf8;
+    --pink:#fb7185; --cyan:#22d3ee; --red:#f87171; --slate:#94a3b8; --yellow:#facc15;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:
+      radial-gradient(900px 500px at 12% -8%, rgba(240,180,41,.14), transparent 60%),
+      radial-gradient(800px 500px at 92% 0%, rgba(56,189,248,.12), transparent 60%),
+      var(--bg);
+    color:var(--txt);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 64px}
+  header.hero{padding:34px 0 10px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .mark{
+    width:44px;height:44px;border-radius:13px;flex:0 0 auto;
+    background:linear-gradient(145deg,#f0b429,#e07b2a 55%,#b4451f);
+    box-shadow:0 10px 30px rgba(240,180,41,.25);
+    display:grid;place-items:center;font-weight:800;color:#1b1205;font-size:19px;
+  }
+  .brand small{display:block;color:var(--dim);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  .brand b{font-size:16px;letter-spacing:.02em}
+  h1{font-size:clamp(26px,5vw,42px);line-height:1.12;margin:6px 0 10px;letter-spacing:-.02em}
+  h1 span{background:linear-gradient(92deg,#f0b429,#ffd97a 40%,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--dim);max-width:62ch;margin:0 0 22px;font-size:15.5px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin:20px 0 26px}
+  .stat{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+  .stat b{display:block;font-size:23px;letter-spacing:-.02em}
+  .stat span{color:var(--dim2);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em}
+  .controls{position:sticky;top:0;z-index:20;padding:12px 0 14px;background:linear-gradient(180deg,var(--bg) 72%,rgba(7,9,15,0));backdrop-filter:blur(8px)}
+  .searchrow{display:flex;gap:10px;flex-wrap:wrap}
+  .search{flex:1 1 260px;position:relative}
+  .search input{
+    width:100%;padding:12px 14px 12px 40px;border-radius:13px;border:1px solid var(--line);
+    background:var(--panel);color:var(--txt);font-size:14.5px;outline:none;transition:.18s
+  }
+  .search input:focus{border-color:#3b5578;box-shadow:0 0 0 4px rgba(56,189,248,.09)}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.55}
+  .search kbd{
+    position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--dim2);
+    border:1px solid var(--line);border-radius:6px;padding:2px 6px;background:var(--bg2)
+  }
+  select{
+    padding:12px 12px;border-radius:13px;border:1px solid var(--line);background:var(--panel);color:var(--txt);
+    font-size:14px;outline:none
+  }
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+  .chip{
+    border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:999px;
+    padding:6px 12px;font-size:12.5px;cursor:pointer;transition:.16s;user-select:none
+  }
+  .chip:hover{color:var(--txt);border-color:#33455f}
+  .chip.on{background:var(--txt);color:#0a0e16;border-color:var(--txt);font-weight:650}
+  .chip .n{opacity:.6;margin-left:5px;font-weight:500}
+  .meta{color:var(--dim2);font-size:12.5px;margin:16px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:var(--radius);padding:16px 16px 14px;position:relative;overflow:hidden;
+    transition:transform .16s ease,border-color .16s,box-shadow .16s;
+  }
+  .card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent,var(--slate));opacity:.85}
+  .card:hover{transform:translateY(-2px);border-color:#33455f;box-shadow:0 14px 34px rgba(0,0,0,.32)}
+  .card h3{margin:0 0 6px;font-size:16.5px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .badge{
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;
+    padding:2px 8px;border-radius:999px;color:var(--accent,var(--slate));
+    background:color-mix(in srgb,var(--accent,var(--slate)) 14%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent,var(--slate)) 34%,transparent)
+  }
+  .card p{margin:0 0 12px;color:var(--dim);font-size:13.5px}
+  .path{
+    display:flex;align-items:center;gap:8px;background:#0a0f18;border:1px solid var(--line);
+    border-radius:10px;padding:7px 9px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#a9bbd6;
+    overflow:hidden
+  }
+  .path span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+  .copy{border:0;background:transparent;color:var(--dim2);cursor:pointer;padding:2px;border-radius:5px;flex:0 0 auto}
+  .copy:hover{color:var(--txt);background:#1a2333}
+  .row{display:flex;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap;color:var(--dim2);font-size:12px}
+  .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
+  .row a{color:var(--blue);text-decoration:none}
+  .row a:hover{text-decoration:underline}
+  .state{border-radius:999px;padding:1px 8px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid}
+  .state.aktif{color:var(--green);border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.08)}
+  .state.arsip{color:var(--slate);border-color:rgba(148,163,184,.3);background:rgba(148,163,184,.07)}
+  .state.duplikat{color:var(--yellow);border-color:rgba(250,204,21,.3);background:rgba(250,204,21,.07)}
+  .state.data{color:var(--cyan);border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.07)}
+  .empty{padding:48px 10px;text-align:center;color:var(--dim2)}
+  section.extra{margin-top:46px}
+  section.extra h2{font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
+  section.extra p{color:var(--dim);font-size:13.5px;margin:0 0 14px}
+  .list{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:13px;color:var(--dim)}
+  .item b{display:block;color:var(--txt);font-size:13.5px;font-weight:600}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim2);font-size:12.5px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+    background:#1b2537;border:1px solid #33455f;color:var(--txt);padding:9px 16px;border-radius:999px;
+    font-size:13px;transition:.22s;z-index:60
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  @media (max-width:560px){
+    .wrap{padding:20px 13px 52px}
+    .grid{grid-template-columns:1fr}
+    .search kbd{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand">
+      <div class="mark">S</div>
+      <div>
+        <b>StarDev</b>
+        <small>Project Catalog</small>
+      </div>
+    </div>
+    <h1>Semua proyek <span>StarDev &amp; Lulu</span><br>dalam satu halaman.</h1>
+    <p class="lede">Katalog lengkap aplikasi Android, web, produksi video, bot, dan tooling yang ada di penyimpanan Termux dan <code>/sdcard</code>. Data per 30 Oktober 2026.</p>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="controls">
+      <div class="searchrow">
+        <label class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Cari nama, deskripsi, teknologi, atau path…" autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+        <select id="sort" aria-label="Urutkan">
+          <option value="name">Urut: Nama A–Z</option>
+          <option value="date">Urut: Terbaru</option>
+          <option value="size">Urut: Ukuran terbesar</option>
+          <option value="cat">Urut: Kategori</option>
+        </select>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <main class="grid" id="grid"></main>
+
+  <section class="extra">
+    <h2>Arsip, aset &amp; data</h2>
+    <p>Bukan proyek aktif, tapi bagian dari ekosistem. Disimpan di <code>/sdcard</code>.</p>
+    <div class="list">
+      <div class="item"><b>arsip build StarDev</b>51 ZIP di <code>Download/</code>: AIDE(1–25), -baru, -updated, -debug, -GitHub, server, StarDevNett, licence. Download total 2,8 GB.</div>
+      <div class="item"><b>StarDevXSchool <em>(data)</em></b><code>Download/StarDevXSchool</code> — key perangkat, LuluMath.js, materi matematika, Tester.</div>
+      <div class="item"><b>StarDev <em>(aset merek)</em></b><code>/sdcard/StarDev</code> + <code>Canva/StarDev_*</code> — gambar dan materi visual.</div>
+      <div class="item"><b>StarDevXscholl <em>(dokumen)</em></b><code>/sdcard/StarDevXscholl</code> — Data Kelas X.xlsx, Skripsi_PMat_PBL.docx, X LENGKAP.xlsx.</div>
+      <div class="item"><b>Cerita Kecil Kita v4–v6</b>Arsip <code>.zip</code> di <code>~/proyek</code> (versi sebelum v9).</div>
+      <div class="item"><b>downloads/stardev</b>Bukan proyek StarDev — aset video Lulu (all_lulu_v2.mp4, cerita_kecil_kita_v9, q_*.jpg).</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Dibuat oleh <b>StarAsitance</b> · 30 Okt 2026</span>
+    <span id="foot"></span>
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const HOME = "/data/data/com.termux/files/home";
+const CATS = {
+  stardev: {label:"StarDev", color:"#f0b429"},
+  android:{label:"Android", color:"#4ade80"},
+  lulu:   {label:"Lulu",    color:"#c084fc"},
+  web:    {label:"Web",     color:"#38bdf8"},
+  video:  {label:"Video",   color:"#fb7185"},
+  ai:     {label:"AI & Bot",color:"#22d3ee"},
+  roblox: {label:"Roblox",  color:"#f87171"},
+  tool:   {label:"Tooling", color:"#94a3b8"},
+  akademik:{label:"Akademik",color:"#facc15"}
+};
+
+const DATA = [
+{name:"StarDevXScholl", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-10-23", mb:2, files:103,
+ desc:"Aplikasi presentasi offline: editor slide zoom-pan, OCR Tesseract, Convert to HTML, grafik otomatis, LuluMath, link & backup server. v1.3 (versionCode 4). Sumber kanonik.",
+ path:"~/proyek/StarDevXScholl"},
+{name:"StarDevXSchoolOffline", cat:"stardev", type:"Android · Gradle", status:"duplikat", date:"2026-10-14", mb:2, files:103,
+ desc:"Salinan AIDE dari StarDevXSchool Offline. Struktur identik dengan sumber kanonik.",
+ path:"/sdcard/AideProjects/StarDevXSchoolOffline"},
+{name:"StarDevXSchoolOffline.", cat:"stardev", type:"Android · Gradle", status:"duplikat", date:"2026-10-12", mb:2, files:75,
+ desc:"Varian salinan AIDE (nama berakhiran titik). Cadangan versi lebih lama.",
+ path:"/sdcard/AideProjects/StarDevXSchoolOffline."},
+{name:"StarDevXSchoolOffline(ok)", cat:"stardev", type:"Android · Gradle", status:"duplikat", date:"2026-10-01", mb:1, files:62,
+ desc:"Salinan AIDE yang ditandai sudah oke. Versi paling ramping dari ketiga mirror.",
+ path:"/sdcard/AideProjects/StarDevXSchoolOffline(ok)"},
+{name:"AdminApp", cat:"stardev", type:"Android · AIDE", status:"aktif", date:"2026-09-17", mb:2, files:289,
+ desc:"Aplikasi admin STARDEV (g3xstardev.app), proyek AIDE klasik dengan source Java.",
+ path:"/sdcard/AideProjects/AdminApp"},
+{name:"AdminAppOKE(1)", cat:"stardev", type:"Android · AIDE", status:"duplikat", date:"2026-09-17", mb:4, files:273,
+ desc:"Salinan AdminApp yang ditandai OK. Kandidat duplikat.",
+ path:"/sdcard/AideProjects/AdminAppOKE(1)"},
+{name:"AdminApp-gradle", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-09-17", mb:6, files:46,
+ desc:"Versi Gradle dari AdminApp dengan konfigurasi GitHub Actions — jalur build CI.",
+ path:"/sdcard/Download/AdminApp-gradle"},
+{name:"SockShare (StarDevNett)", cat:"stardev", type:"Android · AIDE", status:"aktif", date:"2026-09-28", mb:7, files:128,
+ desc:"Aplikasi Android StarDevNett (com.yt.sockshare) untuk berbagi berkas lewat socket.",
+ path:"/sdcard/AideProjects/SockShare"},
+{name:"ZipGit", cat:"stardev", type:"Android · Gradle", status:"aktif", date:"2026-10-02", mb:1, files:105,
+ desc:"Pilih ZIP → ekstrak → unggah semuanya ke repo GitHub sebagai SATU commit via Git Data API. Tanpa Termux, tanpa git.",
+ path:"/sdcard/AideProjects/ZipGit"},
+{name:"my-stardev-all-licence", cat:"stardev", type:"Node · Monorepo", status:"aktif", date:"2026-09-24", mb:77, files:188,
+ desc:"Monorepo KeySystemV4: API lisensi, apps/AdminApp, client-templates, scripts, konfigurasi Vercel.",
+ path:"/sdcard/Download/my-stardev-all-licence"},
+{name:"(tesweb) source", cat:"stardev", type:"Node · Monorepo", status:"duplikat", date:"2026-09-24", mb:39, files:94,
+ desc:"Salinan sumber monorepo lisensi KeySystemV4 untuk deploy web.",
+ path:"/sdcard/Download/(tesweb)/source"},
+
+{name:"Offline UI Detector", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-04", mb:1, files:27,
+ desc:"Offline UI Detector — deteksi elemen antarmuka secara offline lewat accessibility.",
+ path:"/sdcard/AideProjects/OfflineUIDetectionApp-Full"},
+{name:"ImageDecomposer", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-03", mb:1, files:59,
+ desc:"Dekomposisi gambar menjadi bagian-bagian (com.stardev.imagedecomposer).",
+ path:"/sdcard/AideProjects/ImageDecomposer"},
+{name:"BlockBlastBot", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-09-17", mb:1, files:159,
+ desc:"Bot permainan Block Blast, 12 kelas Java, tanpa dependency eksternal.",
+ path:"/sdcard/AideProjects/BlockBlastBot"},
+{name:"OfflinePuzzleAI_FULL", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-09-16", mb:1, files:46,
+ desc:"Puzzle AI yang berjalan sepenuhnya offline di perangkat.",
+ path:"/sdcard/AideProjects/OfflinePuzzleAI_FULL"},
+{name:"PUBGDatasetTool", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-19", mb:1, files:54,
+ desc:"Ekstraktor dataset PUBG (com.zone.datasettool) untuk pengumpulan data lokal.",
+ path:"/sdcard/AideProjects/PUBGDatasetTool"},
+{name:"XLAxisTowerFinder", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-09-06", mb:1, files:51,
+ desc:"Pencari tower XL/AXIS berbasis kompas dan lokasi.",
+ path:"/sdcard/AideProjects/XLAxisTowerFinder"},
+{name:"XLAxisTowerFinder_AIDE", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-09-07", mb:2, files:284,
+ desc:"Build AIDE dari XL/AXIS Tower Finder (com.xltower.finder), 18 kelas Java.",
+ path:"/sdcard/AideProjects/XLAxisTowerFinder_AIDE"},
+{name:"XL", cat:"android", type:"Android · AIDE", status:"duplikat", date:"2026-09-06", mb:1, files:28,
+ desc:"Varian ringkas dari XL/AXIS Tower Finder.",
+ path:"/sdcard/AideProjects/XL"},
+{name:"XLAxisTowerFinder (panduan)", cat:"android", type:"Dokumentasi", status:"data", date:"2026-09-06", mb:1, files:13,
+ desc:"Panduan merakit XL/AXIS Tower Finder di AIDE Pro (CARA_PAKAI_DI_AIDE_PRO.md).",
+ path:"/sdcard/XLAxisTowerFinder/XLAxisTowerFinder"},
+{name:"ZoneHUD", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-20", mb:1, files:42,
+ desc:"Overlay HUD Android (com.yt.zonehud) yang tampil di atas aplikasi lain.",
+ path:"/sdcard/AideProjects/ZoneHUD"},
+{name:"ZoomLens", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-10-11", mb:2, files:175,
+ desc:"Lensa Zoom (com.suka.zoomlens) — kamera pembesar dengan kontrol zoom.",
+ path:"/sdcard/AideProjects/ZoomLens"},
+{name:"gempa-detektor", cat:"android", type:"Android · AIDE", status:"aktif", date:"2026-09-13", mb:1, files:54,
+ desc:"Detektor Getaran memakai akselerometer perangkat.",
+ path:"/sdcard/AideProjects/gempa-detektor"},
+{name:"MY-IMGUI", cat:"android", type:"Android · AIDE", status:"aktif", date:"2025-05-09", mb:59, files:238,
+ desc:"Auto-Il2cppDumper dengan antarmuka ImGui — eksperimen tooling native.",
+ path:"/sdcard/AideProjects/MY-IMGUI"},
+
+{name:"LULU IG", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-03", mb:1, files:72,
+ desc:"Aplikasi LULU IG (com.iglulu.modz).",
+ path:"/sdcard/AideProjects/LULU IG"},
+{name:"LULUGAME", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-30", mb:11, files:82,
+ desc:"Aplikasi LULUGAME, 10 kelas Java.",
+ path:"/sdcard/AideProjects/LULUGAME"},
+{name:"LuluZipTxt", cat:"lulu", type:"Android · Gradle", status:"aktif", date:"2026-10-01", mb:1, files:84,
+ desc:"Lulu ZIP TXT (com.lulux.ziptext) — utilitas arsip teks.",
+ path:"/sdcard/AideProjects/LuluZipTxt"},
+{name:"Time Pop Up Lulu", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-05-27", mb:15, files:202,
+ desc:"Timer pop-up Lulu (com.timerlulu.modz) dengan 8 kelas Java.",
+ path:"/sdcard/AideProjects/Time Pop Up Lulu"},
+{name:"lulu ball", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2025-06-01", mb:1, files:170,
+ desc:"Game Lulu Ball (com.luluball.modz).",
+ path:"/sdcard/AideProjects/lulu ball"},
+{name:"lulu.graft_AIDE", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-09", mb:2, files:220,
+ desc:"Aplikasi Lulu All (paket lulu.graft), 12 kelas Java.",
+ path:"/sdcard/AideProjects/lulu.graft_AIDE"},
+{name:"lulu_maps_ml", cat:"lulu", type:"Android · AIDE", status:"aktif", date:"2026-09-08", mb:1, files:19,
+ desc:"Lulu Maps dengan dukungan ML — proyek ringkas 19 berkas.",
+ path:"/sdcard/AideProjects/lulu_maps_ml"},
+{name:"KEY LULU", cat:"lulu", type:"Android · Gradle", status:"aktif", date:"2025-05-27", mb:21, files:184,
+ desc:"Aplikasi Key Lulu v1.3 (com.lulu.modz), struktur Gradle lengkap.",
+ path:"/sdcard/KEYLULUv1.3/KEY LULU"},
+
+{name:"G3Store", cat:"web", type:"Web statis", status:"aktif", date:"2026-08-08", mb:1, files:13,
+ desc:"Situs toko G3Store: beranda, katalog, produk, kontak, panduan, plus data.js dan asset.",
+ path:"/sdcard/G3Store-main"},
+
+{name:"UdaNext", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-28", mb:24, files:440,
+ desc:"Cerita Kecil Kita v10 / GoldTime — produksi video HTML canvas, render 90fps, GitHub Actions. Commit terakhir: smooth motion tanpa pulse per-beat.",
+ path:"~/proyek/UdaNext", repo:"https://github.com/stardev-community/UdaNext"},
+{name:"all_lulu_project", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-27", mb:230, files:440,
+ desc:"All Lulu — produksi video lengkap dengan all_lulu.mp4, elemen, fonts, dan config scene.",
+ path:"~/proyek/all_lulu_project"},
+{name:"all_lulu_v2", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-28", mb:49, files:443,
+ desc:"All Lulu v2 “35mm” — hybrid: gaya desk 00:55–02:00 di dalam timeline v3, boundary fade halus.",
+ path:"~/proyek/all_lulu_v2", repo:"https://github.com/stardev-community/all_lulu_v2"},
+{name:"cerita_kecil_kita v4", cat:"video", type:"Web · Video", status:"arsip", date:"2026-10-27", mb:78, files:442,
+ desc:"Versi v4 produksi Cerita Kecil Kita — dasar sebelum v9/v10.",
+ path:"~/proyek/cerita_kecil_kita_project_v4"},
+{name:"cerita_kecil_kita v9", cat:"video", type:"Web · Video", status:"aktif", date:"2026-10-28", mb:91, files:441,
+ desc:"Versi v9 dengan CI: input fps dan build 90fps.",
+ path:"~/proyek/cerita_kecil_kita_project_v9", repo:"https://github.com/stardev-community/cerita_kecil_kita_v9"},
+{name:"cerita_kecil_kita (proj mentah)", cat:"video", type:"Web · Video", status:"arsip", date:"2026-10-27", mb:8, files:35,
+ desc:"Project mentah Cerita Kecil Kita sebelum dirapikan ke struktur v-series.",
+ path:"/sdcard/Download/cerita_kecil_kita_project(1)/proj"},
+{name:"elemen", cat:"video", type:"Aset visual", status:"aktif", date:"2026-10-27", mb:6, files:383,
+ desc:"Pustaka elemen visual bersama: botanicals, celebration, clips, coffee, plus contact sheet.",
+ path:"~/proyek/elemen"},
+{name:"matematika_01", cat:"video", type:"Python · Video", status:"aktif", date:"2026-10-23", mb:1, files:7,
+ desc:"Pipeline video “Bilangan Bulat Positif dan Negatif”: make_audio, subtitles, timeline, render_video.",
+ path:"~/proyek/matematika_01"},
+
+{name:"asr", cat:"ai", type:"C++ · Whisper", status:"aktif", date:"2026-10-27", mb:268, files:2736,
+ desc:"Speech-to-text lokal dengan whisper.cpp dan model ggml-small-q5_1, dipakai untuk transkripsi produksi video.",
+ path:"~/proyek/asr"},
+{name:"telegram-ai-bot", cat:"ai", type:"Node · Bot", status:"aktif", date:"2026-10-29", mb:1, files:19,
+ desc:"Bot Telegram berbasis Node (index.mjs, bot.log, tmp).",
+ path:"~/proyek/telegram-ai-bot"},
+{name:"TikTok Trend Radar", cat:"ai", type:"Bun · Web", status:"aktif", date:"2026-10-23", mb:13, files:53,
+ desc:"Analisis tren TikTok: Bun + Cloudflare, data pipeline, dashboard publik.",
+ path:"~/proyek/titok_analisis"},
+
+{name:"LuluXRoblox", cat:"roblox", type:"Luau · Roblox", status:"aktif", date:"2026-10-28", mb:2, files:83,
+ desc:"LuluUI — framework UI Roblox resmi (Window, Tab, Section, notify) plus modul android-control.",
+ path:"~/LuluXRoblox"},
+
+{name:"opencode-termux", cat:"tool", type:"Shell · Config", status:"aktif", date:"2026-10-21", mb:1, files:12,
+ desc:"Fork opencode-termux dengan installer one-liner (fetch src tanpa clone).",
+ path:"~/opencode-termux", repo:"https://github.com/HanSoBored/opencode-termux"},
+{name:"opencode2-test", cat:"tool", type:"Config", status:"data", date:"2026-10-21", mb:187, files:3,
+ desc:"Direktori uji konfigurasi opencode (3 berkas, 187 MB).",
+ path:"~/opencode2-test"},
+
+{name:"skripsi_pmat", cat:"akademik", type:"Python · Dokumen", status:"aktif", date:"2026-10-29", mb:2, files:28,
+ desc:"Penulisan skripsi Pendidikan Matematika: naskah v2, parts, blocks.py, type_to_wps.py, DOCX final.",
+ path:"~/skripsi_pmat"},
+{name:"StarDevXscholl (dokumen)", cat:"akademik", type:"Dokumen", status:"data", date:"2026-10-29", mb:1, files:3,
+ desc:"Aset dokumen: Data Kelas X.xlsx, X LENGKAP.xlsx, Skripsi_PMat_PBL.docx.",
+ path:"/sdcard/StarDevXscholl"}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const short = p => p.replace(HOME, "~");
+const fmtMB = n => n >= 1024 ? (n/1024).toFixed(1)+" GB" : n+" MB";
+
+let state = {cat:"all", q:"", sort:"name"};
+
+function renderStats(){
+  const total = DATA.length;
+  const cats = new Set(DATA.map(d=>d.cat)).size;
+  const mb = DATA.reduce((a,d)=>a+(d.mb||0),0);
+  const aktif = DATA.filter(d=>d.status==="aktif").length;
+  $("#stats").innerHTML = [
+    [total, "Proyek"],
+    [aktif, "Aktif"],
+    [cats, "Kategori"],
+    [fmtMB(mb), "Total ukuran"]
+  ].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+  $("#foot").textContent = `${total} entri · ${fmtMB(mb)}`;
+}
+
+function renderChips(){
+  const counts = {};
+  DATA.forEach(d=>counts[d.cat]=(counts[d.cat]||0)+1);
+  const order = Object.keys(CATS);
+  let html = `<div class="chip ${state.cat==="all"?"on":""}" data-cat="all">Semua <span class="n">${DATA.length}</span></div>`;
+  order.forEach(k=>{
+    if(!counts[k]) return;
+    html += `<div class="chip ${state.cat===k?"on":""}" data-cat="${k}">${CATS[k].label} <span class="n">${counts[k]}</span></div>`;
+  });
+  $("#chips").innerHTML = html;
+  $("#chips").querySelectorAll(".chip").forEach(el=>{
+    el.onclick = () => { state.cat = el.dataset.cat; renderChips(); render(); };
+  });
+}
+
+function match(d){
+  if(state.cat !== "all" && d.cat !== state.cat) return false;
+  const q = state.q.trim().toLowerCase();
+  if(!q) return true;
+  return [d.name,d.desc,d.type,d.path,CATS[d.cat].label].join(" ").toLowerCase().includes(q);
+}
+
+function render(){
+  let rows = DATA.filter(match);
+  const by = state.sort;
+  rows.sort((a,b)=>{
+    if(by==="name") return a.name.localeCompare(b.name,"id");
+    if(by==="date") return (b.date||"").localeCompare(a.date||"") || a.name.localeCompare(b.name);
+    if(by==="size") return (b.mb||0)-(a.mb||0);
+    if(by==="cat") return CATS[a.cat].label.localeCompare(CATS[b.cat].label) || a.name.localeCompare(b.name);
+    return 0;
+  });
+  $("#meta").textContent = `${rows.length} dari ${DATA.length} proyek ditampilkan`;
+  if(!rows.length){
+    $("#grid").innerHTML = `<div class="empty">Tidak ada proyek yang cocok. Coba kata kunci lain.</div>`;
+    return;
+  }
+  $("#grid").innerHTML = rows.map(d=>{
+    const c = CATS[d.cat];
+    const st = d.status || "aktif";
+    return `<article class="card" style="--accent:${c.color}">
+      <h3>${esc(d.name)} <span class="badge">${esc(c.label)}</span></h3>
+      <p>${esc(d.desc)}</p>
+      <div class="path"><span title="${esc(d.path)}">${esc(short(d.path))}</span>
+        <button class="copy" data-copy="${esc(d.path)}" title="Salin path" aria-label="Salin path">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+        </button>
+      </div>
+      <div class="row">
+        <span class="state ${st}">${esc(st)}</span>
+        <span>${esc(d.type)}</span>
+        <span class="dot"></span>
+        <span>${fmtMB(d.mb||0)} · ${d.files||0} file</span>
+        ${d.date?`<span class="dot"></span><span>${esc(d.date)}</span>`:""}
+        ${d.repo?`<span class="dot"></span><a href="${esc(d.repo)}" target="_blank" rel="noopener">repo</a>`:""}
+      </div>
+    </article>`;
+  }).join("");
+
+  $("#grid").querySelectorAll(".copy").forEach(btn=>{
+    btn.onclick = async () => {
+      const text = btn.dataset.copy.replace(/^~/, HOME);
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand("copy"); }catch(_){}
+        ta.remove();
+      }
+      toast("Path disalin");
+    };
+  });
+}
+
+let toastTimer;
+function toast(msg){
+  const el = $("#toast");
+  el.textContent = msg; el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove("show"), 1500);
+}
+
+$("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+$("#sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "/" && document.activeElement !== $("#q")){
+    e.preventDefault(); $("#q").focus();
+  }
+  if(e.key === "Escape" && document.activeElement === $("#q")){
+    $("#q").value = ""; state.q = ""; render(); $("#q").blur();
+  }
+});
+
+renderStats();
+renderChips();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stardev-community.github.io/stardev-docs/sitemap.xml

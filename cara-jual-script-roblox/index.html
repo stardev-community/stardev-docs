@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara Jual Script Roblox Tanpa Kehilangan File ke Pembeli</title>
+<meta name="description" content="Alur menjual script Roblox: harga, pengiriman, loader, key system, dan penanganan pembeli yang minta refund atau membagikan ulang.">
+<link rel="canonical" href="https://stardev-community.github.io/stardev-docs/cara-jual-script-roblox/">
+<link rel="icon" href="https://stardev-community.github.io/stardev-docs/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="https://stardev-community.github.io/stardev-docs/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cara Jual Script Roblox Tanpa Kehilangan File ke Pembeli">
+<meta property="og:description" content="Alur menjual script Roblox: harga, pengiriman, loader, key system, dan penanganan pembeli yang minta refund atau membagikan ulang.">
+<meta property="og:image" content="https://stardev-community.github.io/stardev-docs/shop/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}
+body{margin:0;background:#060810;color:#e9eef7;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65}
+a{color:#f5b73d}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 80px}
+.badge{display:inline-block;border:1px solid rgba(245,183,61,.35);background:rgba(245,183,61,.08);color:#f5b73d;border-radius:999px;padding:6px 13px;font-size:12px;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.14;letter-spacing:-.03em;margin:20px 0 14px}
+h2{font-size:22px;margin:36px 0 8px;letter-spacing:-.02em}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:#a9b8cc;font-size:16px}
+.lead{font-size:19px;color:#c6d3e4}
+pre{background:#0b1120;border:1px solid #1e293b;border-radius:12px;padding:14px;overflow:auto;font-size:13px;color:#cfe0f5}
+code{background:#0d1522;border:1px solid #1e293b;padding:1px 6px;border-radius:6px;font-size:.9em}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px}
+.p{background:linear-gradient(135deg,#ffe0a3,#f5b73d);color:#1a1205}
+.s{border:1px solid #26344a;color:#dbe6f5}
+.note{font-size:13px;color:#7f8ea4}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
+th{background:#0d1522;color:#e9eef7}
+footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="badge">PANDUAN · JUALAN</span>
+  <h1>Cara jual script Roblox dengan aman</h1>
+  <p class="lead">Menjual script bukan soal menulis kode, tapi soal pengiriman: bagaimana pembeli bisa memakai tanpa memiliki file sumbernya, dan bagaimana kamu tahu siapa yang membocorkan.</p>
+  <h2>Empat model pengiriman</h2>
+<table>
+<tr><th>Model</th><th>Kelebihan</th><th>Kekurangan</th></tr>
+<tr><td>File langsung</td><td>Simpel</td><td>Bisa disebar ulang dalam hitungan menit</td></tr>
+<tr><td>Loader + key</td><td>Kontrol akses</td><td>Loader tetap bisa dianalisis</td></tr>
+<tr><td>Script di-host, dijalankan per sesi</td><td>Tidak ada file</td><td>Bergantung uptime</td></tr>
+<tr><td>Key system + HWID</td><td>Batasi perangkat, bisa cabut</td><td>Butuh backend</td></tr>
+</table>
+
+<h2>Alur minimum yang layak</h2>
+<ol>
+<li>Tentukan harga dan masa aktif (7/30 hari/lifetime).</li>
+<li>Buat stok key, kirim setelah pembayaran terkonfirmasi.</li>
+<li>Script memverifikasi key + slot perangkat sebelum berjalan.</li>
+<li>Catat percobaan gagal; blokir yang mencurigakan.</li>
+</ol>
+
+<h2>Menangani permintaan yang bikin rugi</h2>
+<p>Refund setelah key dipakai adalah permintaan paling umum. Solusi paling murah: nyatakan kebijakan sebelum bayar, dan sediakan satu reset perangkat gratis supaya pembeli tidak langsung minta uang kembali.</p>
+
+<h2>Jangan mengklaim yang tidak benar</h2>
+<p>Sistem lisensi tidak membuat script "anti-bocor" atau "anti-ban". Yang bisa dijanjikan: pembatasan perangkat, pencabutan key, dan catatan penggunaan.</p>
+  <div class="cta">
+    <a class="btn p" href="../shop/">Lihat source &amp; harga (Rp 100.000)</a>
+    <a class="btn s" href="../shop/demo/?demo=1">Coba demo panel admin</a>
+  </div>
+  <p class="note">Demo memakai data contoh dan tidak terhubung ke server. Source code, bukan sewa lisensi.</p>
+  <footer>StarDev · <a href="../panduan/">semua panduan</a> · <a href="../shop/">store</a></footer>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(8,12,20,.94);border-top:1px solid #1e293b;padding:9px 14px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;backdrop-filter:blur(8px)">
+    <span style="color:#8fa1b8">Source code · Rp 100.000</span>
+    <a href="../shop/" style="color:#1a1205;background:linear-gradient(135deg,#ffe0a3,#f5b73d);padding:7px 13px;border-radius:9px;font-weight:700;text-decoration:none">Beli</a>
+    <a href="../shop/demo/?demo=1" style="color:#dbe6f5;border:1px solid #26344a;padding:7px 13px;border-radius:9px;font-weight:600;text-decoration:none">Demo</a>
+  </div>
+</main>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cara jual script Roblox dengan aman","description":"Alur menjual script Roblox: harga, pengiriman, loader, key system, dan penanganan pembeli yang minta refund atau membagikan ulang.","inLanguage":"id","author":{"@type":"Organization","name":"StarDev"},"mainEntityOfPage":"https://stardev-community.github.io/stardev-docs/cara-jual-script-roblox/"}</script>
+</body>
+</html>

@@ -47,6 +47,7 @@ const render = (p) => `<!DOCTYPE html>
 <title>${p.title}</title>
 <meta name="description" content="${p.desc}">
 <link rel="canonical" href="${SITE}/${p.slug}/">
+<link rel="icon" href="${SITE}/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="StarDev licensing guides" href="${SITE}/feed.xml">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${p.title}">
@@ -63,6 +64,11 @@ const render = (p) => `<!DOCTYPE html>
   ${p.body.trim()}
   ${cta(p.lang)}
   <footer>StarDev · <a href="../panduan/">${p.lang === "id" ? "semua panduan" : "all guides"}</a> · <a href="../shop/${p.lang === "id" ? "" : "en/"}">store</a></footer>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(8,12,20,.94);border-top:1px solid #1e293b;padding:9px 14px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;backdrop-filter:blur(8px)">
+    <span style="color:#8fa1b8">Source code · ${p.lang === "id" ? "Rp 100.000" : "$6.50"}</span>
+    <a href="../shop/${p.lang === "id" ? "" : "en/"}" style="color:#1a1205;background:linear-gradient(135deg,#ffe0a3,#f5b73d);padding:7px 13px;border-radius:9px;font-weight:700;text-decoration:none">${p.lang === "id" ? "Beli" : "Buy"}</a>
+    <a href="../shop/demo/?demo=1" style="color:#dbe6f5;border:1px solid #26344a;padding:7px 13px;border-radius:9px;font-weight:600;text-decoration:none">${p.lang === "id" ? "Demo" : "Demo"}</a>
+  </div>
 </main>
 <script type="application/ld+json">${JSON.stringify({
   "@context": "https://schema.org",
@@ -124,6 +130,7 @@ const hub = `<!DOCTYPE html>
 <title>Panduan Sistem Lisensi &amp; Key System — StarDev</title>
 <meta name="description" content="Kumpulan panduan sistem lisensi: key system Roblox, APK, API key, HWID, harga source code, dan demo panel admin.">
 <link rel="canonical" href="${SITE}/panduan/">
+<link rel="icon" href="${SITE}/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Panduan sistem lisensi &amp; key system">
 <meta property="og:image" content="${SITE}/shop/og.png">

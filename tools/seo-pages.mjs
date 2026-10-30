@@ -248,4 +248,171 @@ String hwid = sha256(raw);</pre>
 <h2>Where this is implemented</h2>
 <p>StarDev Licence V4 keeps HWID slots, blocks, and security events in one Redis store, with admin actions from the web panel or the Android app. Source code, one brand per purchase.</p>`
   }
+
+  ,
+  {
+    slug: "harga-key-system",
+    lang: "id",
+    badge: "HARGA",
+    title: "Harga Key System 2026: Hosted Bulanan vs Source Sekali Bayar",
+    desc: "Rincian biaya key system: layanan hosted, biaya infrastruktur Vercel/Upstash, dan source code sekali bayar. Hitungan untuk 10 dan 100 pembeli.",
+    h1: "Berapa harga key system sebenarnya",
+    lead: "Harga yang terlihat biasanya hanya langganan. Biaya sebenarnya muncul dari jumlah pembeli, reset HWID manual, dan waktu yang habis untuk urusan admin.",
+    body: `
+<h2>Tiga komponen biaya</h2>
+<table>
+<tr><th>Komponen</th><th>Hosted</th><th>Source sendiri</th></tr>
+<tr><td>Lisensi perangkat lunak</td><td>Bulanan/tahunan</td><td>Sekali (Rp 100.000 / Rp 200.000)</td></tr>
+<tr><td>Infrastruktur</td><td>Termasuk</td><td>Vercel + Upstash, ada kuota gratis</td></tr>
+<tr><td>Waktu admin</td><td>Antre ke vendor</td><td>Kamu tangani sendiri</td></tr>
+</table>
+
+<h2>Hitungan kasar</h2>
+<p>Kalau produkmu menjual 10 key seharga Rp 15.000, pendapatan Rp 150.000. Langganan hosted setahun bisa lebih besar dari itu. Dengan source sekali bayar Rp 100.000, titik impas tercapai di penjualan pertama bila kamu tidak menghitung waktumu.</p>
+
+<h2>Biaya yang sering dilupakan</h2>
+<ul>
+<li>Domain (opsional, Rp 150.000–200.000/tahun).</li>
+<li>Token bot Telegram/Discord: gratis.</li>
+<li>Waktu integrasi: 1–3 hari untuk pertama kali.</li>
+<li>Backup database: gratis di kuota kecil, tapi harus dijadwalkan.</li>
+</ul>
+
+<h2>Kapan langganan tetap lebih murah</h2>
+<p>Kalau kamu hanya butuh key untuk satu produk kecil dan tidak mau menyentuh server, biaya bulanan yang kecil masih lebih murah daripada waktu belajarmu. Itu keputusan yang jujur, bukan kegagalan.</p>`
+  },
+  {
+    slug: "cara-jual-script-roblox",
+    lang: "id",
+    badge: "PANDUAN · JUALAN",
+    title: "Cara Jual Script Roblox Tanpa Kehilangan File ke Pembeli",
+    desc: "Alur menjual script Roblox: harga, pengiriman, loader, key system, dan penanganan pembeli yang minta refund atau membagikan ulang.",
+    h1: "Cara jual script Roblox dengan aman",
+    lead: "Menjual script bukan soal menulis kode, tapi soal pengiriman: bagaimana pembeli bisa memakai tanpa memiliki file sumbernya, dan bagaimana kamu tahu siapa yang membocorkan.",
+    body: `
+<h2>Empat model pengiriman</h2>
+<table>
+<tr><th>Model</th><th>Kelebihan</th><th>Kekurangan</th></tr>
+<tr><td>File langsung</td><td>Simpel</td><td>Bisa disebar ulang dalam hitungan menit</td></tr>
+<tr><td>Loader + key</td><td>Kontrol akses</td><td>Loader tetap bisa dianalisis</td></tr>
+<tr><td>Script di-host, dijalankan per sesi</td><td>Tidak ada file</td><td>Bergantung uptime</td></tr>
+<tr><td>Key system + HWID</td><td>Batasi perangkat, bisa cabut</td><td>Butuh backend</td></tr>
+</table>
+
+<h2>Alur minimum yang layak</h2>
+<ol>
+<li>Tentukan harga dan masa aktif (7/30 hari/lifetime).</li>
+<li>Buat stok key, kirim setelah pembayaran terkonfirmasi.</li>
+<li>Script memverifikasi key + slot perangkat sebelum berjalan.</li>
+<li>Catat percobaan gagal; blokir yang mencurigakan.</li>
+</ol>
+
+<h2>Menangani permintaan yang bikin rugi</h2>
+<p>Refund setelah key dipakai adalah permintaan paling umum. Solusi paling murah: nyatakan kebijakan sebelum bayar, dan sediakan satu reset perangkat gratis supaya pembeli tidak langsung minta uang kembali.</p>
+
+<h2>Jangan mengklaim yang tidak benar</h2>
+<p>Sistem lisensi tidak membuat script "anti-bocor" atau "anti-ban". Yang bisa dijanjikan: pembatasan perangkat, pencabutan key, dan catatan penggunaan.</p>`
+  },
+  {
+    slug: "lisensi-aplikasi-android",
+    lang: "id",
+    badge: "PANDUAN · ANDROID",
+    title: "Lisensi Aplikasi Android: Pilihan untuk Developer Indie",
+    desc: "Opsi lisensi untuk aplikasi Android: Play Billing, lisensi sendiri dengan key + HWID, atau layanan pihak ketiga. Plus hal yang harus dihindari.",
+    h1: "Lisensi aplikasi Android untuk developer indie",
+    lead: "Kalau aplikasimu dijual di luar Play Store — mod, tools, atau APK langsung — kamu tidak punya pembayaran bawaan. Di situ lisensi buatan sendiri masuk.",
+    body: `
+<h2>Empat jalur</h2>
+<table>
+<tr><th>Jalur</th><th>Cocok untuk</th><th>Catatan</th></tr>
+<tr><td>Play Billing</td><td>Aplikasi di Play Store</td><td>Paling patuh, tapi potongan platform</td></tr>
+<tr><td>Key manual (tanpa server)</td><td>Beberapa pembeli</td><td>Cepat, tapi tidak bisa dicabut</td></tr>
+<tr><td>Key + HWID dengan backend sendiri</td><td>Penjualan berulang</td><td>Kontrol penuh, perlu deploy</td></tr>
+<tr><td>Layanan lisensi pihak ketiga</td><td>Ingin cepat</td><td>Biaya berulang, data di vendor</td></tr>
+</table>
+
+<h2>Yang wajib ada di klien</h2>
+<ul>
+<li>Grace period offline yang terbatas, bukan akses penuh.</li>
+<li>Penyimpanan token, bukan key mentah.</li>
+<li>Pesan error yang jelas: kedaluwarsa, salah perangkat, atau server down.</li>
+<li>Versi aplikasi dikirim saat verifikasi agar kamu bisa memaksa update.</li>
+</ul>
+
+<h2>Distribusi APK</h2>
+<p>Setiap APK bisa dibongkar; yang tidak bisa dibongkar adalah validasi di server. Karena itu jangan menaruh rahasia di APK, dan jangan mengandalkan obfuscation sebagai satu-satunya perlindungan.</p>
+
+<h2>Kapan pakai source siap pakai</h2>
+<p>Kalau kamu butuh panel admin, pembatasan perangkat, bot pembeli, dan pencatatan percobaan gagal tanpa menulis backend dari nol, source code lebih cepat daripada membangun sendiri.</p>`
+  },
+  {
+    slug: "sell-roblox-scripts",
+    lang: "en",
+    badge: "GUIDE · SELLING",
+    title: "How to Sell Roblox Scripts Without Handing Over the File",
+    desc: "Delivery models for selling Roblox scripts, what a key system actually protects, refund policy that survives abuse, and how to set device limits.",
+    h1: "Selling Roblox scripts without losing the file",
+    lead: "The hard part of selling a script is delivery: the buyer needs it to run, and you need to be able to cut access off. A key check is the cheapest way to get both.",
+    body: `
+<h2>Delivery models</h2>
+<table>
+<tr><th>Model</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>Send the file</td><td>Simple</td><td>Redistributed in minutes</td></tr>
+<tr><td>Loader + key</td><td>Access control</td><td>Loader can still be analysed</td></tr>
+<tr><td>Hosted script, per-session</td><td>No file at all</td><td>Depends on uptime</td></tr>
+<tr><td>Key + HWID backend</td><td>Device limits, revocation</td><td>You run a backend</td></tr>
+</table>
+
+<h2>A minimum viable flow</h2>
+<ol>
+<li>Pick price and duration (7 days, 30 days, lifetime).</li>
+<li>Generate keys in a batch; deliver after payment clears.</li>
+<li>Verify key plus a device slot before the script initialises.</li>
+<li>Log failures, block repeat offenders.</li>
+</ol>
+
+<h2>Refunds without losing money</h2>
+<p>State the policy before payment and offer one free slot reset. Most refund requests come from a device change, not from a broken product.</p>
+
+<h2>What not to promise</h2>
+<p>A license check does not make a script undetectable, and it does not stop a determined reverse engineer. Claim device limits, revocation, and usage logs — nothing more.</p>`
+  },
+  {
+    slug: "software-licensing-indie",
+    lang: "en",
+    badge: "GUIDE · INDIE",
+    title: "Software Licensing for Indie Developers: Build, Buy, or Skip",
+    desc: "When indie software needs licensing at all, the three realistic options, hidden costs of each, and a decision checklist before you write a line of code.",
+    h1: "Software licensing for indie developers",
+    lead: "Most indie products do not need licensing — they need a payment link. Licensing starts to matter when the product can be copied, resold, or shared, and when support costs grow with every copy.",
+    body: `
+<h2>Do you need it?</h2>
+<ul>
+<li>Sold as a download or script? Yes, probably.</li>
+<li>SaaS where the value is server-side? No — accounts already gate it.</li>
+<li>Free with donations? No.</li>
+</ul>
+
+<h2>Three options</h2>
+<table>
+<tr><th>Option</th><th>Cost</th><th>Time</th></tr>
+<tr><td>Hosted licensing service</td><td>Monthly</td><td>Hours</td></tr>
+<tr><td>Self-hosted source</td><td>One-time + infra</td><td>A weekend</td></tr>
+<tr><td>Build it yourself</td><td>Infra only</td><td>Weeks, plus maintenance</td></tr>
+</table>
+
+<h2>Hidden costs</h2>
+<p><strong>Hosted:</strong> plan ceilings, price changes, and a queue for edge cases. <strong>Self-hosted:</strong> backups, key rotation, and deploy discipline. <strong>Build:</strong> the same maintenance, plus the bugs you have not hit yet.</p>
+
+<h2>A decision checklist</h2>
+<ol>
+<li>How many customers in 12 months? Under 50, keep it manual.</li>
+<li>Will customers ask for device resets? If yes, self-service matters.</li>
+<li>Does anyone ask where key data lives? Then hosting matters.</li>
+<li>What is one hour of your time worth? Multiply by setup and support.</li>
+</ol>
+
+<h2>If you go self-hosted</h2>
+<p>Keep the client contract to two fields — valid and expiry — and everything else on the server. That single decision is what makes migration or a rewrite cheap later.</p>`
+  }
 ];

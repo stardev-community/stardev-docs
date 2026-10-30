@@ -34,6 +34,17 @@ yang ada di penyimpanan Termux dan `/sdcard`.
    `ai`, `roblox`, `tool`, `akademik`.
 4. Commit dan push; GitHub Pages memperbarui otomatis.
 
+## Toko
+
+`shop/` — halaman jualan **StarDev All** (QRIS manual + order WhatsApp).
+
+- Harga: **1 bulan Rp 100.000**, **Lifetime Rp 200.000** (1 perangkat).
+- Merchant QRIS: **Service Lulu** (NMID `ID1026542074640`), gambar `shop/qris.jpeg`.
+- Nomor admin: `6285299526216` (0852-9952-6216). Ubah di objek `SHOP` pada
+  `shop/index.html`.
+- Harga diatur di `SHOP.plans`; harga 2–3 perangkat di `SHOP.pricePerDevice`
+  (kosong = "Hubungi admin").
+
 ## Catatan verifikasi
 
 Data dikumpulkan dengan pemindaian berkas lokal pada 30 Oktober 2026

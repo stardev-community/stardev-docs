@@ -1,53 +1,55 @@
-# StarDev Project Catalog
+# StarDev Docs
 
-Katalog satu halaman untuk seluruh proyek StarDev, Lulu, dan proyek pendukung
-yang ada di penyimpanan Termux dan `/sdcard`.
+Dokumentasi dan katalog untuk seluruh proyek StarDev Community — aplikasi,
+server, video, bot, dan tooling.
 
-- **Live:** https://stardev-community.github.io/stardev-docs/
-- **Sumber tunggal:** [`index.html`](index.html) — HTML mandiri, tanpa build step,
-  tanpa CDN, tanpa dependensi. Buka langsung dari file manager juga jalan.
-- **Data:** array `DATA` di dalam `index.html` (49 entri), dikelompokkan per
-  bidang: StarDev Community (termasuk jajaran produk Lulu), Android, Web,
-  Video, AI & Bot, Roblox, Tooling, Akademik.
+- **Katalog (live):** https://stardev-community.github.io/stardev-docs/
+- **Dokumentasi per proyek:** [`docs/`](docs/README.md)
+- **Toko:** https://stardev-community.github.io/stardev-docs/shop/
+- **Design system (StarUI):** https://stardev-community.github.io/stardev-docs/design/
+- **Data mentah:** [`catalog.json`](catalog.json)
 
-## Fitur
+## Isi repo
 
-- Pencarian nama, deskripsi, teknologi, dan path (pintasan `/`).
-- Filter kategori, urutkan berdasarkan nama / tanggal / ukuran / kategori.
-- Tombol salin path, badge status (`aktif`, `arsip`, `duplikat`, `data`).
-- Ringkasan statistik (jumlah proyek, aktif, kategori, total ukuran).
-- Responsif untuk HP dan desktop, menghormati `prefers-reduced-motion`.
+| Path | Isi |
+|---|---|
+| `index.html` | Katalog satu halaman (HTML mandiri, tanpa CDN, tanpa build step) |
+| `docs/` | 52 halaman dokumentasi per proyek + indeks per bidang |
+| `data/projects.json` | Data proyek (sumber untuk generator) |
+| `catalog.json` | Data proyek lengkap termasuk slug untuk API/pemakaian lain |
+| `shop/` | Halaman jualan StarDev All (QRIS manual + order WhatsApp) |
+| `design/` | StarUI: `tokens.json`, galeri referensi, `build.mjs` |
+| `tools/gen-docs.mjs` | Generator `docs/` + `data/projects.json` dari katalog |
 
-## Menambah atau memperbarui proyek
+## Cakupan
 
-1. Buka `index.html`, cari `const DATA = [`.
-2. Tambahkan objek:
+52 proyek di 8 bidang:
 
-   ```js
-   {name:"Nama Proyek", cat:"android", type:"Android · Gradle", status:"aktif",
-    date:"2026-10-30", mb:2, files:100,
-    desc:"Deskripsi singkat.",
-    path:"~/proyek/NamaProyek", repo:"https://github.com/..."}
-   ```
+| Bidang | Jumlah |
+|---|---|
+| StarDev Community (termasuk jajaran produk Lulu) | 22 |
+| Android | 13 |
+| Web | 1 |
+| Video | 8 |
+| AI & Bot | 3 |
+| Roblox | 1 |
+| Tooling | 2 |
+| Akademik | 2 |
 
-3. `cat` harus salah satu dari: `stardev`, `android`, `lulu`, `web`, `video`,
-   `ai`, `roblox`, `tool`, `akademik`.
+Data disusun dari pemindaian lokal Termux dan `/sdcard` per 30 Oktober 2026.
+Ukuran dari `du`, jumlah berkas dan tanggal dari filesystem.
+
+## Memperbarui
+
+1. Ubah entri di array `DATA` pada `index.html`.
+2. `node tools/gen-docs.mjs` — memperbarui `docs/`, `data/projects.json`,
+   dan `catalog.json`.
+3. `node design/build.mjs` — menyuntik token StarUI ke halaman.
 4. Commit dan push; GitHub Pages memperbarui otomatis.
 
-## Toko
+## Catatan
 
-`shop/` — halaman jualan **StarDev All** (QRIS manual + order WhatsApp).
-
-- Harga: **1 bulan Rp 100.000**, **Lifetime Rp 200.000** (1 perangkat).
-- Merchant QRIS: **Service Lulu** (NMID `ID1026542074640`), gambar `shop/qris.jpeg`.
-- Nomor admin: `6285299526216` (0852-9952-6216). Ubah di objek `SHOP` pada
-  `shop/index.html`.
-- Harga diatur di `SHOP.plans`; harga 2–3 perangkat di `SHOP.pricePerDevice`
-  (kosong = "Hubungi admin").
-
-## Catatan verifikasi
-
-Data dikumpulkan dengan pemindaian berkas lokal pada 30 Oktober 2026
-(ukuran dari `du`, jumlah berkas dan tanggal modifikasi dari filesystem).
-Ketersediaan dan isi proyek dapat berubah; jalankan ulang pemindaian sebelum
-menambah entri baru.
+- Harga toko: 1 bulan **Rp 100.000**, Lifetime **Rp 200.000** (1 perangkat).
+  QRIS atas nama **Service Lulu** (NMID `ID1026542074640`).
+- Proyek pihak ketiga (tool PUBG/Frida, data executor Delta) tidak
+  didokumentasikan di sini.

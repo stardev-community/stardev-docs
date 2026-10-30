@@ -46,4 +46,13 @@ PAGES=$(ls -1 */index.html 2>/dev/null | wc -l)
 
 if [ ! -f "$LOG" ]; then echo "timestamp,urls_pinged,non_200,bing_probe,note" > "$LOG"; fi
 echo "$(date -Iseconds),$(echo "$URLS" | wc -l),$BAD,$NA,probe unreliable for site: queries" >> "$LOG"
+# --- rank probe (best effort; Bing may ignore site: for bots) ---
+RLOG="$ROOT/marketing/rank-log.csv"
+[ -f "$RLOG" ] || echo "timestamp,query,mentions" > "$RLOG"
+UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
+for Q in "jual+source+sistem+lisensi" "key+system+roblox" "keyauth+alternative" "harga+key+system" "license+system+apk"; do
+  M=$(curl -s -m 20 -A "$UA" "https://www.bing.com/search?q=$Q&count=30" | grep -o "stardev-community.github.io" | wc -l)
+  echo "$(date -Iseconds),$Q,$M" >> "$RLOG"
+done
+
 echo "autopilot done: $(echo "$URLS" | wc -l) urls pinged"

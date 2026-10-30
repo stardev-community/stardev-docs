@@ -26,18 +26,26 @@ th,td{border:1px solid #1e293b;padding:9px;text-align:left;color:#b9c7da}
 th{background:#0d1522;color:#e9eef7}
 footer{margin-top:48px;border-top:1px solid #1e293b;padding-top:18px;font-size:13px;color:#7f8ea4}`;
 
-const cta = (lang) =>
+const waId = (p) =>
+  "https://wa.me/6285299526216?text=" +
+  encodeURIComponent(`Halo, saya mau beli source KeySystemV4. Saya baca halaman: ${p.h1}. Paket yang saya minati: 1 bulan / lifetime.`);
+
+const tgEn = (p) =>
+  "https://t.me/yt_lulu?text=" +
+  encodeURIComponent(`Hi, I want to buy StarDev Licence V4 source code (from: ${p.h1}). Which package is available?`);
+
+const cta = (lang, p) =>
   lang === "id"
     ? `<div class="cta">
     <a class="btn p" href="../shop/">Lihat source &amp; harga (Rp 100.000)</a>
     <a class="btn s" href="../shop/demo/?demo=1">Coba demo panel admin</a>
-    <a class="btn s" href="https://wa.me/6285299526216?text=Halo%2C%20saya%20mau%20tanya%20soal%20source%20KeySystemV4">Tanya WhatsApp</a>
+    <a class="btn s" href="${waId(p)}">Tanya WhatsApp</a>
   </div>
   <p class="note">Demo memakai data contoh dan tidak terhubung ke server. Source code, bukan sewa lisensi.</p>`
     : `<div class="cta">
     <a class="btn p" href="../shop/en/">See pricing — $6.50</a>
     <a class="btn s" href="../shop/demo/?demo=1">Try the admin panel</a>
-    <a class="btn s" href="https://t.me/yt_lulu">Ask on Telegram</a>
+    <a class="btn s" href="${tgEn(p)}">Ask on Telegram</a>
   </div>
   <p class="note">Demo uses sample data and makes no server calls. Source code, not a subscription.</p>`;
 
@@ -64,7 +72,7 @@ const render = (p) => `<!DOCTYPE html>
   <h1>${p.h1}</h1>
   <p class="lead">${p.lead}</p>
   ${p.body.trim()}
-  ${cta(p.lang)}
+  ${cta(p.lang, p)}
   <footer>StarDev · <a href="../panduan/">${p.lang === "id" ? "semua panduan" : "all guides"}</a> · <a href="../shop/${p.lang === "id" ? "" : "en/"}">store</a></footer>
   <div style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(8,12,20,.94);border-top:1px solid #1e293b;padding:9px 14px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:13px;backdrop-filter:blur(8px)">
     <span style="color:#8fa1b8">Source code · ${p.lang === "id" ? "Rp 100.000" : "$6.50"}</span>

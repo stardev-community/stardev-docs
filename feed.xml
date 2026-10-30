@@ -8,118 +8,118 @@
     <link>https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/</link>
     <guid>https://stardev-community.github.io/stardev-docs/sistem-lisensi-apk/</guid>
     <description>Cara kerja lisensi untuk mod APK dan APK mandiri: HWID dari ANDROID_ID, cache offline, fail-closed, dan contoh panggilan HTTP. Plus opsi source code siap deploy.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Jasa pembuatan key system — apa yang dikerjakan</title>
     <link>https://stardev-community.github.io/stardev-docs/jasa-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/jasa-key-system/</guid>
     <description>Jasa pasang sistem lisensi: deploy backend, integrasi ke script/APK/bot, uji verifikasi, dan serah terima. Ruang lingkup, estimasi waktu, dan hal yang tidak dikerjakan.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Alternatif KeyAuth: kapan pindah, kapan tetap</title>
     <link>https://stardev-community.github.io/stardev-docs/alternatif-keyauth/</link>
     <guid>https://stardev-community.github.io/stardev-docs/alternatif-keyauth/</guid>
     <description>Kapan layanan key hosted masih masuk akal, kapan pindah ke sistem sendiri lebih murah, dan apa yang harus disiapkan sebelum migrasi.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>License system for Roblox scripts</title>
     <link>https://stardev-community.github.io/stardev-docs/license-system-for-roblox/</link>
     <guid>https://stardev-community.github.io/stardev-docs/license-system-for-roblox/</guid>
     <description>How key + HWID verification works for Roblox scripts, what Roblox allows over HTTP, and how to run the licensing backend yourself.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>APK license system that survives real users</title>
     <link>https://stardev-community.github.io/stardev-docs/apk-license-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/apk-license-system/</guid>
     <description>How to license a mod APK or standalone Android app: stable HWID, offline grace period, fail-closed defaults, and an endpoint contract that stays simple.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Designing a license key API that does not need rewrites</title>
     <link>https://stardev-community.github.io/stardev-docs/license-key-api/</link>
     <guid>https://stardev-community.github.io/stardev-docs/license-key-api/</guid>
     <description>Design a license key API that stays stable: verify, admin, and HWID endpoints, error shapes, rate limits, and idempotent key creation.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>HWID licensing, without the fantasy</title>
     <link>https://stardev-community.github.io/stardev-docs/hwid-licensing/</link>
     <guid>https://stardev-community.github.io/stardev-docs/hwid-licensing/</guid>
     <description>What a HWID check can and cannot do, how many devices to allow, when to auto-reset, and how to store device identifiers without collecting more than needed.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Berapa harga key system sebenarnya</title>
     <link>https://stardev-community.github.io/stardev-docs/harga-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/harga-key-system/</guid>
     <description>Rincian biaya key system: layanan hosted, biaya infrastruktur Vercel/Upstash, dan source code sekali bayar. Hitungan untuk 10 dan 100 pembeli.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Cara jual script Roblox dengan aman</title>
     <link>https://stardev-community.github.io/stardev-docs/cara-jual-script-roblox/</link>
     <guid>https://stardev-community.github.io/stardev-docs/cara-jual-script-roblox/</guid>
     <description>Alur menjual script Roblox: harga, pengiriman, loader, key system, dan penanganan pembeli yang minta refund atau membagikan ulang.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Lisensi aplikasi Android untuk developer indie</title>
     <link>https://stardev-community.github.io/stardev-docs/lisensi-aplikasi-android/</link>
     <guid>https://stardev-community.github.io/stardev-docs/lisensi-aplikasi-android/</guid>
     <description>Opsi lisensi untuk aplikasi Android: Play Billing, lisensi sendiri dengan key + HWID, atau layanan pihak ketiga. Plus hal yang harus dihindari.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Selling Roblox scripts without losing the file</title>
     <link>https://stardev-community.github.io/stardev-docs/sell-roblox-scripts/</link>
     <guid>https://stardev-community.github.io/stardev-docs/sell-roblox-scripts/</guid>
     <description>Delivery models for selling Roblox scripts, what a key system actually protects, refund policy that survives abuse, and how to set device limits.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Software licensing for indie developers</title>
     <link>https://stardev-community.github.io/stardev-docs/software-licensing-indie/</link>
     <guid>https://stardev-community.github.io/stardev-docs/software-licensing-indie/</guid>
     <description>When indie software needs licensing at all, the three realistic options, hidden costs of each, and a decision checklist before you write a line of code.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Menjual key system tanpa kacau</title>
     <link>https://stardev-community.github.io/stardev-docs/jual-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/jual-key-system/</guid>
     <description>Cara mengelola penjualan key: membuat stok, menentukan masa aktif, mengirim setelah pembayaran, menangani reset perangkat, dan mencatat pembeli.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Apa isi source code key system</title>
     <link>https://stardev-community.github.io/stardev-docs/source-code-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/source-code-key-system/</guid>
     <description>Rincian isi source code key system: endpoint verifikasi, panel admin, app admin, bot Telegram/Discord, client Luau. Plus kebutuhan Vercel/Upstash dan batasan lisensi.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Panel key system yang dipakai, bukan dipajang</title>
     <link>https://stardev-community.github.io/stardev-docs/panel-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/panel-key-system/</guid>
     <description>Fitur panel admin yang berguna sehari-hari: daftar key, pencarian, blokir perangkat, log keamanan, dan aksi massal. Plus yang sering ada tapi jarang dipakai.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Running your own key server</title>
     <link>https://stardev-community.github.io/stardev-docs/keyauth-self-hosted/</link>
     <guid>https://stardev-community.github.io/stardev-docs/keyauth-self-hosted/</guid>
     <description>A practical look at running your own key server: endpoints, Redis schema, key rotation, backups, and the failure cases that bite in production.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
   <item>
     <title>Roblox script key system, end to end</title>
     <link>https://stardev-community.github.io/stardev-docs/roblox-script-key-system/</link>
     <guid>https://stardev-community.github.io/stardev-docs/roblox-script-key-system/</guid>
     <description>Design a Roblox key system that handles shared keys, session expiry, and revocation without breaking legitimate players.</description>
-    <pubDate>2026-10-30T08:13:14.704Z</pubDate>
+    <pubDate>2026-10-30T08:44:44.726Z</pubDate>
   </item>
 </channel></rss>

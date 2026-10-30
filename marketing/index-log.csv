@@ -3,3 +3,6 @@ timestamp,urls_pinged,bing_b_algo_probe,note
 2026-10-30T15:04:30+07:00,20,1,probe unreliable for site: queries
 2026-10-30T15:09:38+07:00,20,11,probe unreliable for site: queries
 2026-10-30T15:10:32+07:00,20,0,11,probe unreliable for site: queries
+2026-10-30T15:15:04+07:00,25,0,10,probe unreliable for site: queries
+2026-10-30T15:17:25+07:00,25,0,1,probe unreliable for site: queries
+2026-10-30T15:45:01+07:00,25,0,7,probe unreliable for site: queries
